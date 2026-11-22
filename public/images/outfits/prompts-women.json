@@ -1,0 +1,45 @@
+{
+  "mode": "built-in image_gen",
+  "reference": "public/images/model-women-atlas.png",
+  "commonPrompt": "Use case: product-mockup. Asset type: transparent photographic outfit contact sheet for a fashion studio web app. Produce ONE portrait image, preferably 1536x2304 pixels (otherwise 1024x1536), with EXACTLY THREE equal-width columns and THREE equal-height rows, a mathematically regular 3x3 contact sheet containing NINE separate COMPLETE FULL-BODY photographs. Reference image 1 is the identity reference ONLY: preserve the exact same adult South Asian woman Maya, tied-back dark hair, warm natural medium-brown skin and natural face across all nine cells. Her clothes MUST be women's cuts. Transparent actual alpha background with no scenery or floor. Each model centered in her equal cell; her complete head, both hands and both shoes fully visible, ten percent empty safety padding above head and below soles; do not let any body or garment cross into another cell. Nine complete seamless people, each photographed as one entire physically correct body and outfit; never pasted or stitched at waist or knees. Straight-on frontal natural relaxed stance, slight space between arms and torso, both feet visible, consistent camera perspective, scale, face, pose and soft studio lighting in all nine images. High-quality realistic skin and fabric weave, natural folds, precise necklines and waist construction. The garment design stated below is exactly the SAME TOP in ALL NINE cells. All tops and pants in neutral medium/light grey, true unsaturated fabric rather than metallic silver, ready for later colour preview; skin retains warm natural colour. ROWS determine women's PANTS: row 1 TOP = high-rise tailored WIDE-LEG pleated trousers, row 2 MIDDLE = high-rise STRAIGHT-LEG denim JEANS with five-pocket construction, row 3 BOTTOM = CROPPED slim CIGARETTE tailored pants ending above ankles. COLUMNS determine women's SHOES: column 1 LEFT = white minimal low-top leather SNEAKERS, column 2 CENTER = grey POINTED-TOE MID-HEEL SLINGBACK PUMPS with visible slingback strap, column 3 RIGHT = grey slender women's LEATHER ANKLE BOOTS with a feminine low block heel. Thus every row has the same pants three times with three different shoes; every column has the same shoes three times with three different pants. NO men's loafers, NO men's Chelsea boots, NO shirts on tee sheets. NO text, labels, grids, divider lines, captions, watermarks, scenery or decorations.",
+  "assets": [
+    {
+      "id": "w-tee-crew",
+      "path": "public/images/outfits/w-tee-crew-matrix.png",
+      "topPrompt": "FITTED WOMEN'S CREW-NECK TEE: slim feminine cotton jersey, narrow round crew neckline, fitted shoulders, fitted short sleeves, hip-length hem tucked into waistband, light grey. Distinct fitted silhouette.",
+      "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-5b5e2900-2a08-4507-93f8-55df44e7f086.png"
+    },
+    {
+      "id": "w-tee-boxy",
+      "path": "public/images/outfits/w-tee-boxy-matrix.png",
+      "topPrompt": "BOXY WOMEN'S COTTON TEE: intentionally loose boxy feminine cut, dropped shoulders, loose wider elbow-grazing short sleeves, a cropped-at-waist straight hem with slight natural overlap of pants waistband; light grey heavyweight matte cotton. It must be distinctly broader and looser than a fitted tee.",
+      "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-01246fa4-c0c1-4d16-9892-08a609920072.png"
+    },
+    {
+      "id": "w-tee-v",
+      "path": "public/images/outfits/w-tee-v-matrix.png",
+      "topPrompt": "SOFT WOMEN'S V-NECK TEE: feminine fluid modal jersey with a clear moderate V neckline, natural drape, soft fitted short sleeves and relaxed body, hip-length hem neatly tucked into waistband. Light grey modal with fine soft texture.",
+      "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-1d577497-9e5e-4d24-9f0f-c4056b91eafa.png"
+    },
+    {
+      "id": "w-shirt-poplin",
+      "path": "public/images/outfits/w-shirt-poplin-matrix.png",
+      "topPrompt": "WOMEN'S POPLIN BUTTON-UP: distinctly feminine tailored pointed-collar long-sleeve shirt with slim shaped waist, crisp pale grey cotton poplin, visible front button placket and button cuffs, sleeves at wrists, tucked neatly into pants. Proper point collar, NOT band collar or tee.",
+      "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-b39cd895-954f-431a-b855-880e1968d5e3.png"
+    },
+    {
+      "id": "w-shirt-camp",
+      "path": "public/images/outfits/w-shirt-camp-matrix.png",
+      "topPrompt": "WOMEN'S SILK CAMP SHIRT: feminine relaxed open camp collar, short sleeves ending above elbow, light grey washed silk with subtle natural satin sheen, visible front buttons, tucked naturally into waistband. Open collar MUST clearly distinguish it from the long sleeve shirts.",
+      "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-12e67859-2860-47e8-a62d-0262102a3508.png"
+    },
+    {
+      "id": "w-shirt-band",
+      "path": "public/images/outfits/w-shirt-band-matrix.png",
+      "topPrompt": "WOMEN'S LINEN BAND-COLLAR SHIRT: feminine relaxed tailored blouse with a small stand/band collar and NO folded collar points, long sleeves to wrists and button cuffs, subtle grey linen weave, visible front buttons, hem tucked into waistband. Clearly linen, clearly band collar.",
+      "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-2c0f5db3-34b0-4374-868d-b5da0f896b46.png",
+      "originalSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-91cdf80c-da56-458a-8f9d-86d2f49c4099.png",
+      "spacingCorrectionPrompt": "Use case: precise-object-edit. Edit target: the provided women's band-collar outfit matrix. KEEP exactly the same woman Maya, face, all nine existing outfits, material, clothing details, order and true transparent alpha. Change ONLY the layout scale: within each mathematical 341.333×512 pixel cell of this 1024×1536 image, shrink and recenter that complete full-body photograph so it occupies only 85% of the cell height. Important: every head AND both entire soles need a generous 35-40 pixel transparent gap from top and bottom of EACH cell. No cutting any shoes on row boundaries. EXACTLY three columns and three rows on transparent actual alpha, no backgrounds/text/gridlines. Preserve all nine full-body seamless photos: row 1 wide trousers, row 2 straight jeans, row 3 cropped cigarette pants; column 1 sneakers, column 2 women's slingback pumps, column 3 women's ankle boots. Every person wears the same grey women's upright band-collar long-sleeve linen blouse. Preserve identity, material and physical realism. Do not fill the cells edge to edge."
+    }
+  ]
+}

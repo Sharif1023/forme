@@ -1,0 +1,65 @@
+[
+  {
+    "id": "m-tee-crew",
+    "file": "public/images/outfits/m-tee-crew-matrix.png",
+    "mode": "built-in image_gen",
+    "reference": "public/images/model-men-atlas.png",
+    "layout": {
+      "columns": 3,
+      "rows": 3,
+      "pantsByRow": [
+        "m-pant-chino",
+        "m-pant-pleat",
+        "m-pant-denim"
+      ],
+      "shoesByColumn": [
+        "m-shoe-sneaker",
+        "m-shoe-loafer",
+        "m-shoe-chelsea"
+      ]
+    },
+    "prompt": "Use case: photorealistic-natural. Asset type: production transparent outfit photography contact sheet for an interactive fashion fitting studio.\n\nCreate ONE high-resolution PORTRAIT PNG image, ideally 1536 x 2304 pixels or the highest supported portrait resolution, containing EXACTLY THREE COLUMNS and THREE ROWS: nine equal invisible portrait tiles in a perfect 3x3 grid. Each tile is one COMPLETE seamless photograph of the SAME adult South Asian male fashion model Arin seen in the reference image. Image 1 is an IDENTITY REFERENCE ONLY: preserve his face, short wavy black hair, warm medium brown natural skin, lean athletic masculine physique and adult age. Do not copy the reference layout or backdrop.\n\nALL NINE looks wear the SAME LIGHT NEUTRAL GREY REGULAR-FIT CREWNECK COTTON T-SHIRT: no chest pocket, circular ribbed crew collar, short sleeves, natural cotton knit, realistic drape, shoulder seams, sleeve hems and fabric folds. Shirt hem is naturally tucked into the trousers in every photo. This is an ESSENTIAL CREW TEE, never a V-neck, polo, collar shirt or boxy pocket tee.\n\nThe TROUSER depends strictly on ROW:\nTOP ROW (all three cells): neutral medium grey slim stretch chinos, tapered male leg, realistic fly, pockets and belt loops.\nMIDDLE ROW (all three cells): neutral medium grey wide relaxed pleated tailored trousers, visibly wider silhouette, front pleats and pressed crease.\nBOTTOM ROW (all three cells): neutral medium grey straight selvedge denim jeans, five-pocket construction, visible denim weave and contrast stitching.\n\nThe FOOTWEAR depends strictly on COLUMN:\nLEFT COLUMN (all three rows): clean WHITE leather low-top sneakers with white laces and rubber cupsole.\nCENTER COLUMN (all three rows): neutral grey polished leather PENNY LOAFERS with visible penny strap, no laces.\nRIGHT COLUMN (all three rows): neutral grey suede CHELSEA ANKLE BOOTS with elastic side gussets.\n\nEvery tile shows the FULL standing person, from complete hairstyle through both shoe soles. Each model is centered within its own equal tile. IDENTICAL straight front-facing relaxed catalog pose, arms naturally down with a small gap from the sides, five believable fingers visible, both feet flat and fully visible, feet shoulder-width apart. Exactly nine models, never more or fewer. Lock camera, identity, pose, lighting and scale across all nine photographs; vary only the designated pants and footwear. Each tile has at least TEN PERCENT vertical safety margin above the hair and below the soles, and generous horizontal space around hands. Never crop hair, hands, trouser hems or shoes. Never let a person cross a cell boundary.\n\nTRANSPARENT BACKGROUND with real alpha outside each complete person; no studio backdrop, no gradients, no ground, no rectangular backgrounds, no checkerboard painted into the image. Soft neutral photographic fashion lighting with lifelike skin pores, real fabric fibers, realistic continuous proportions and coherent clothing contact shadows. These must look like nine real single-exposure complete outfit photographs, NOT stitched body parts or separate garment overlays. No visible grid lines, no labels, no logos, no text, no borders, no watermark, no accessories. Keep all clothing chromatically NEUTRAL GREY / WHITE for later recoloring; keep warm natural skin and black hair unchanged."
+  },
+  {
+    "id": "m-tee-pocket",
+    "file": "public/images/outfits/m-tee-pocket-matrix.png",
+    "mode": "built-in image_gen",
+    "reference": "public/images/model-men-atlas.png",
+    "layout": {
+      "columns": 3,
+      "rows": 3,
+      "pantsByRow": [
+        "m-pant-chino",
+        "m-pant-pleat",
+        "m-pant-denim"
+      ],
+      "shoesByColumn": [
+        "m-shoe-sneaker",
+        "m-shoe-loafer",
+        "m-shoe-chelsea"
+      ]
+    },
+    "prompt": "Use case: photorealistic-natural. Asset type: production transparent outfit photography contact sheet for an interactive fashion fitting studio.\n\nCreate ONE high-resolution PORTRAIT PNG image, ideally 1536 x 2304 pixels or the highest supported portrait resolution, containing EXACTLY THREE COLUMNS and THREE ROWS: nine equal invisible portrait tiles in a perfect 3x3 grid. Each tile is one COMPLETE seamless photograph of the SAME adult South Asian male fashion model Arin seen in the reference image. Image 1 is an IDENTITY REFERENCE ONLY: preserve his face, short wavy black hair, warm medium brown natural skin, lean athletic masculine physique and adult age. Do not copy the reference layout or backdrop.\n\nALL NINE looks wear the SAME LIGHT NEUTRAL GREY HEAVYWEIGHT BOXY POCKET T-SHIRT: visibly relaxed boxy fit, dropped shoulder seams, wide short sleeves, circular ribbed crew collar, and ONE clear rectangular PATCH CHEST POCKET on his left chest. The substantial heavyweight cotton jersey has real textured fibers, realistic drape and folds. The shirt hem is naturally tucked into the trousers in every photo. This is a BOXY HEAVYWEIGHT POCKET TEE, never a V-neck, polo, collar shirt or fitted plain tee. The chest pocket and dropped shoulder must be easily visible in ALL NINE cells.\n\nThe TROUSER depends strictly on ROW:\nTOP ROW (all three cells): neutral medium grey slim stretch chinos, tapered male leg, realistic fly, pockets and belt loops.\nMIDDLE ROW (all three cells): neutral medium grey wide relaxed pleated tailored trousers, visibly wider silhouette, front pleats and pressed crease.\nBOTTOM ROW (all three cells): neutral medium grey straight selvedge denim jeans, five-pocket construction, visible denim weave and contrast stitching.\n\nThe FOOTWEAR depends strictly on COLUMN:\nLEFT COLUMN (all three rows): clean WHITE leather low-top sneakers with white laces and rubber cupsole.\nCENTER COLUMN (all three rows): neutral grey polished leather PENNY LOAFERS with visible penny strap, no laces.\nRIGHT COLUMN (all three rows): neutral grey suede CHELSEA ANKLE BOOTS with elastic side gussets.\n\nEvery tile shows the FULL standing person, from complete hairstyle through both shoe soles. Each model is centered within its own equal tile. IDENTICAL straight front-facing relaxed catalog pose, arms naturally down with a small gap from the sides, five believable fingers visible, both feet flat and fully visible, feet shoulder-width apart. Exactly nine models, never more or fewer. Lock camera, identity, pose, lighting and scale across all nine photographs; vary only the designated pants and footwear. Each tile has at least TEN PERCENT vertical safety margin above the hair and below the soles, and generous horizontal space around hands. Never crop hair, hands, trouser hems or shoes. Never let a person cross a cell boundary.\n\nTRANSPARENT BACKGROUND with real alpha outside each complete person; no studio backdrop, no gradients, no ground, no rectangular backgrounds, no checkerboard painted into the image. Soft neutral photographic fashion lighting with lifelike skin pores, real fabric fibers, realistic continuous proportions and coherent clothing contact shadows. These must look like nine real single-exposure complete outfit photographs, NOT stitched body parts or separate garment overlays. No visible grid lines, no labels, no logos, no text, no borders, no watermark, no accessories. Keep all clothing chromatically NEUTRAL GREY / WHITE for later recoloring; keep warm natural skin and black hair unchanged."
+  },
+  {
+    "id": "m-tee-v",
+    "file": "public/images/outfits/m-tee-v-matrix.png",
+    "mode": "built-in image_gen",
+    "reference": "public/images/model-men-atlas.png",
+    "layout": {
+      "columns": 3,
+      "rows": 3,
+      "pantsByRow": [
+        "m-pant-chino",
+        "m-pant-pleat",
+        "m-pant-denim"
+      ],
+      "shoesByColumn": [
+        "m-shoe-sneaker",
+        "m-shoe-loafer",
+        "m-shoe-chelsea"
+      ]
+    },
+    "prompt": "Use case: photorealistic-natural. Asset type: production transparent outfit photography contact sheet for an interactive fashion fitting studio.\n\nCreate ONE high-resolution PORTRAIT PNG image, ideally 1536 x 2304 pixels or the highest supported portrait resolution, containing EXACTLY THREE COLUMNS and THREE ROWS: nine equal invisible portrait tiles in a perfect 3x3 grid. Each tile is one COMPLETE seamless photograph of the SAME adult South Asian male fashion model Arin seen in the reference image. Image 1 is an IDENTITY REFERENCE ONLY: preserve his face, short wavy black hair, warm medium brown natural skin, lean athletic masculine physique and adult age. Do not copy the reference layout or backdrop.\n\nALL NINE looks wear the SAME LIGHT NEUTRAL GREY FITTED PIMA COTTON V-NECK T-SHIRT: a clearly visible modest V-shaped front neckline showing a triangular patch of upper chest skin, close fitted male torso, short sleeves, no chest pocket, smooth fine pima cotton with realistic fibers and soft natural folds. The shirt hem is naturally tucked into the trousers in every photo. This is a FITTED V-NECK TEE, never a crewneck, polo, collar shirt, long sleeve shirt or pocket tee. The V-shaped collar must be clearly visible in ALL NINE cells.\n\nThe TROUSER depends strictly on ROW:\nTOP ROW (all three cells): neutral medium grey slim stretch chinos, tapered male leg, realistic fly, pockets and belt loops.\nMIDDLE ROW (all three cells): neutral medium grey wide relaxed pleated tailored trousers, visibly wider silhouette, front pleats and pressed crease.\nBOTTOM ROW (all three cells): neutral medium grey straight selvedge denim jeans, five-pocket construction, visible denim weave and contrast stitching.\n\nThe FOOTWEAR depends strictly on COLUMN:\nLEFT COLUMN (all three rows): clean WHITE leather low-top sneakers with white laces and rubber cupsole.\nCENTER COLUMN (all three rows): neutral grey polished leather PENNY LOAFERS with visible penny strap, no laces.\nRIGHT COLUMN (all three rows): neutral grey suede CHELSEA ANKLE BOOTS with elastic side gussets.\n\nEvery tile shows the FULL standing person, from complete hairstyle through both shoe soles. Each model is centered within its own equal tile. IDENTICAL straight front-facing relaxed catalog pose, arms naturally down with a small gap from the sides, five believable fingers visible, both feet flat and fully visible, feet shoulder-width apart. Exactly nine models, never more or fewer. Lock camera, identity, pose, lighting and scale across all nine photographs; vary only the designated pants and footwear. Each tile has at least TEN PERCENT vertical safety margin above the hair and below the soles, and generous horizontal space around hands. Never crop hair, hands, trouser hems or shoes. Never let a person cross a cell boundary.\n\nTRANSPARENT BACKGROUND with real alpha outside each complete person; no studio backdrop, no gradients, no ground, no rectangular backgrounds, no checkerboard painted into the image. Soft neutral photographic fashion lighting with lifelike skin pores, real fabric fibers, realistic continuous proportions and coherent clothing contact shadows. These must look like nine real single-exposure complete outfit photographs, NOT stitched body parts or separate garment overlays. No visible grid lines, no labels, no logos, no text, no borders, no watermark, no accessories. Keep all clothing chromatically NEUTRAL GREY / WHITE for later recoloring; keep warm natural skin and black hair unchanged."
+  }
+]

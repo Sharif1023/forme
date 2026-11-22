@@ -1,0 +1,30 @@
+{
+  "mode": "built-in image_gen",
+  "path": "public/images/products-women-source.png",
+  "generatedSource": "C:\\Users\\hp\\.codex\\generated_images\\01a201eb-e36c-7712-b47d-9f49ad675450\\exec-4cca6bd3-d911-4ba1-bef4-2cb1929cb8b5.png",
+  "layout": {
+    "columns": 4,
+    "rows": 3,
+    "productIds": [
+      [
+        "w-tee-crew",
+        "w-tee-boxy",
+        "w-tee-v",
+        "w-shirt-poplin"
+      ],
+      [
+        "w-shirt-camp",
+        "w-shirt-band",
+        "w-pant-wide",
+        "w-pant-jean"
+      ],
+      [
+        "w-pant-cigarette",
+        "w-shoe-sneaker",
+        "w-shoe-pump",
+        "w-shoe-boot"
+      ]
+    ]
+  },
+  "prompt": "Use case: product-mockup. Asset type: high-end WOMEN'S clothing product photography contact sheet for a fashion web app. ONE landscape image, 1536x1024 pixels, exactly FOUR equal-width columns and THREE equal-height rows (4x3), twelve evenly registered separate product photographs on TRANSPARENT ACTUAL ALPHA background. Every item fully visible centered within its equal tile with generous 15% transparent safety padding on every edge; no item crosses tile boundaries. Realistic women's proportions, beautiful feminine cut, natural cloth drape, fine weave, visible seams and construction. Clothing neutral unsaturated light-to-mid GREY to allow later color variants, do not add colors. All textiles are real cotton/linen/silk/denim, no illustration, no flat vector drawing. Front-facing product view, symmetrical ghost-free product studio photography with naturally dimensional folds, no human, no mannequin, no body, no hanger. No scenery, no floor or colored background. EXACT cell order: ROW 1 left to right: (1) FITTED women's cotton CREW-NECK short-sleeve tee, narrow crew neck and slim silhouette; (2) women's loose BOXY cotton TEE, dropped shoulders and short sleeves, wide silhouette and cropped-at-waist straight hem; (3) women's SOFT MODAL V-NECK tee, clear V neckline, short sleeves and fluid drape; (4) women's feminine tailored POPLIN BUTTON-UP shirt, pointed folded collar, long sleeves to wrist, front buttons and cuffs. ROW 2 left to right: (1) women's fluid SILK CAMP SHIRT, open folded camp collar, SHORT sleeves and front buttons, subtle silk sheen; (2) women's LINEN BAND-COLLAR shirt, upright short stand collar with NO folded collar points, LONG sleeves and button cuffs, linen texture; (3) women's high-rise tailored WIDE-LEG PLEATED trousers with full flowing wide legs, waistband, belt loops and pressed creases; (4) women's HIGH-RISE STRAIGHT JEANS, authentic grey five-pocket denim, straight legs, jeans seams and fly. ROW 3 left to right: (1) women's CROPPED CIGARETTE tailored pants, slim feminine legs ending above ankle and pressed creases; (2) ONE minimal white women's LOW-TOP LEATHER SNEAKER, three-quarter side view, white laces and white sole; (3) ONE feminine grey POINTED-TOE MID-HEEL SLINGBACK PUMP, three-quarter side view clearly showing pointed toe, visible mid-height heel, OPEN BACK AND THIN SLINGBACK STRAP behind heel—this is a women's pump, NEVER a loafer; (4) ONE slender women's grey LEATHER ANKLE BOOT, feminine low-mid BLOCK HEEL and sleek toe, side zipper and no elastic Chelsea panel. All12 products must be independently visible. NO men's garments, NO men's loafer, NO Chelsea boot, NO accessories, NO belts separate from pants, NO people, NO visible mannequin/hanger, NO labels/text/gridlines/logos/watermarks."
+}

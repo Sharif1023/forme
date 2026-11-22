@@ -1,0 +1,4211 @@
+{
+  "products": [
+    {
+      "id": "m-tee-crew",
+      "gender": "men",
+      "category": "tshirts",
+      "name": "Essential Crew Tee",
+      "price": 28,
+      "description": "Midweight cotton jersey with a ribbed crew neck.",
+      "colors": [
+        {
+          "id": "ivory",
+          "name": "Ivory",
+          "hex": "#EEE8DC"
+        },
+        {
+          "id": "charcoal",
+          "name": "Charcoal",
+          "hex": "#34312C"
+        },
+        {
+          "id": "sage",
+          "name": "Sage",
+          "hex": "#8F9A7F"
+        }
+      ],
+      "style": {
+        "kind": "tee",
+        "neckline": "crew",
+        "fit": "regular"
+      },
+      "pricePaise": 280000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-tee-pocket",
+      "gender": "men",
+      "category": "tshirts",
+      "name": "Heavyweight Pocket Tee",
+      "price": 36,
+      "description": "Boxy, dropped-shoulder tee with a chest pocket.",
+      "colors": [
+        {
+          "id": "oat",
+          "name": "Oat",
+          "hex": "#D6C8AE"
+        },
+        {
+          "id": "navy",
+          "name": "Navy",
+          "hex": "#2D3646"
+        },
+        {
+          "id": "coral",
+          "name": "Coral",
+          "hex": "#D66B4D"
+        }
+      ],
+      "style": {
+        "kind": "tee",
+        "neckline": "crew",
+        "fit": "boxy",
+        "pocket": true
+      },
+      "pricePaise": 360000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-tee-v",
+      "gender": "men",
+      "category": "tshirts",
+      "name": "Pima V-Neck Tee",
+      "price": 32,
+      "description": "Soft pima cotton with a clean, close fit.",
+      "colors": [
+        {
+          "id": "white",
+          "name": "White",
+          "hex": "#F5F3EE"
+        },
+        {
+          "id": "heather",
+          "name": "Heather Grey",
+          "hex": "#A8A59F"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#22201D"
+        }
+      ],
+      "style": {
+        "kind": "tee",
+        "neckline": "v",
+        "fit": "fitted"
+      },
+      "pricePaise": 320000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-shirt-oxford",
+      "gender": "men",
+      "category": "shirts",
+      "name": "Oxford Button-Down",
+      "price": 68,
+      "description": "Long-sleeve oxford cloth with a button-down collar.",
+      "colors": [
+        {
+          "id": "sky",
+          "name": "Sky",
+          "hex": "#AFC2D6"
+        },
+        {
+          "id": "white",
+          "name": "White",
+          "hex": "#F3F1EB"
+        },
+        {
+          "id": "blush",
+          "name": "Pale Pink",
+          "hex": "#E6C7BE"
+        }
+      ],
+      "style": {
+        "kind": "shirt",
+        "collar": "buttondown",
+        "sleeve": "long"
+      },
+      "pricePaise": 680000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-shirt-camp",
+      "gender": "men",
+      "category": "shirts",
+      "name": "Linen Camp Shirt",
+      "price": 74,
+      "description": "Short-sleeve linen with a relaxed open collar.",
+      "colors": [
+        {
+          "id": "sand",
+          "name": "Sand",
+          "hex": "#CDB797"
+        },
+        {
+          "id": "terracotta",
+          "name": "Terracotta",
+          "hex": "#B4603F"
+        },
+        {
+          "id": "ecru",
+          "name": "Ecru",
+          "hex": "#E8E0CE"
+        }
+      ],
+      "style": {
+        "kind": "shirt",
+        "collar": "camp",
+        "sleeve": "short"
+      },
+      "pricePaise": 740000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-shirt-band",
+      "gender": "men",
+      "category": "shirts",
+      "name": "Band Collar Shirt",
+      "price": 72,
+      "description": "Long-sleeve cotton with a minimal band collar.",
+      "colors": [
+        {
+          "id": "chambray",
+          "name": "Chambray",
+          "hex": "#7E93AC"
+        },
+        {
+          "id": "stone",
+          "name": "Stone",
+          "hex": "#BDB2A2"
+        },
+        {
+          "id": "ink",
+          "name": "Ink",
+          "hex": "#262B3B"
+        }
+      ],
+      "style": {
+        "kind": "shirt",
+        "collar": "band",
+        "sleeve": "long"
+      },
+      "pricePaise": 720000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-pant-chino",
+      "gender": "men",
+      "category": "pants",
+      "name": "Slim Stretch Chino",
+      "price": 78,
+      "description": "Tapered leg, ankle length, gentle stretch.",
+      "colors": [
+        {
+          "id": "khaki",
+          "name": "Khaki",
+          "hex": "#B8A47E"
+        },
+        {
+          "id": "navy",
+          "name": "Navy",
+          "hex": "#2C3343"
+        },
+        {
+          "id": "olive",
+          "name": "Olive",
+          "hex": "#5E6247"
+        }
+      ],
+      "style": {
+        "kind": "pants",
+        "cut": "slim"
+      },
+      "pricePaise": 780000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-pant-pleat",
+      "gender": "men",
+      "category": "pants",
+      "name": "Relaxed Pleated Trouser",
+      "price": 96,
+      "description": "Front pleats and a wide, easy leg with a full break.",
+      "colors": [
+        {
+          "id": "charcoal",
+          "name": "Charcoal",
+          "hex": "#3C3935"
+        },
+        {
+          "id": "taupe",
+          "name": "Taupe",
+          "hex": "#8D7C69"
+        },
+        {
+          "id": "cream",
+          "name": "Cream",
+          "hex": "#E2D8C7"
+        }
+      ],
+      "style": {
+        "kind": "pants",
+        "cut": "wide",
+        "pleats": true
+      },
+      "pricePaise": 960000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-pant-denim",
+      "gender": "men",
+      "category": "pants",
+      "name": "Straight Selvedge Denim",
+      "price": 110,
+      "description": "Rigid straight-leg denim with contrast stitching.",
+      "colors": [
+        {
+          "id": "indigo",
+          "name": "Indigo",
+          "hex": "#2F4366"
+        },
+        {
+          "id": "midwash",
+          "name": "Mid Wash",
+          "hex": "#5D7798"
+        },
+        {
+          "id": "black",
+          "name": "Washed Black",
+          "hex": "#2A2B2E"
+        }
+      ],
+      "style": {
+        "kind": "pants",
+        "cut": "straight",
+        "denim": true
+      },
+      "pricePaise": 1100000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "m-shoe-sneaker",
+      "gender": "men",
+      "category": "shoes",
+      "name": "Court Leather Sneaker",
+      "price": 120,
+      "description": "Low-top leather sneaker on a cupsole.",
+      "colors": [
+        {
+          "id": "white",
+          "name": "White",
+          "hex": "#F2F0EA"
+        },
+        {
+          "id": "bone",
+          "name": "Bone",
+          "hex": "#DCD2C0"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#24221F"
+        }
+      ],
+      "style": {
+        "kind": "shoes",
+        "shoe": "sneaker"
+      },
+      "pricePaise": 1200000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "m-shoe-loafer",
+      "gender": "men",
+      "category": "shoes",
+      "name": "Penny Loafer",
+      "price": 165,
+      "description": "Polished leather loafer with a classic strap.",
+      "colors": [
+        {
+          "id": "cognac",
+          "name": "Cognac",
+          "hex": "#8A4B2A"
+        },
+        {
+          "id": "chocolate",
+          "name": "Chocolate",
+          "hex": "#4B3022"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#1F1D1B"
+        }
+      ],
+      "style": {
+        "kind": "shoes",
+        "shoe": "loafer"
+      },
+      "pricePaise": 1650000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "m-shoe-chelsea",
+      "gender": "men",
+      "category": "shoes",
+      "name": "Suede Chelsea Boot",
+      "price": 185,
+      "description": "Suede ankle boot with elastic side panels.",
+      "colors": [
+        {
+          "id": "tobacco",
+          "name": "Tobacco",
+          "hex": "#7A5A3E"
+        },
+        {
+          "id": "taupe",
+          "name": "Taupe",
+          "hex": "#8E8172"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#252321"
+        }
+      ],
+      "style": {
+        "kind": "shoes",
+        "shoe": "chelsea"
+      },
+      "pricePaise": 1850000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "w-tee-crew",
+      "gender": "women",
+      "category": "tshirts",
+      "name": "Fitted Crew Tee",
+      "price": 26,
+      "description": "Close-fitting cotton tee with a slim crew neck.",
+      "colors": [
+        {
+          "id": "ivory",
+          "name": "Ivory",
+          "hex": "#EFE9DE"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#24211E"
+        },
+        {
+          "id": "rose",
+          "name": "Dusty Rose",
+          "hex": "#C99A92"
+        }
+      ],
+      "style": {
+        "kind": "tee",
+        "neckline": "crew",
+        "fit": "fitted"
+      },
+      "pricePaise": 260000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-tee-boxy",
+      "gender": "women",
+      "category": "tshirts",
+      "name": "Boxy Cotton Tee",
+      "price": 34,
+      "description": "Relaxed boxy tee with a dropped shoulder.",
+      "colors": [
+        {
+          "id": "oat",
+          "name": "Oat",
+          "hex": "#D7CAB2"
+        },
+        {
+          "id": "coral",
+          "name": "Coral",
+          "hex": "#D66B4D"
+        },
+        {
+          "id": "olive",
+          "name": "Olive",
+          "hex": "#6A6B4E"
+        }
+      ],
+      "style": {
+        "kind": "tee",
+        "neckline": "crew",
+        "fit": "boxy"
+      },
+      "pricePaise": 340000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-tee-v",
+      "gender": "women",
+      "category": "tshirts",
+      "name": "Soft V-Neck Tee",
+      "price": 30,
+      "description": "Lightweight modal blend with a gentle V.",
+      "colors": [
+        {
+          "id": "white",
+          "name": "White",
+          "hex": "#F5F2EC"
+        },
+        {
+          "id": "sky",
+          "name": "Powder Blue",
+          "hex": "#B5C6D6"
+        },
+        {
+          "id": "heather",
+          "name": "Heather",
+          "hex": "#A9A49D"
+        }
+      ],
+      "style": {
+        "kind": "tee",
+        "neckline": "v",
+        "fit": "regular"
+      },
+      "pricePaise": 300000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-shirt-poplin",
+      "gender": "women",
+      "category": "shirts",
+      "name": "Poplin Button-Up",
+      "price": 64,
+      "description": "Crisp cotton poplin with a pointed collar.",
+      "colors": [
+        {
+          "id": "white",
+          "name": "White",
+          "hex": "#F4F2EC"
+        },
+        {
+          "id": "stripe",
+          "name": "Blue",
+          "hex": "#9DB4CF"
+        },
+        {
+          "id": "butter",
+          "name": "Butter",
+          "hex": "#E9D9A8"
+        }
+      ],
+      "style": {
+        "kind": "shirt",
+        "collar": "point",
+        "sleeve": "long"
+      },
+      "pricePaise": 640000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-shirt-camp",
+      "gender": "women",
+      "category": "shirts",
+      "name": "Silk Camp Shirt",
+      "price": 98,
+      "description": "Fluid washed silk with a short sleeve and open collar.",
+      "colors": [
+        {
+          "id": "champagne",
+          "name": "Champagne",
+          "hex": "#E3D3B8"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald",
+          "hex": "#2F5E4E"
+        },
+        {
+          "id": "coral",
+          "name": "Coral",
+          "hex": "#D66B4D"
+        }
+      ],
+      "style": {
+        "kind": "shirt",
+        "collar": "camp",
+        "sleeve": "short"
+      },
+      "pricePaise": 980000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-shirt-band",
+      "gender": "women",
+      "category": "shirts",
+      "name": "Linen Band Collar Shirt",
+      "price": 72,
+      "description": "Breezy linen with a band collar and long sleeves.",
+      "colors": [
+        {
+          "id": "natural",
+          "name": "Natural",
+          "hex": "#D9CDB8"
+        },
+        {
+          "id": "sage",
+          "name": "Sage",
+          "hex": "#9BA68E"
+        },
+        {
+          "id": "navy",
+          "name": "Navy",
+          "hex": "#2C3547"
+        }
+      ],
+      "style": {
+        "kind": "shirt",
+        "collar": "band",
+        "sleeve": "long"
+      },
+      "pricePaise": 720000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-pant-wide",
+      "gender": "women",
+      "category": "pants",
+      "name": "Tailored Wide-Leg Trouser",
+      "price": 98,
+      "description": "High-rise, pressed crease, floor-grazing wide leg.",
+      "colors": [
+        {
+          "id": "camel",
+          "name": "Camel",
+          "hex": "#B08D66"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#262422"
+        },
+        {
+          "id": "cream",
+          "name": "Cream",
+          "hex": "#E5DCCB"
+        }
+      ],
+      "style": {
+        "kind": "pants",
+        "cut": "wide",
+        "pleats": true
+      },
+      "pricePaise": 980000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-pant-jean",
+      "gender": "women",
+      "category": "pants",
+      "name": "High-Rise Straight Jean",
+      "price": 92,
+      "description": "Classic five-pocket denim with a straight leg.",
+      "colors": [
+        {
+          "id": "indigo",
+          "name": "Indigo",
+          "hex": "#334A6E"
+        },
+        {
+          "id": "lightwash",
+          "name": "Light Wash",
+          "hex": "#8EA5C0"
+        },
+        {
+          "id": "ecru",
+          "name": "Ecru",
+          "hex": "#E6DECD"
+        }
+      ],
+      "style": {
+        "kind": "pants",
+        "cut": "straight",
+        "denim": true
+      },
+      "pricePaise": 920000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-pant-cigarette",
+      "gender": "women",
+      "category": "pants",
+      "name": "Cropped Cigarette Pant",
+      "price": 84,
+      "description": "Slim, cropped above the ankle with a sharp crease.",
+      "colors": [
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#252321"
+        },
+        {
+          "id": "stone",
+          "name": "Stone",
+          "hex": "#BFB3A1"
+        },
+        {
+          "id": "rust",
+          "name": "Rust",
+          "hex": "#9C4F32"
+        }
+      ],
+      "style": {
+        "kind": "pants",
+        "cut": "cigarette"
+      },
+      "pricePaise": 840000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "w-shoe-sneaker",
+      "gender": "women",
+      "category": "shoes",
+      "name": "Minimal Leather Sneaker",
+      "price": 115,
+      "description": "Clean low-top leather sneaker.",
+      "colors": [
+        {
+          "id": "white",
+          "name": "White",
+          "hex": "#F3F1EB"
+        },
+        {
+          "id": "blush",
+          "name": "Blush",
+          "hex": "#E3C4B8"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#24221F"
+        }
+      ],
+      "style": {
+        "kind": "shoes",
+        "shoe": "sneaker"
+      },
+      "pricePaise": 1150000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "w-shoe-pump",
+      "gender": "women",
+      "category": "shoes",
+      "name": "Pointed Slingback Pump",
+      "price": 140,
+      "description": "Pointed toe with a mid block heel and slingback strap.",
+      "colors": [
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#211F1D"
+        },
+        {
+          "id": "nude",
+          "name": "Nude",
+          "hex": "#C9A288"
+        },
+        {
+          "id": "coral",
+          "name": "Coral",
+          "hex": "#D66B4D"
+        }
+      ],
+      "style": {
+        "kind": "shoes",
+        "shoe": "pump"
+      },
+      "pricePaise": 1400000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "w-shoe-boot",
+      "gender": "women",
+      "category": "shoes",
+      "name": "Leather Ankle Boot",
+      "price": 175,
+      "description": "Sleek ankle boot with a side zip.",
+      "colors": [
+        {
+          "id": "cognac",
+          "name": "Cognac",
+          "hex": "#8C522F"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "hex": "#22201E"
+        },
+        {
+          "id": "taupe",
+          "name": "Taupe",
+          "hex": "#8F8173"
+        }
+      ],
+      "style": {
+        "kind": "shoes",
+        "shoe": "ankleboot"
+      },
+      "pricePaise": 1750000,
+      "active": true,
+      "previewSupported": true,
+      "imageUrl": null,
+      "sizes": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "m-tee-crew:ivory:S",
+      "productId": "m-tee-crew",
+      "colorId": "ivory",
+      "size": "S",
+      "sku": "M-TEE-CREW-IVORY-S",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:ivory:M",
+      "productId": "m-tee-crew",
+      "colorId": "ivory",
+      "size": "M",
+      "sku": "M-TEE-CREW-IVORY-M",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:ivory:L",
+      "productId": "m-tee-crew",
+      "colorId": "ivory",
+      "size": "L",
+      "sku": "M-TEE-CREW-IVORY-L",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:ivory:XL",
+      "productId": "m-tee-crew",
+      "colorId": "ivory",
+      "size": "XL",
+      "sku": "M-TEE-CREW-IVORY-XL",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:charcoal:S",
+      "productId": "m-tee-crew",
+      "colorId": "charcoal",
+      "size": "S",
+      "sku": "M-TEE-CREW-CHARCOAL-S",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:charcoal:M",
+      "productId": "m-tee-crew",
+      "colorId": "charcoal",
+      "size": "M",
+      "sku": "M-TEE-CREW-CHARCOAL-M",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:charcoal:L",
+      "productId": "m-tee-crew",
+      "colorId": "charcoal",
+      "size": "L",
+      "sku": "M-TEE-CREW-CHARCOAL-L",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:charcoal:XL",
+      "productId": "m-tee-crew",
+      "colorId": "charcoal",
+      "size": "XL",
+      "sku": "M-TEE-CREW-CHARCOAL-XL",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:sage:S",
+      "productId": "m-tee-crew",
+      "colorId": "sage",
+      "size": "S",
+      "sku": "M-TEE-CREW-SAGE-S",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:sage:M",
+      "productId": "m-tee-crew",
+      "colorId": "sage",
+      "size": "M",
+      "sku": "M-TEE-CREW-SAGE-M",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:sage:L",
+      "productId": "m-tee-crew",
+      "colorId": "sage",
+      "size": "L",
+      "sku": "M-TEE-CREW-SAGE-L",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-crew:sage:XL",
+      "productId": "m-tee-crew",
+      "colorId": "sage",
+      "size": "XL",
+      "sku": "M-TEE-CREW-SAGE-XL",
+      "pricePaise": 280000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:oat:S",
+      "productId": "m-tee-pocket",
+      "colorId": "oat",
+      "size": "S",
+      "sku": "M-TEE-POCKET-OAT-S",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:oat:M",
+      "productId": "m-tee-pocket",
+      "colorId": "oat",
+      "size": "M",
+      "sku": "M-TEE-POCKET-OAT-M",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:oat:L",
+      "productId": "m-tee-pocket",
+      "colorId": "oat",
+      "size": "L",
+      "sku": "M-TEE-POCKET-OAT-L",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:oat:XL",
+      "productId": "m-tee-pocket",
+      "colorId": "oat",
+      "size": "XL",
+      "sku": "M-TEE-POCKET-OAT-XL",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:navy:S",
+      "productId": "m-tee-pocket",
+      "colorId": "navy",
+      "size": "S",
+      "sku": "M-TEE-POCKET-NAVY-S",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:navy:M",
+      "productId": "m-tee-pocket",
+      "colorId": "navy",
+      "size": "M",
+      "sku": "M-TEE-POCKET-NAVY-M",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:navy:L",
+      "productId": "m-tee-pocket",
+      "colorId": "navy",
+      "size": "L",
+      "sku": "M-TEE-POCKET-NAVY-L",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:navy:XL",
+      "productId": "m-tee-pocket",
+      "colorId": "navy",
+      "size": "XL",
+      "sku": "M-TEE-POCKET-NAVY-XL",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:coral:S",
+      "productId": "m-tee-pocket",
+      "colorId": "coral",
+      "size": "S",
+      "sku": "M-TEE-POCKET-CORAL-S",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:coral:M",
+      "productId": "m-tee-pocket",
+      "colorId": "coral",
+      "size": "M",
+      "sku": "M-TEE-POCKET-CORAL-M",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:coral:L",
+      "productId": "m-tee-pocket",
+      "colorId": "coral",
+      "size": "L",
+      "sku": "M-TEE-POCKET-CORAL-L",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-pocket:coral:XL",
+      "productId": "m-tee-pocket",
+      "colorId": "coral",
+      "size": "XL",
+      "sku": "M-TEE-POCKET-CORAL-XL",
+      "pricePaise": 360000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:white:S",
+      "productId": "m-tee-v",
+      "colorId": "white",
+      "size": "S",
+      "sku": "M-TEE-V-WHITE-S",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:white:M",
+      "productId": "m-tee-v",
+      "colorId": "white",
+      "size": "M",
+      "sku": "M-TEE-V-WHITE-M",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:white:L",
+      "productId": "m-tee-v",
+      "colorId": "white",
+      "size": "L",
+      "sku": "M-TEE-V-WHITE-L",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:white:XL",
+      "productId": "m-tee-v",
+      "colorId": "white",
+      "size": "XL",
+      "sku": "M-TEE-V-WHITE-XL",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:heather:S",
+      "productId": "m-tee-v",
+      "colorId": "heather",
+      "size": "S",
+      "sku": "M-TEE-V-HEATHER-S",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:heather:M",
+      "productId": "m-tee-v",
+      "colorId": "heather",
+      "size": "M",
+      "sku": "M-TEE-V-HEATHER-M",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:heather:L",
+      "productId": "m-tee-v",
+      "colorId": "heather",
+      "size": "L",
+      "sku": "M-TEE-V-HEATHER-L",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:heather:XL",
+      "productId": "m-tee-v",
+      "colorId": "heather",
+      "size": "XL",
+      "sku": "M-TEE-V-HEATHER-XL",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:black:S",
+      "productId": "m-tee-v",
+      "colorId": "black",
+      "size": "S",
+      "sku": "M-TEE-V-BLACK-S",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:black:M",
+      "productId": "m-tee-v",
+      "colorId": "black",
+      "size": "M",
+      "sku": "M-TEE-V-BLACK-M",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:black:L",
+      "productId": "m-tee-v",
+      "colorId": "black",
+      "size": "L",
+      "sku": "M-TEE-V-BLACK-L",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-tee-v:black:XL",
+      "productId": "m-tee-v",
+      "colorId": "black",
+      "size": "XL",
+      "sku": "M-TEE-V-BLACK-XL",
+      "pricePaise": 320000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:sky:S",
+      "productId": "m-shirt-oxford",
+      "colorId": "sky",
+      "size": "S",
+      "sku": "M-SHIRT-OXFORD-SKY-S",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:sky:M",
+      "productId": "m-shirt-oxford",
+      "colorId": "sky",
+      "size": "M",
+      "sku": "M-SHIRT-OXFORD-SKY-M",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:sky:L",
+      "productId": "m-shirt-oxford",
+      "colorId": "sky",
+      "size": "L",
+      "sku": "M-SHIRT-OXFORD-SKY-L",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:sky:XL",
+      "productId": "m-shirt-oxford",
+      "colorId": "sky",
+      "size": "XL",
+      "sku": "M-SHIRT-OXFORD-SKY-XL",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:white:S",
+      "productId": "m-shirt-oxford",
+      "colorId": "white",
+      "size": "S",
+      "sku": "M-SHIRT-OXFORD-WHITE-S",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:white:M",
+      "productId": "m-shirt-oxford",
+      "colorId": "white",
+      "size": "M",
+      "sku": "M-SHIRT-OXFORD-WHITE-M",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:white:L",
+      "productId": "m-shirt-oxford",
+      "colorId": "white",
+      "size": "L",
+      "sku": "M-SHIRT-OXFORD-WHITE-L",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:white:XL",
+      "productId": "m-shirt-oxford",
+      "colorId": "white",
+      "size": "XL",
+      "sku": "M-SHIRT-OXFORD-WHITE-XL",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:blush:S",
+      "productId": "m-shirt-oxford",
+      "colorId": "blush",
+      "size": "S",
+      "sku": "M-SHIRT-OXFORD-BLUSH-S",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:blush:M",
+      "productId": "m-shirt-oxford",
+      "colorId": "blush",
+      "size": "M",
+      "sku": "M-SHIRT-OXFORD-BLUSH-M",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:blush:L",
+      "productId": "m-shirt-oxford",
+      "colorId": "blush",
+      "size": "L",
+      "sku": "M-SHIRT-OXFORD-BLUSH-L",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-oxford:blush:XL",
+      "productId": "m-shirt-oxford",
+      "colorId": "blush",
+      "size": "XL",
+      "sku": "M-SHIRT-OXFORD-BLUSH-XL",
+      "pricePaise": 680000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:sand:S",
+      "productId": "m-shirt-camp",
+      "colorId": "sand",
+      "size": "S",
+      "sku": "M-SHIRT-CAMP-SAND-S",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:sand:M",
+      "productId": "m-shirt-camp",
+      "colorId": "sand",
+      "size": "M",
+      "sku": "M-SHIRT-CAMP-SAND-M",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:sand:L",
+      "productId": "m-shirt-camp",
+      "colorId": "sand",
+      "size": "L",
+      "sku": "M-SHIRT-CAMP-SAND-L",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:sand:XL",
+      "productId": "m-shirt-camp",
+      "colorId": "sand",
+      "size": "XL",
+      "sku": "M-SHIRT-CAMP-SAND-XL",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:terracotta:S",
+      "productId": "m-shirt-camp",
+      "colorId": "terracotta",
+      "size": "S",
+      "sku": "M-SHIRT-CAMP-TERRACOTTA-S",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:terracotta:M",
+      "productId": "m-shirt-camp",
+      "colorId": "terracotta",
+      "size": "M",
+      "sku": "M-SHIRT-CAMP-TERRACOTTA-M",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:terracotta:L",
+      "productId": "m-shirt-camp",
+      "colorId": "terracotta",
+      "size": "L",
+      "sku": "M-SHIRT-CAMP-TERRACOTTA-L",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:terracotta:XL",
+      "productId": "m-shirt-camp",
+      "colorId": "terracotta",
+      "size": "XL",
+      "sku": "M-SHIRT-CAMP-TERRACOTTA-XL",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:ecru:S",
+      "productId": "m-shirt-camp",
+      "colorId": "ecru",
+      "size": "S",
+      "sku": "M-SHIRT-CAMP-ECRU-S",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:ecru:M",
+      "productId": "m-shirt-camp",
+      "colorId": "ecru",
+      "size": "M",
+      "sku": "M-SHIRT-CAMP-ECRU-M",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:ecru:L",
+      "productId": "m-shirt-camp",
+      "colorId": "ecru",
+      "size": "L",
+      "sku": "M-SHIRT-CAMP-ECRU-L",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-camp:ecru:XL",
+      "productId": "m-shirt-camp",
+      "colorId": "ecru",
+      "size": "XL",
+      "sku": "M-SHIRT-CAMP-ECRU-XL",
+      "pricePaise": 740000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:chambray:S",
+      "productId": "m-shirt-band",
+      "colorId": "chambray",
+      "size": "S",
+      "sku": "M-SHIRT-BAND-CHAMBRAY-S",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:chambray:M",
+      "productId": "m-shirt-band",
+      "colorId": "chambray",
+      "size": "M",
+      "sku": "M-SHIRT-BAND-CHAMBRAY-M",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:chambray:L",
+      "productId": "m-shirt-band",
+      "colorId": "chambray",
+      "size": "L",
+      "sku": "M-SHIRT-BAND-CHAMBRAY-L",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:chambray:XL",
+      "productId": "m-shirt-band",
+      "colorId": "chambray",
+      "size": "XL",
+      "sku": "M-SHIRT-BAND-CHAMBRAY-XL",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:stone:S",
+      "productId": "m-shirt-band",
+      "colorId": "stone",
+      "size": "S",
+      "sku": "M-SHIRT-BAND-STONE-S",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:stone:M",
+      "productId": "m-shirt-band",
+      "colorId": "stone",
+      "size": "M",
+      "sku": "M-SHIRT-BAND-STONE-M",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:stone:L",
+      "productId": "m-shirt-band",
+      "colorId": "stone",
+      "size": "L",
+      "sku": "M-SHIRT-BAND-STONE-L",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:stone:XL",
+      "productId": "m-shirt-band",
+      "colorId": "stone",
+      "size": "XL",
+      "sku": "M-SHIRT-BAND-STONE-XL",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:ink:S",
+      "productId": "m-shirt-band",
+      "colorId": "ink",
+      "size": "S",
+      "sku": "M-SHIRT-BAND-INK-S",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:ink:M",
+      "productId": "m-shirt-band",
+      "colorId": "ink",
+      "size": "M",
+      "sku": "M-SHIRT-BAND-INK-M",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:ink:L",
+      "productId": "m-shirt-band",
+      "colorId": "ink",
+      "size": "L",
+      "sku": "M-SHIRT-BAND-INK-L",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shirt-band:ink:XL",
+      "productId": "m-shirt-band",
+      "colorId": "ink",
+      "size": "XL",
+      "sku": "M-SHIRT-BAND-INK-XL",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:khaki:S",
+      "productId": "m-pant-chino",
+      "colorId": "khaki",
+      "size": "S",
+      "sku": "M-PANT-CHINO-KHAKI-S",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:khaki:M",
+      "productId": "m-pant-chino",
+      "colorId": "khaki",
+      "size": "M",
+      "sku": "M-PANT-CHINO-KHAKI-M",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:khaki:L",
+      "productId": "m-pant-chino",
+      "colorId": "khaki",
+      "size": "L",
+      "sku": "M-PANT-CHINO-KHAKI-L",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:khaki:XL",
+      "productId": "m-pant-chino",
+      "colorId": "khaki",
+      "size": "XL",
+      "sku": "M-PANT-CHINO-KHAKI-XL",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:navy:S",
+      "productId": "m-pant-chino",
+      "colorId": "navy",
+      "size": "S",
+      "sku": "M-PANT-CHINO-NAVY-S",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:navy:M",
+      "productId": "m-pant-chino",
+      "colorId": "navy",
+      "size": "M",
+      "sku": "M-PANT-CHINO-NAVY-M",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:navy:L",
+      "productId": "m-pant-chino",
+      "colorId": "navy",
+      "size": "L",
+      "sku": "M-PANT-CHINO-NAVY-L",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:navy:XL",
+      "productId": "m-pant-chino",
+      "colorId": "navy",
+      "size": "XL",
+      "sku": "M-PANT-CHINO-NAVY-XL",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:olive:S",
+      "productId": "m-pant-chino",
+      "colorId": "olive",
+      "size": "S",
+      "sku": "M-PANT-CHINO-OLIVE-S",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:olive:M",
+      "productId": "m-pant-chino",
+      "colorId": "olive",
+      "size": "M",
+      "sku": "M-PANT-CHINO-OLIVE-M",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:olive:L",
+      "productId": "m-pant-chino",
+      "colorId": "olive",
+      "size": "L",
+      "sku": "M-PANT-CHINO-OLIVE-L",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-chino:olive:XL",
+      "productId": "m-pant-chino",
+      "colorId": "olive",
+      "size": "XL",
+      "sku": "M-PANT-CHINO-OLIVE-XL",
+      "pricePaise": 780000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:charcoal:S",
+      "productId": "m-pant-pleat",
+      "colorId": "charcoal",
+      "size": "S",
+      "sku": "M-PANT-PLEAT-CHARCOAL-S",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:charcoal:M",
+      "productId": "m-pant-pleat",
+      "colorId": "charcoal",
+      "size": "M",
+      "sku": "M-PANT-PLEAT-CHARCOAL-M",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:charcoal:L",
+      "productId": "m-pant-pleat",
+      "colorId": "charcoal",
+      "size": "L",
+      "sku": "M-PANT-PLEAT-CHARCOAL-L",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:charcoal:XL",
+      "productId": "m-pant-pleat",
+      "colorId": "charcoal",
+      "size": "XL",
+      "sku": "M-PANT-PLEAT-CHARCOAL-XL",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:taupe:S",
+      "productId": "m-pant-pleat",
+      "colorId": "taupe",
+      "size": "S",
+      "sku": "M-PANT-PLEAT-TAUPE-S",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:taupe:M",
+      "productId": "m-pant-pleat",
+      "colorId": "taupe",
+      "size": "M",
+      "sku": "M-PANT-PLEAT-TAUPE-M",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:taupe:L",
+      "productId": "m-pant-pleat",
+      "colorId": "taupe",
+      "size": "L",
+      "sku": "M-PANT-PLEAT-TAUPE-L",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:taupe:XL",
+      "productId": "m-pant-pleat",
+      "colorId": "taupe",
+      "size": "XL",
+      "sku": "M-PANT-PLEAT-TAUPE-XL",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:cream:S",
+      "productId": "m-pant-pleat",
+      "colorId": "cream",
+      "size": "S",
+      "sku": "M-PANT-PLEAT-CREAM-S",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:cream:M",
+      "productId": "m-pant-pleat",
+      "colorId": "cream",
+      "size": "M",
+      "sku": "M-PANT-PLEAT-CREAM-M",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:cream:L",
+      "productId": "m-pant-pleat",
+      "colorId": "cream",
+      "size": "L",
+      "sku": "M-PANT-PLEAT-CREAM-L",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-pleat:cream:XL",
+      "productId": "m-pant-pleat",
+      "colorId": "cream",
+      "size": "XL",
+      "sku": "M-PANT-PLEAT-CREAM-XL",
+      "pricePaise": 960000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:indigo:S",
+      "productId": "m-pant-denim",
+      "colorId": "indigo",
+      "size": "S",
+      "sku": "M-PANT-DENIM-INDIGO-S",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:indigo:M",
+      "productId": "m-pant-denim",
+      "colorId": "indigo",
+      "size": "M",
+      "sku": "M-PANT-DENIM-INDIGO-M",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:indigo:L",
+      "productId": "m-pant-denim",
+      "colorId": "indigo",
+      "size": "L",
+      "sku": "M-PANT-DENIM-INDIGO-L",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:indigo:XL",
+      "productId": "m-pant-denim",
+      "colorId": "indigo",
+      "size": "XL",
+      "sku": "M-PANT-DENIM-INDIGO-XL",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:midwash:S",
+      "productId": "m-pant-denim",
+      "colorId": "midwash",
+      "size": "S",
+      "sku": "M-PANT-DENIM-MIDWASH-S",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:midwash:M",
+      "productId": "m-pant-denim",
+      "colorId": "midwash",
+      "size": "M",
+      "sku": "M-PANT-DENIM-MIDWASH-M",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:midwash:L",
+      "productId": "m-pant-denim",
+      "colorId": "midwash",
+      "size": "L",
+      "sku": "M-PANT-DENIM-MIDWASH-L",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:midwash:XL",
+      "productId": "m-pant-denim",
+      "colorId": "midwash",
+      "size": "XL",
+      "sku": "M-PANT-DENIM-MIDWASH-XL",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:black:S",
+      "productId": "m-pant-denim",
+      "colorId": "black",
+      "size": "S",
+      "sku": "M-PANT-DENIM-BLACK-S",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:black:M",
+      "productId": "m-pant-denim",
+      "colorId": "black",
+      "size": "M",
+      "sku": "M-PANT-DENIM-BLACK-M",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:black:L",
+      "productId": "m-pant-denim",
+      "colorId": "black",
+      "size": "L",
+      "sku": "M-PANT-DENIM-BLACK-L",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-pant-denim:black:XL",
+      "productId": "m-pant-denim",
+      "colorId": "black",
+      "size": "XL",
+      "sku": "M-PANT-DENIM-BLACK-XL",
+      "pricePaise": 1100000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:white:7",
+      "productId": "m-shoe-sneaker",
+      "colorId": "white",
+      "size": "7",
+      "sku": "M-SHOE-SNEAKER-WHITE-7",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:white:8",
+      "productId": "m-shoe-sneaker",
+      "colorId": "white",
+      "size": "8",
+      "sku": "M-SHOE-SNEAKER-WHITE-8",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:white:9",
+      "productId": "m-shoe-sneaker",
+      "colorId": "white",
+      "size": "9",
+      "sku": "M-SHOE-SNEAKER-WHITE-9",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:white:10",
+      "productId": "m-shoe-sneaker",
+      "colorId": "white",
+      "size": "10",
+      "sku": "M-SHOE-SNEAKER-WHITE-10",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:white:11",
+      "productId": "m-shoe-sneaker",
+      "colorId": "white",
+      "size": "11",
+      "sku": "M-SHOE-SNEAKER-WHITE-11",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:white:12",
+      "productId": "m-shoe-sneaker",
+      "colorId": "white",
+      "size": "12",
+      "sku": "M-SHOE-SNEAKER-WHITE-12",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:bone:7",
+      "productId": "m-shoe-sneaker",
+      "colorId": "bone",
+      "size": "7",
+      "sku": "M-SHOE-SNEAKER-BONE-7",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:bone:8",
+      "productId": "m-shoe-sneaker",
+      "colorId": "bone",
+      "size": "8",
+      "sku": "M-SHOE-SNEAKER-BONE-8",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:bone:9",
+      "productId": "m-shoe-sneaker",
+      "colorId": "bone",
+      "size": "9",
+      "sku": "M-SHOE-SNEAKER-BONE-9",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:bone:10",
+      "productId": "m-shoe-sneaker",
+      "colorId": "bone",
+      "size": "10",
+      "sku": "M-SHOE-SNEAKER-BONE-10",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:bone:11",
+      "productId": "m-shoe-sneaker",
+      "colorId": "bone",
+      "size": "11",
+      "sku": "M-SHOE-SNEAKER-BONE-11",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:bone:12",
+      "productId": "m-shoe-sneaker",
+      "colorId": "bone",
+      "size": "12",
+      "sku": "M-SHOE-SNEAKER-BONE-12",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:black:7",
+      "productId": "m-shoe-sneaker",
+      "colorId": "black",
+      "size": "7",
+      "sku": "M-SHOE-SNEAKER-BLACK-7",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:black:8",
+      "productId": "m-shoe-sneaker",
+      "colorId": "black",
+      "size": "8",
+      "sku": "M-SHOE-SNEAKER-BLACK-8",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:black:9",
+      "productId": "m-shoe-sneaker",
+      "colorId": "black",
+      "size": "9",
+      "sku": "M-SHOE-SNEAKER-BLACK-9",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:black:10",
+      "productId": "m-shoe-sneaker",
+      "colorId": "black",
+      "size": "10",
+      "sku": "M-SHOE-SNEAKER-BLACK-10",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:black:11",
+      "productId": "m-shoe-sneaker",
+      "colorId": "black",
+      "size": "11",
+      "sku": "M-SHOE-SNEAKER-BLACK-11",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-sneaker:black:12",
+      "productId": "m-shoe-sneaker",
+      "colorId": "black",
+      "size": "12",
+      "sku": "M-SHOE-SNEAKER-BLACK-12",
+      "pricePaise": 1200000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:cognac:7",
+      "productId": "m-shoe-loafer",
+      "colorId": "cognac",
+      "size": "7",
+      "sku": "M-SHOE-LOAFER-COGNAC-7",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:cognac:8",
+      "productId": "m-shoe-loafer",
+      "colorId": "cognac",
+      "size": "8",
+      "sku": "M-SHOE-LOAFER-COGNAC-8",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:cognac:9",
+      "productId": "m-shoe-loafer",
+      "colorId": "cognac",
+      "size": "9",
+      "sku": "M-SHOE-LOAFER-COGNAC-9",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:cognac:10",
+      "productId": "m-shoe-loafer",
+      "colorId": "cognac",
+      "size": "10",
+      "sku": "M-SHOE-LOAFER-COGNAC-10",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:cognac:11",
+      "productId": "m-shoe-loafer",
+      "colorId": "cognac",
+      "size": "11",
+      "sku": "M-SHOE-LOAFER-COGNAC-11",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:cognac:12",
+      "productId": "m-shoe-loafer",
+      "colorId": "cognac",
+      "size": "12",
+      "sku": "M-SHOE-LOAFER-COGNAC-12",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:chocolate:7",
+      "productId": "m-shoe-loafer",
+      "colorId": "chocolate",
+      "size": "7",
+      "sku": "M-SHOE-LOAFER-CHOCOLATE-7",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:chocolate:8",
+      "productId": "m-shoe-loafer",
+      "colorId": "chocolate",
+      "size": "8",
+      "sku": "M-SHOE-LOAFER-CHOCOLATE-8",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:chocolate:9",
+      "productId": "m-shoe-loafer",
+      "colorId": "chocolate",
+      "size": "9",
+      "sku": "M-SHOE-LOAFER-CHOCOLATE-9",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:chocolate:10",
+      "productId": "m-shoe-loafer",
+      "colorId": "chocolate",
+      "size": "10",
+      "sku": "M-SHOE-LOAFER-CHOCOLATE-10",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:chocolate:11",
+      "productId": "m-shoe-loafer",
+      "colorId": "chocolate",
+      "size": "11",
+      "sku": "M-SHOE-LOAFER-CHOCOLATE-11",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:chocolate:12",
+      "productId": "m-shoe-loafer",
+      "colorId": "chocolate",
+      "size": "12",
+      "sku": "M-SHOE-LOAFER-CHOCOLATE-12",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:black:7",
+      "productId": "m-shoe-loafer",
+      "colorId": "black",
+      "size": "7",
+      "sku": "M-SHOE-LOAFER-BLACK-7",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:black:8",
+      "productId": "m-shoe-loafer",
+      "colorId": "black",
+      "size": "8",
+      "sku": "M-SHOE-LOAFER-BLACK-8",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:black:9",
+      "productId": "m-shoe-loafer",
+      "colorId": "black",
+      "size": "9",
+      "sku": "M-SHOE-LOAFER-BLACK-9",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:black:10",
+      "productId": "m-shoe-loafer",
+      "colorId": "black",
+      "size": "10",
+      "sku": "M-SHOE-LOAFER-BLACK-10",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:black:11",
+      "productId": "m-shoe-loafer",
+      "colorId": "black",
+      "size": "11",
+      "sku": "M-SHOE-LOAFER-BLACK-11",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-loafer:black:12",
+      "productId": "m-shoe-loafer",
+      "colorId": "black",
+      "size": "12",
+      "sku": "M-SHOE-LOAFER-BLACK-12",
+      "pricePaise": 1650000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:tobacco:7",
+      "productId": "m-shoe-chelsea",
+      "colorId": "tobacco",
+      "size": "7",
+      "sku": "M-SHOE-CHELSEA-TOBACCO-7",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:tobacco:8",
+      "productId": "m-shoe-chelsea",
+      "colorId": "tobacco",
+      "size": "8",
+      "sku": "M-SHOE-CHELSEA-TOBACCO-8",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:tobacco:9",
+      "productId": "m-shoe-chelsea",
+      "colorId": "tobacco",
+      "size": "9",
+      "sku": "M-SHOE-CHELSEA-TOBACCO-9",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:tobacco:10",
+      "productId": "m-shoe-chelsea",
+      "colorId": "tobacco",
+      "size": "10",
+      "sku": "M-SHOE-CHELSEA-TOBACCO-10",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:tobacco:11",
+      "productId": "m-shoe-chelsea",
+      "colorId": "tobacco",
+      "size": "11",
+      "sku": "M-SHOE-CHELSEA-TOBACCO-11",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:tobacco:12",
+      "productId": "m-shoe-chelsea",
+      "colorId": "tobacco",
+      "size": "12",
+      "sku": "M-SHOE-CHELSEA-TOBACCO-12",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:taupe:7",
+      "productId": "m-shoe-chelsea",
+      "colorId": "taupe",
+      "size": "7",
+      "sku": "M-SHOE-CHELSEA-TAUPE-7",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:taupe:8",
+      "productId": "m-shoe-chelsea",
+      "colorId": "taupe",
+      "size": "8",
+      "sku": "M-SHOE-CHELSEA-TAUPE-8",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:taupe:9",
+      "productId": "m-shoe-chelsea",
+      "colorId": "taupe",
+      "size": "9",
+      "sku": "M-SHOE-CHELSEA-TAUPE-9",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:taupe:10",
+      "productId": "m-shoe-chelsea",
+      "colorId": "taupe",
+      "size": "10",
+      "sku": "M-SHOE-CHELSEA-TAUPE-10",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:taupe:11",
+      "productId": "m-shoe-chelsea",
+      "colorId": "taupe",
+      "size": "11",
+      "sku": "M-SHOE-CHELSEA-TAUPE-11",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:taupe:12",
+      "productId": "m-shoe-chelsea",
+      "colorId": "taupe",
+      "size": "12",
+      "sku": "M-SHOE-CHELSEA-TAUPE-12",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:black:7",
+      "productId": "m-shoe-chelsea",
+      "colorId": "black",
+      "size": "7",
+      "sku": "M-SHOE-CHELSEA-BLACK-7",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:black:8",
+      "productId": "m-shoe-chelsea",
+      "colorId": "black",
+      "size": "8",
+      "sku": "M-SHOE-CHELSEA-BLACK-8",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:black:9",
+      "productId": "m-shoe-chelsea",
+      "colorId": "black",
+      "size": "9",
+      "sku": "M-SHOE-CHELSEA-BLACK-9",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:black:10",
+      "productId": "m-shoe-chelsea",
+      "colorId": "black",
+      "size": "10",
+      "sku": "M-SHOE-CHELSEA-BLACK-10",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:black:11",
+      "productId": "m-shoe-chelsea",
+      "colorId": "black",
+      "size": "11",
+      "sku": "M-SHOE-CHELSEA-BLACK-11",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "m-shoe-chelsea:black:12",
+      "productId": "m-shoe-chelsea",
+      "colorId": "black",
+      "size": "12",
+      "sku": "M-SHOE-CHELSEA-BLACK-12",
+      "pricePaise": 1850000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:ivory:S",
+      "productId": "w-tee-crew",
+      "colorId": "ivory",
+      "size": "S",
+      "sku": "W-TEE-CREW-IVORY-S",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:ivory:M",
+      "productId": "w-tee-crew",
+      "colorId": "ivory",
+      "size": "M",
+      "sku": "W-TEE-CREW-IVORY-M",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:ivory:L",
+      "productId": "w-tee-crew",
+      "colorId": "ivory",
+      "size": "L",
+      "sku": "W-TEE-CREW-IVORY-L",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:ivory:XL",
+      "productId": "w-tee-crew",
+      "colorId": "ivory",
+      "size": "XL",
+      "sku": "W-TEE-CREW-IVORY-XL",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:black:S",
+      "productId": "w-tee-crew",
+      "colorId": "black",
+      "size": "S",
+      "sku": "W-TEE-CREW-BLACK-S",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:black:M",
+      "productId": "w-tee-crew",
+      "colorId": "black",
+      "size": "M",
+      "sku": "W-TEE-CREW-BLACK-M",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:black:L",
+      "productId": "w-tee-crew",
+      "colorId": "black",
+      "size": "L",
+      "sku": "W-TEE-CREW-BLACK-L",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:black:XL",
+      "productId": "w-tee-crew",
+      "colorId": "black",
+      "size": "XL",
+      "sku": "W-TEE-CREW-BLACK-XL",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:rose:S",
+      "productId": "w-tee-crew",
+      "colorId": "rose",
+      "size": "S",
+      "sku": "W-TEE-CREW-ROSE-S",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:rose:M",
+      "productId": "w-tee-crew",
+      "colorId": "rose",
+      "size": "M",
+      "sku": "W-TEE-CREW-ROSE-M",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:rose:L",
+      "productId": "w-tee-crew",
+      "colorId": "rose",
+      "size": "L",
+      "sku": "W-TEE-CREW-ROSE-L",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-crew:rose:XL",
+      "productId": "w-tee-crew",
+      "colorId": "rose",
+      "size": "XL",
+      "sku": "W-TEE-CREW-ROSE-XL",
+      "pricePaise": 260000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:oat:S",
+      "productId": "w-tee-boxy",
+      "colorId": "oat",
+      "size": "S",
+      "sku": "W-TEE-BOXY-OAT-S",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:oat:M",
+      "productId": "w-tee-boxy",
+      "colorId": "oat",
+      "size": "M",
+      "sku": "W-TEE-BOXY-OAT-M",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:oat:L",
+      "productId": "w-tee-boxy",
+      "colorId": "oat",
+      "size": "L",
+      "sku": "W-TEE-BOXY-OAT-L",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:oat:XL",
+      "productId": "w-tee-boxy",
+      "colorId": "oat",
+      "size": "XL",
+      "sku": "W-TEE-BOXY-OAT-XL",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:coral:S",
+      "productId": "w-tee-boxy",
+      "colorId": "coral",
+      "size": "S",
+      "sku": "W-TEE-BOXY-CORAL-S",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:coral:M",
+      "productId": "w-tee-boxy",
+      "colorId": "coral",
+      "size": "M",
+      "sku": "W-TEE-BOXY-CORAL-M",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:coral:L",
+      "productId": "w-tee-boxy",
+      "colorId": "coral",
+      "size": "L",
+      "sku": "W-TEE-BOXY-CORAL-L",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:coral:XL",
+      "productId": "w-tee-boxy",
+      "colorId": "coral",
+      "size": "XL",
+      "sku": "W-TEE-BOXY-CORAL-XL",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:olive:S",
+      "productId": "w-tee-boxy",
+      "colorId": "olive",
+      "size": "S",
+      "sku": "W-TEE-BOXY-OLIVE-S",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:olive:M",
+      "productId": "w-tee-boxy",
+      "colorId": "olive",
+      "size": "M",
+      "sku": "W-TEE-BOXY-OLIVE-M",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:olive:L",
+      "productId": "w-tee-boxy",
+      "colorId": "olive",
+      "size": "L",
+      "sku": "W-TEE-BOXY-OLIVE-L",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-boxy:olive:XL",
+      "productId": "w-tee-boxy",
+      "colorId": "olive",
+      "size": "XL",
+      "sku": "W-TEE-BOXY-OLIVE-XL",
+      "pricePaise": 340000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:white:S",
+      "productId": "w-tee-v",
+      "colorId": "white",
+      "size": "S",
+      "sku": "W-TEE-V-WHITE-S",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:white:M",
+      "productId": "w-tee-v",
+      "colorId": "white",
+      "size": "M",
+      "sku": "W-TEE-V-WHITE-M",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:white:L",
+      "productId": "w-tee-v",
+      "colorId": "white",
+      "size": "L",
+      "sku": "W-TEE-V-WHITE-L",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:white:XL",
+      "productId": "w-tee-v",
+      "colorId": "white",
+      "size": "XL",
+      "sku": "W-TEE-V-WHITE-XL",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:sky:S",
+      "productId": "w-tee-v",
+      "colorId": "sky",
+      "size": "S",
+      "sku": "W-TEE-V-SKY-S",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:sky:M",
+      "productId": "w-tee-v",
+      "colorId": "sky",
+      "size": "M",
+      "sku": "W-TEE-V-SKY-M",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:sky:L",
+      "productId": "w-tee-v",
+      "colorId": "sky",
+      "size": "L",
+      "sku": "W-TEE-V-SKY-L",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:sky:XL",
+      "productId": "w-tee-v",
+      "colorId": "sky",
+      "size": "XL",
+      "sku": "W-TEE-V-SKY-XL",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:heather:S",
+      "productId": "w-tee-v",
+      "colorId": "heather",
+      "size": "S",
+      "sku": "W-TEE-V-HEATHER-S",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:heather:M",
+      "productId": "w-tee-v",
+      "colorId": "heather",
+      "size": "M",
+      "sku": "W-TEE-V-HEATHER-M",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:heather:L",
+      "productId": "w-tee-v",
+      "colorId": "heather",
+      "size": "L",
+      "sku": "W-TEE-V-HEATHER-L",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-tee-v:heather:XL",
+      "productId": "w-tee-v",
+      "colorId": "heather",
+      "size": "XL",
+      "sku": "W-TEE-V-HEATHER-XL",
+      "pricePaise": 300000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:white:S",
+      "productId": "w-shirt-poplin",
+      "colorId": "white",
+      "size": "S",
+      "sku": "W-SHIRT-POPLIN-WHITE-S",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:white:M",
+      "productId": "w-shirt-poplin",
+      "colorId": "white",
+      "size": "M",
+      "sku": "W-SHIRT-POPLIN-WHITE-M",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:white:L",
+      "productId": "w-shirt-poplin",
+      "colorId": "white",
+      "size": "L",
+      "sku": "W-SHIRT-POPLIN-WHITE-L",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:white:XL",
+      "productId": "w-shirt-poplin",
+      "colorId": "white",
+      "size": "XL",
+      "sku": "W-SHIRT-POPLIN-WHITE-XL",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:stripe:S",
+      "productId": "w-shirt-poplin",
+      "colorId": "stripe",
+      "size": "S",
+      "sku": "W-SHIRT-POPLIN-STRIPE-S",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:stripe:M",
+      "productId": "w-shirt-poplin",
+      "colorId": "stripe",
+      "size": "M",
+      "sku": "W-SHIRT-POPLIN-STRIPE-M",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:stripe:L",
+      "productId": "w-shirt-poplin",
+      "colorId": "stripe",
+      "size": "L",
+      "sku": "W-SHIRT-POPLIN-STRIPE-L",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:stripe:XL",
+      "productId": "w-shirt-poplin",
+      "colorId": "stripe",
+      "size": "XL",
+      "sku": "W-SHIRT-POPLIN-STRIPE-XL",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:butter:S",
+      "productId": "w-shirt-poplin",
+      "colorId": "butter",
+      "size": "S",
+      "sku": "W-SHIRT-POPLIN-BUTTER-S",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:butter:M",
+      "productId": "w-shirt-poplin",
+      "colorId": "butter",
+      "size": "M",
+      "sku": "W-SHIRT-POPLIN-BUTTER-M",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:butter:L",
+      "productId": "w-shirt-poplin",
+      "colorId": "butter",
+      "size": "L",
+      "sku": "W-SHIRT-POPLIN-BUTTER-L",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-poplin:butter:XL",
+      "productId": "w-shirt-poplin",
+      "colorId": "butter",
+      "size": "XL",
+      "sku": "W-SHIRT-POPLIN-BUTTER-XL",
+      "pricePaise": 640000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:champagne:S",
+      "productId": "w-shirt-camp",
+      "colorId": "champagne",
+      "size": "S",
+      "sku": "W-SHIRT-CAMP-CHAMPAGNE-S",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:champagne:M",
+      "productId": "w-shirt-camp",
+      "colorId": "champagne",
+      "size": "M",
+      "sku": "W-SHIRT-CAMP-CHAMPAGNE-M",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:champagne:L",
+      "productId": "w-shirt-camp",
+      "colorId": "champagne",
+      "size": "L",
+      "sku": "W-SHIRT-CAMP-CHAMPAGNE-L",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:champagne:XL",
+      "productId": "w-shirt-camp",
+      "colorId": "champagne",
+      "size": "XL",
+      "sku": "W-SHIRT-CAMP-CHAMPAGNE-XL",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:emerald:S",
+      "productId": "w-shirt-camp",
+      "colorId": "emerald",
+      "size": "S",
+      "sku": "W-SHIRT-CAMP-EMERALD-S",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:emerald:M",
+      "productId": "w-shirt-camp",
+      "colorId": "emerald",
+      "size": "M",
+      "sku": "W-SHIRT-CAMP-EMERALD-M",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:emerald:L",
+      "productId": "w-shirt-camp",
+      "colorId": "emerald",
+      "size": "L",
+      "sku": "W-SHIRT-CAMP-EMERALD-L",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:emerald:XL",
+      "productId": "w-shirt-camp",
+      "colorId": "emerald",
+      "size": "XL",
+      "sku": "W-SHIRT-CAMP-EMERALD-XL",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:coral:S",
+      "productId": "w-shirt-camp",
+      "colorId": "coral",
+      "size": "S",
+      "sku": "W-SHIRT-CAMP-CORAL-S",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:coral:M",
+      "productId": "w-shirt-camp",
+      "colorId": "coral",
+      "size": "M",
+      "sku": "W-SHIRT-CAMP-CORAL-M",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:coral:L",
+      "productId": "w-shirt-camp",
+      "colorId": "coral",
+      "size": "L",
+      "sku": "W-SHIRT-CAMP-CORAL-L",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-camp:coral:XL",
+      "productId": "w-shirt-camp",
+      "colorId": "coral",
+      "size": "XL",
+      "sku": "W-SHIRT-CAMP-CORAL-XL",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:natural:S",
+      "productId": "w-shirt-band",
+      "colorId": "natural",
+      "size": "S",
+      "sku": "W-SHIRT-BAND-NATURAL-S",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:natural:M",
+      "productId": "w-shirt-band",
+      "colorId": "natural",
+      "size": "M",
+      "sku": "W-SHIRT-BAND-NATURAL-M",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:natural:L",
+      "productId": "w-shirt-band",
+      "colorId": "natural",
+      "size": "L",
+      "sku": "W-SHIRT-BAND-NATURAL-L",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:natural:XL",
+      "productId": "w-shirt-band",
+      "colorId": "natural",
+      "size": "XL",
+      "sku": "W-SHIRT-BAND-NATURAL-XL",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:sage:S",
+      "productId": "w-shirt-band",
+      "colorId": "sage",
+      "size": "S",
+      "sku": "W-SHIRT-BAND-SAGE-S",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:sage:M",
+      "productId": "w-shirt-band",
+      "colorId": "sage",
+      "size": "M",
+      "sku": "W-SHIRT-BAND-SAGE-M",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:sage:L",
+      "productId": "w-shirt-band",
+      "colorId": "sage",
+      "size": "L",
+      "sku": "W-SHIRT-BAND-SAGE-L",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:sage:XL",
+      "productId": "w-shirt-band",
+      "colorId": "sage",
+      "size": "XL",
+      "sku": "W-SHIRT-BAND-SAGE-XL",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:navy:S",
+      "productId": "w-shirt-band",
+      "colorId": "navy",
+      "size": "S",
+      "sku": "W-SHIRT-BAND-NAVY-S",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:navy:M",
+      "productId": "w-shirt-band",
+      "colorId": "navy",
+      "size": "M",
+      "sku": "W-SHIRT-BAND-NAVY-M",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:navy:L",
+      "productId": "w-shirt-band",
+      "colorId": "navy",
+      "size": "L",
+      "sku": "W-SHIRT-BAND-NAVY-L",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shirt-band:navy:XL",
+      "productId": "w-shirt-band",
+      "colorId": "navy",
+      "size": "XL",
+      "sku": "W-SHIRT-BAND-NAVY-XL",
+      "pricePaise": 720000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:camel:S",
+      "productId": "w-pant-wide",
+      "colorId": "camel",
+      "size": "S",
+      "sku": "W-PANT-WIDE-CAMEL-S",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:camel:M",
+      "productId": "w-pant-wide",
+      "colorId": "camel",
+      "size": "M",
+      "sku": "W-PANT-WIDE-CAMEL-M",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:camel:L",
+      "productId": "w-pant-wide",
+      "colorId": "camel",
+      "size": "L",
+      "sku": "W-PANT-WIDE-CAMEL-L",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:camel:XL",
+      "productId": "w-pant-wide",
+      "colorId": "camel",
+      "size": "XL",
+      "sku": "W-PANT-WIDE-CAMEL-XL",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:black:S",
+      "productId": "w-pant-wide",
+      "colorId": "black",
+      "size": "S",
+      "sku": "W-PANT-WIDE-BLACK-S",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:black:M",
+      "productId": "w-pant-wide",
+      "colorId": "black",
+      "size": "M",
+      "sku": "W-PANT-WIDE-BLACK-M",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:black:L",
+      "productId": "w-pant-wide",
+      "colorId": "black",
+      "size": "L",
+      "sku": "W-PANT-WIDE-BLACK-L",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:black:XL",
+      "productId": "w-pant-wide",
+      "colorId": "black",
+      "size": "XL",
+      "sku": "W-PANT-WIDE-BLACK-XL",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:cream:S",
+      "productId": "w-pant-wide",
+      "colorId": "cream",
+      "size": "S",
+      "sku": "W-PANT-WIDE-CREAM-S",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:cream:M",
+      "productId": "w-pant-wide",
+      "colorId": "cream",
+      "size": "M",
+      "sku": "W-PANT-WIDE-CREAM-M",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:cream:L",
+      "productId": "w-pant-wide",
+      "colorId": "cream",
+      "size": "L",
+      "sku": "W-PANT-WIDE-CREAM-L",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-wide:cream:XL",
+      "productId": "w-pant-wide",
+      "colorId": "cream",
+      "size": "XL",
+      "sku": "W-PANT-WIDE-CREAM-XL",
+      "pricePaise": 980000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:indigo:S",
+      "productId": "w-pant-jean",
+      "colorId": "indigo",
+      "size": "S",
+      "sku": "W-PANT-JEAN-INDIGO-S",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:indigo:M",
+      "productId": "w-pant-jean",
+      "colorId": "indigo",
+      "size": "M",
+      "sku": "W-PANT-JEAN-INDIGO-M",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:indigo:L",
+      "productId": "w-pant-jean",
+      "colorId": "indigo",
+      "size": "L",
+      "sku": "W-PANT-JEAN-INDIGO-L",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:indigo:XL",
+      "productId": "w-pant-jean",
+      "colorId": "indigo",
+      "size": "XL",
+      "sku": "W-PANT-JEAN-INDIGO-XL",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:lightwash:S",
+      "productId": "w-pant-jean",
+      "colorId": "lightwash",
+      "size": "S",
+      "sku": "W-PANT-JEAN-LIGHTWASH-S",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:lightwash:M",
+      "productId": "w-pant-jean",
+      "colorId": "lightwash",
+      "size": "M",
+      "sku": "W-PANT-JEAN-LIGHTWASH-M",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:lightwash:L",
+      "productId": "w-pant-jean",
+      "colorId": "lightwash",
+      "size": "L",
+      "sku": "W-PANT-JEAN-LIGHTWASH-L",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:lightwash:XL",
+      "productId": "w-pant-jean",
+      "colorId": "lightwash",
+      "size": "XL",
+      "sku": "W-PANT-JEAN-LIGHTWASH-XL",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:ecru:S",
+      "productId": "w-pant-jean",
+      "colorId": "ecru",
+      "size": "S",
+      "sku": "W-PANT-JEAN-ECRU-S",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:ecru:M",
+      "productId": "w-pant-jean",
+      "colorId": "ecru",
+      "size": "M",
+      "sku": "W-PANT-JEAN-ECRU-M",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:ecru:L",
+      "productId": "w-pant-jean",
+      "colorId": "ecru",
+      "size": "L",
+      "sku": "W-PANT-JEAN-ECRU-L",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-jean:ecru:XL",
+      "productId": "w-pant-jean",
+      "colorId": "ecru",
+      "size": "XL",
+      "sku": "W-PANT-JEAN-ECRU-XL",
+      "pricePaise": 920000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:black:S",
+      "productId": "w-pant-cigarette",
+      "colorId": "black",
+      "size": "S",
+      "sku": "W-PANT-CIGARETTE-BLACK-S",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:black:M",
+      "productId": "w-pant-cigarette",
+      "colorId": "black",
+      "size": "M",
+      "sku": "W-PANT-CIGARETTE-BLACK-M",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:black:L",
+      "productId": "w-pant-cigarette",
+      "colorId": "black",
+      "size": "L",
+      "sku": "W-PANT-CIGARETTE-BLACK-L",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:black:XL",
+      "productId": "w-pant-cigarette",
+      "colorId": "black",
+      "size": "XL",
+      "sku": "W-PANT-CIGARETTE-BLACK-XL",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:stone:S",
+      "productId": "w-pant-cigarette",
+      "colorId": "stone",
+      "size": "S",
+      "sku": "W-PANT-CIGARETTE-STONE-S",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:stone:M",
+      "productId": "w-pant-cigarette",
+      "colorId": "stone",
+      "size": "M",
+      "sku": "W-PANT-CIGARETTE-STONE-M",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:stone:L",
+      "productId": "w-pant-cigarette",
+      "colorId": "stone",
+      "size": "L",
+      "sku": "W-PANT-CIGARETTE-STONE-L",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:stone:XL",
+      "productId": "w-pant-cigarette",
+      "colorId": "stone",
+      "size": "XL",
+      "sku": "W-PANT-CIGARETTE-STONE-XL",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:rust:S",
+      "productId": "w-pant-cigarette",
+      "colorId": "rust",
+      "size": "S",
+      "sku": "W-PANT-CIGARETTE-RUST-S",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:rust:M",
+      "productId": "w-pant-cigarette",
+      "colorId": "rust",
+      "size": "M",
+      "sku": "W-PANT-CIGARETTE-RUST-M",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:rust:L",
+      "productId": "w-pant-cigarette",
+      "colorId": "rust",
+      "size": "L",
+      "sku": "W-PANT-CIGARETTE-RUST-L",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-pant-cigarette:rust:XL",
+      "productId": "w-pant-cigarette",
+      "colorId": "rust",
+      "size": "XL",
+      "sku": "W-PANT-CIGARETTE-RUST-XL",
+      "pricePaise": 840000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:white:5",
+      "productId": "w-shoe-sneaker",
+      "colorId": "white",
+      "size": "5",
+      "sku": "W-SHOE-SNEAKER-WHITE-5",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:white:6",
+      "productId": "w-shoe-sneaker",
+      "colorId": "white",
+      "size": "6",
+      "sku": "W-SHOE-SNEAKER-WHITE-6",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:white:7",
+      "productId": "w-shoe-sneaker",
+      "colorId": "white",
+      "size": "7",
+      "sku": "W-SHOE-SNEAKER-WHITE-7",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:white:8",
+      "productId": "w-shoe-sneaker",
+      "colorId": "white",
+      "size": "8",
+      "sku": "W-SHOE-SNEAKER-WHITE-8",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:white:9",
+      "productId": "w-shoe-sneaker",
+      "colorId": "white",
+      "size": "9",
+      "sku": "W-SHOE-SNEAKER-WHITE-9",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:white:10",
+      "productId": "w-shoe-sneaker",
+      "colorId": "white",
+      "size": "10",
+      "sku": "W-SHOE-SNEAKER-WHITE-10",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:blush:5",
+      "productId": "w-shoe-sneaker",
+      "colorId": "blush",
+      "size": "5",
+      "sku": "W-SHOE-SNEAKER-BLUSH-5",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:blush:6",
+      "productId": "w-shoe-sneaker",
+      "colorId": "blush",
+      "size": "6",
+      "sku": "W-SHOE-SNEAKER-BLUSH-6",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:blush:7",
+      "productId": "w-shoe-sneaker",
+      "colorId": "blush",
+      "size": "7",
+      "sku": "W-SHOE-SNEAKER-BLUSH-7",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:blush:8",
+      "productId": "w-shoe-sneaker",
+      "colorId": "blush",
+      "size": "8",
+      "sku": "W-SHOE-SNEAKER-BLUSH-8",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:blush:9",
+      "productId": "w-shoe-sneaker",
+      "colorId": "blush",
+      "size": "9",
+      "sku": "W-SHOE-SNEAKER-BLUSH-9",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:blush:10",
+      "productId": "w-shoe-sneaker",
+      "colorId": "blush",
+      "size": "10",
+      "sku": "W-SHOE-SNEAKER-BLUSH-10",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:black:5",
+      "productId": "w-shoe-sneaker",
+      "colorId": "black",
+      "size": "5",
+      "sku": "W-SHOE-SNEAKER-BLACK-5",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:black:6",
+      "productId": "w-shoe-sneaker",
+      "colorId": "black",
+      "size": "6",
+      "sku": "W-SHOE-SNEAKER-BLACK-6",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:black:7",
+      "productId": "w-shoe-sneaker",
+      "colorId": "black",
+      "size": "7",
+      "sku": "W-SHOE-SNEAKER-BLACK-7",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:black:8",
+      "productId": "w-shoe-sneaker",
+      "colorId": "black",
+      "size": "8",
+      "sku": "W-SHOE-SNEAKER-BLACK-8",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:black:9",
+      "productId": "w-shoe-sneaker",
+      "colorId": "black",
+      "size": "9",
+      "sku": "W-SHOE-SNEAKER-BLACK-9",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-sneaker:black:10",
+      "productId": "w-shoe-sneaker",
+      "colorId": "black",
+      "size": "10",
+      "sku": "W-SHOE-SNEAKER-BLACK-10",
+      "pricePaise": 1150000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:black:5",
+      "productId": "w-shoe-pump",
+      "colorId": "black",
+      "size": "5",
+      "sku": "W-SHOE-PUMP-BLACK-5",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:black:6",
+      "productId": "w-shoe-pump",
+      "colorId": "black",
+      "size": "6",
+      "sku": "W-SHOE-PUMP-BLACK-6",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:black:7",
+      "productId": "w-shoe-pump",
+      "colorId": "black",
+      "size": "7",
+      "sku": "W-SHOE-PUMP-BLACK-7",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:black:8",
+      "productId": "w-shoe-pump",
+      "colorId": "black",
+      "size": "8",
+      "sku": "W-SHOE-PUMP-BLACK-8",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:black:9",
+      "productId": "w-shoe-pump",
+      "colorId": "black",
+      "size": "9",
+      "sku": "W-SHOE-PUMP-BLACK-9",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:black:10",
+      "productId": "w-shoe-pump",
+      "colorId": "black",
+      "size": "10",
+      "sku": "W-SHOE-PUMP-BLACK-10",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:nude:5",
+      "productId": "w-shoe-pump",
+      "colorId": "nude",
+      "size": "5",
+      "sku": "W-SHOE-PUMP-NUDE-5",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:nude:6",
+      "productId": "w-shoe-pump",
+      "colorId": "nude",
+      "size": "6",
+      "sku": "W-SHOE-PUMP-NUDE-6",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:nude:7",
+      "productId": "w-shoe-pump",
+      "colorId": "nude",
+      "size": "7",
+      "sku": "W-SHOE-PUMP-NUDE-7",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:nude:8",
+      "productId": "w-shoe-pump",
+      "colorId": "nude",
+      "size": "8",
+      "sku": "W-SHOE-PUMP-NUDE-8",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:nude:9",
+      "productId": "w-shoe-pump",
+      "colorId": "nude",
+      "size": "9",
+      "sku": "W-SHOE-PUMP-NUDE-9",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:nude:10",
+      "productId": "w-shoe-pump",
+      "colorId": "nude",
+      "size": "10",
+      "sku": "W-SHOE-PUMP-NUDE-10",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:coral:5",
+      "productId": "w-shoe-pump",
+      "colorId": "coral",
+      "size": "5",
+      "sku": "W-SHOE-PUMP-CORAL-5",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:coral:6",
+      "productId": "w-shoe-pump",
+      "colorId": "coral",
+      "size": "6",
+      "sku": "W-SHOE-PUMP-CORAL-6",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:coral:7",
+      "productId": "w-shoe-pump",
+      "colorId": "coral",
+      "size": "7",
+      "sku": "W-SHOE-PUMP-CORAL-7",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:coral:8",
+      "productId": "w-shoe-pump",
+      "colorId": "coral",
+      "size": "8",
+      "sku": "W-SHOE-PUMP-CORAL-8",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:coral:9",
+      "productId": "w-shoe-pump",
+      "colorId": "coral",
+      "size": "9",
+      "sku": "W-SHOE-PUMP-CORAL-9",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-pump:coral:10",
+      "productId": "w-shoe-pump",
+      "colorId": "coral",
+      "size": "10",
+      "sku": "W-SHOE-PUMP-CORAL-10",
+      "pricePaise": 1400000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:cognac:5",
+      "productId": "w-shoe-boot",
+      "colorId": "cognac",
+      "size": "5",
+      "sku": "W-SHOE-BOOT-COGNAC-5",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:cognac:6",
+      "productId": "w-shoe-boot",
+      "colorId": "cognac",
+      "size": "6",
+      "sku": "W-SHOE-BOOT-COGNAC-6",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:cognac:7",
+      "productId": "w-shoe-boot",
+      "colorId": "cognac",
+      "size": "7",
+      "sku": "W-SHOE-BOOT-COGNAC-7",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:cognac:8",
+      "productId": "w-shoe-boot",
+      "colorId": "cognac",
+      "size": "8",
+      "sku": "W-SHOE-BOOT-COGNAC-8",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:cognac:9",
+      "productId": "w-shoe-boot",
+      "colorId": "cognac",
+      "size": "9",
+      "sku": "W-SHOE-BOOT-COGNAC-9",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:cognac:10",
+      "productId": "w-shoe-boot",
+      "colorId": "cognac",
+      "size": "10",
+      "sku": "W-SHOE-BOOT-COGNAC-10",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:black:5",
+      "productId": "w-shoe-boot",
+      "colorId": "black",
+      "size": "5",
+      "sku": "W-SHOE-BOOT-BLACK-5",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:black:6",
+      "productId": "w-shoe-boot",
+      "colorId": "black",
+      "size": "6",
+      "sku": "W-SHOE-BOOT-BLACK-6",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:black:7",
+      "productId": "w-shoe-boot",
+      "colorId": "black",
+      "size": "7",
+      "sku": "W-SHOE-BOOT-BLACK-7",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:black:8",
+      "productId": "w-shoe-boot",
+      "colorId": "black",
+      "size": "8",
+      "sku": "W-SHOE-BOOT-BLACK-8",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:black:9",
+      "productId": "w-shoe-boot",
+      "colorId": "black",
+      "size": "9",
+      "sku": "W-SHOE-BOOT-BLACK-9",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:black:10",
+      "productId": "w-shoe-boot",
+      "colorId": "black",
+      "size": "10",
+      "sku": "W-SHOE-BOOT-BLACK-10",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:taupe:5",
+      "productId": "w-shoe-boot",
+      "colorId": "taupe",
+      "size": "5",
+      "sku": "W-SHOE-BOOT-TAUPE-5",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:taupe:6",
+      "productId": "w-shoe-boot",
+      "colorId": "taupe",
+      "size": "6",
+      "sku": "W-SHOE-BOOT-TAUPE-6",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:taupe:7",
+      "productId": "w-shoe-boot",
+      "colorId": "taupe",
+      "size": "7",
+      "sku": "W-SHOE-BOOT-TAUPE-7",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:taupe:8",
+      "productId": "w-shoe-boot",
+      "colorId": "taupe",
+      "size": "8",
+      "sku": "W-SHOE-BOOT-TAUPE-8",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:taupe:9",
+      "productId": "w-shoe-boot",
+      "colorId": "taupe",
+      "size": "9",
+      "sku": "W-SHOE-BOOT-TAUPE-9",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    },
+    {
+      "id": "w-shoe-boot:taupe:10",
+      "productId": "w-shoe-boot",
+      "colorId": "taupe",
+      "size": "10",
+      "sku": "W-SHOE-BOOT-TAUPE-10",
+      "pricePaise": 1750000,
+      "stock": 25,
+      "active": true
+    }
+  ]
+}

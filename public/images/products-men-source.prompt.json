@@ -1,0 +1,29 @@
+{
+  "file": "public/images/products-men-source.png",
+  "mode": "built-in image_gen",
+  "layout": {
+    "columns": 4,
+    "rows": 3,
+    "productsByRow": [
+      [
+        "m-tee-crew",
+        "m-tee-pocket",
+        "m-tee-v",
+        "m-shirt-oxford"
+      ],
+      [
+        "m-shirt-camp",
+        "m-shirt-band",
+        "m-pant-chino",
+        "m-pant-pleat"
+      ],
+      [
+        "m-pant-denim",
+        "m-shoe-sneaker",
+        "m-shoe-loafer",
+        "m-shoe-chelsea"
+      ]
+    ]
+  },
+  "prompt": "Use case: product-mockup.\nAsset type: production MEN'S CLOTHING AND FOOTWEAR product photography sprite atlas, on a true transparent background.\n\nCreate ONE high-resolution LANDSCAPE PNG, 1536 x 1024 pixels if supported, containing EXACTLY FOUR COLUMNS and THREE ROWS of twelve equal rectangular invisible tiles. Arrange exactly ONE complete men's product or one complete PAIR of men's shoes per tile. This is an image asset contact sheet for a premium menswear store.\n\nEXACT POSITION MAPPING, read left-to-right:\nTOP ROW column1: MEN'S regular-fit short-sleeve CREWNECK cotton tee, broad masculine shoulders, round ribbed neck, NO POCKET.\nTOP ROW column2: MEN'S heavyweight BOXY POCKET TEE, dropped broad shoulders, crew neck, short wide sleeves, ONE easily visible chest patch pocket.\nTOP ROW column3: MEN'S FITTED V-NECK PIMA TEE, clear V-shaped neck, short sleeves, no pocket.\nTOP ROW column4: MEN'S LONG-SLEEVE OXFORD BUTTON-DOWN SHIRT, crisply folded POINTED COLLAR with two visible collar tips/button-down collar buttons, front placket, full sleeves and cuffs.\n\nMIDDLE ROW column1: MEN'S SHORT-SLEEVE RELAXED LINEN CAMP SHIRT, flat open CAMP COLLAR, slightly notched open lapels, front buttons, clear short sleeves, linen weave.\nMIDDLE ROW column2: MEN'S LONG-SLEEVE MINIMAL BAND-COLLAR SHIRT, front buttons and full sleeves, ONLY a SHORT UPRIGHT VERTICAL ROUND MANDARIN COLLAR BAND, NO FOLDED COLLAR, NO DOWNWARD TRIANGULAR COLLAR POINTS. This collar is visibly different from the Oxford and camp collar.\nMIDDLE ROW column3: MEN'S SLIM CHINO PANTS, full pair of pants from waistband and fly to BOTH hems, gentle taper, belt loops, slash pockets.\nMIDDLE ROW column4: MEN'S RELAXED WIDE PLEATED TAILORED TROUSERS, full pair waistband to BOTH hems, visible front pleats and pressed creases, masculine roomy seat and wide straight legs; visibly wider than chinos.\n\nBOTTOM ROW column1: MEN'S STRAIGHT SELVEDGE DENIM JEANS, full pair waistband to BOTH hems, five-pocket construction, denim weave, visible stitching, straight male leg.\nBOTTOM ROW column2: PAIR OF MEN'S WHITE LEATHER LOW-TOP COURT SNEAKERS, white laces, flat rubber cupsoles, three-quarter catalog angle, both full shoes visible.\nBOTTOM ROW column3: PAIR OF MEN'S PENNY LOAFERS, masculine broad leather toe, classic penny straps, low heel, NO laces, three-quarter catalog angle, both full shoes visible, NEVER women's pumps.\nBOTTOM ROW column4: PAIR OF MEN'S SUEDE CHELSEA ANKLE BOOTS, masculine rounded toe, elastic side gussets, low heel, suede texture, three-quarter catalog angle, both full boots visible.\n\nALL products MUST be chromatically UNSATURATED LIGHT/MEDIUM NEUTRAL GREY, RGB grey with no blue, yellow, tan, pink or brown tint. White sneaker leather and laces are allowed. Jeans are NEUTRAL GREY DENIM, never blue indigo. Loafers and boots are LIGHT/MEDIUM NEUTRAL GREY so recoloring can preserve leather/suede detail. These neutral masters will be recolored in the app. Realistic textile threads, linen slubs, fabric creases, precise stitching, buttons, collar constructions, suede grain and subtle leather highlights.\n\nFor shirts and tees, use clean symmetrical ghost-mannequin product form with empty neck openings but ABSOLUTELY NO visible person, skin, mannequin body, hands, hanger or stand. Trousers are photographed as a whole flat lay or ghost form. Every product centered inside its exact grid tile, with at least FIFTEEN PERCENT clear transparent padding on each side, top and bottom of its own tile. No items touch each other, overlap tile boundaries, or get cropped. Shirts have fully visible cuffs; pants have both full hems; shoes have full soles and heels.\n\nTRUE TRANSPARENT ALPHA BACKGROUND outside every item. No colored studio backdrop, no ground plane, no black/white rectangles, no gradients, no checkerboard painted into the image. Soft neutral photographic lighting and natural textile shading confined to the item. Exactly12 tiles, 4columns×3rows, no visible grid lines, no headings, no letters, no labels, no logos, no price tags, no watermarks. MEN'S garments only."
+}
