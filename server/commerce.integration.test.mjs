@@ -15,7 +15,7 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
     "Use a separate database whose name ends in _test.",
   );
   process.env.MYSQL_DATABASE = testDatabase;
-  process.env.UPLOAD_DIR=path.resolve(".qa/integration-uploads");
+  process.env.UPLOAD_DIR = path.resolve(".qa/integration-uploads");
   if (process.env.DATABASE_URL) {
     const url = new URL(process.env.DATABASE_URL);
     url.pathname = `/${testDatabase}`;
@@ -26,7 +26,7 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
     { query, withTransaction, closePool },
     { initializeSchema, seedCatalog },
     { hashPassword },
-    { markOrderPaid },
+    { markOrderPaid, releaseExpiredReservations, createOrder },
     { config },
   ] = await Promise.all([
     import("./app.mjs"),
@@ -49,7 +49,7 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
     .padStart(8, "0")
     .slice(-8)}`;
   let couponId;
-  const uploadFiles=[];
+  const uploadFiles = [];
   const adminIds = [ownerId, managerId],
     orderIds = [],
     customerIds = [];
@@ -114,6 +114,13 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
     return result;
   };
   try {
+    await t.test("database sessions and stored timestamps use UTC", async () => {
+      const clock = (
+        await query("SELECT @@session.time_zone AS time_zone,CURRENT_TIMESTAMP(3) AS clock")
+      )[0];
+      assert.equal(clock.time_zone, "+00:00");
+      assert.ok(Math.abs(new Date(clock.clock).getTime() - Date.now()) < 10000);
+    });
     await t.test("sessions, CSRF and owner/manager permissions", async () => {
       const me = await request("GET", "/api/admin/auth/me", undefined, owner);
       assert.equal(me.data.admin.role, "owner");
@@ -195,6 +202,58 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
         }
       },
     );
+    await t.test("image uploads reject disguised files and persist accepted images", async () => {
+      const headers = { Origin: origin, Cookie: owner.cookie, "X-CSRF-Token": owner.csrfToken };
+      const disguised = await fetch(base + "/api/admin/uploads", {
+        method: "POST",
+        headers: { ...headers, "Content-Type": "image/png" },
+        body: Buffer.from("<svg>this is not a png</svg>"),
+      });
+      assert.equal(disguised.status, 400);
+      const png = Buffer.from(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aAZkAAAAASUVORK5CYII=",
+        "base64",
+      );
+      const uploaded = await fetch(base + "/api/admin/uploads", {
+        method: "POST",
+        headers: { ...headers, "Content-Type": "image/png" },
+        body: png,
+      });
+      assert.equal(uploaded.status, 201);
+      const { data } = await uploaded.json();
+      assert.match(data.url, /^\/uploads\/[a-f\d-]+\.png$/);
+      uploadFiles.push(path.join(config.uploadDir, path.basename(data.url)));
+      const served = await fetch(base + data.url);
+      assert.equal(served.status, 200);
+      assert.equal(served.headers.get("x-content-type-options"), "nosniff");
+      assert.deepEqual(Buffer.from(await served.arrayBuffer()), png);
+      const oversized = await fetch(base + "/api/admin/uploads", {
+        method: "POST",
+        headers: { ...headers, "Content-Type": "image/png" },
+        body: Buffer.alloc(5 * 1024 * 1024 + 1),
+      });
+      assert.equal(oversized.status, 413);
+    });
+    await t.test(
+      "quantities must be positive whole numbers and obey the per-variant limit",
+      async () => {
+        for (const quantity of [0, -1, 1.5, "1", 21]) {
+          const result = await request("POST", "/api/checkout/quote", checkout(quantity));
+          assert.equal(result.status, 400);
+        }
+        const duplicate = await request(
+          "POST",
+          "/api/checkout/quote",
+          checkout(1, {
+            items: [
+              { variantId, quantity: 11 },
+              { variantId, quantity: 10 },
+            ],
+          }),
+        );
+        assert.equal(duplicate.status, 400);
+      },
+    );
     await t.test("quotes ignore forged prices and aggregate duplicate variants", async () => {
       const body = checkout(1, {
         items: [
@@ -250,6 +309,51 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
       );
     });
     await t.test(
+      "coupon limits are transactional and cancelled reservations release usage once",
+      async () => {
+        const coupon = await request(
+          "POST",
+          "/api/admin/coupons",
+          {
+            code: `QA${suffix}`,
+            type: "percent",
+            value: 10,
+            usageLimit: 1,
+            active: true,
+          },
+          owner,
+        );
+        assert.equal(coupon.status, 201);
+        couponId = coupon.data.coupon.id;
+        const couponCode = coupon.data.coupon.code;
+        const quote = await request("POST", "/api/checkout/quote", checkout(1, { couponCode }));
+        assert.equal(quote.data.discountPaise, 9900);
+        const results = await Promise.all([
+          request("POST", "/api/orders", checkout(1, { couponCode })).then(remember),
+          request("POST", "/api/orders", checkout(1, { couponCode })).then(remember),
+        ]);
+        assert.deepEqual(results.map((result) => result.status).sort(), [201, 400]);
+        const winner = results.find((result) => result.status === 201);
+        assert.equal(
+          (await query("SELECT used_count FROM coupons WHERE id=?", [couponId]))[0].used_count,
+          1,
+        );
+        for (let retry = 0; retry < 2; retry++) {
+          const cancelled = await request(
+            "PATCH",
+            `/api/admin/orders/${winner.data.order.id}/status`,
+            { status: "cancelled" },
+            owner,
+          );
+          assert.equal(cancelled.status, 200);
+        }
+        assert.equal(
+          (await query("SELECT used_count FROM coupons WHERE id=?", [couponId]))[0].used_count,
+          0,
+        );
+      },
+    );
+    await t.test(
       "payment credentials are encrypted, masked and disabled until configured",
       async () => {
         const secret = `qa-password-${suffix}`;
@@ -298,6 +402,142 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
       },
     );
     await t.test(
+      "payment eligibility fails before an order consumes stock or coupon usage",
+      async () => {
+        const previous = (await request("GET", "/api/admin/settings", undefined, owner)).data;
+        const inventory = (
+          await query("SELECT stock,reserved,price_paise FROM variants WHERE id=?", [variantId])
+        )[0];
+        const coupon = (
+          await query("SELECT code,value,used_count FROM coupons WHERE id=?", [couponId])
+        )[0];
+        let freeOrder;
+        const unchanged = async (key) => {
+          assert.equal(
+            (await query("SELECT COUNT(*) AS count FROM orders WHERE idempotency_key=?", [key]))[0]
+              .count,
+            0,
+          );
+          const stock = (
+            await query("SELECT stock,reserved FROM variants WHERE id=?", [variantId])
+          )[0];
+          assert.equal(stock.stock, inventory.stock);
+          assert.equal(stock.reserved, inventory.reserved);
+          assert.equal(
+            (await query("SELECT used_count FROM coupons WHERE id=?", [couponId]))[0].used_count,
+            coupon.used_count,
+          );
+        };
+        const rejected = async (input, code) => {
+          await assert.rejects(
+            createOrder(input),
+            (error) => error.status === 400 && error.code === code,
+          );
+          await unchanged(input.idempotencyKey);
+        };
+        try {
+          const configured = await request(
+            "PATCH",
+            "/api/admin/settings",
+            {
+              shipping: { insideDhakaPaise: 0, outsideDhakaPaise: 0 },
+              payments: {
+                sslcommerz: { enabled: true },
+                bkash: { enabled: true, mode: "gateway" },
+              },
+            },
+            owner,
+          );
+          assert.equal(configured.status, 200);
+          const longEmail = checkout(1, {
+            paymentMethod: "bkash",
+            couponCode: coupon.code,
+            customer: {
+              name: "Integration customer",
+              phone,
+              email: `${"x".repeat(45)}@example.com`,
+            },
+          });
+          const emailResult = await request("POST", "/api/orders", longEmail);
+          assert.equal(emailResult.status, 400);
+          assert.equal(emailResult.error.code, "PAYMENT_CUSTOMER_EMAIL_REQUIRED");
+          await unchanged(longEmail.idempotencyKey);
+
+          for (const price of [1, 50_000_001]) {
+            await query("UPDATE variants SET price_paise=? WHERE id=?", [price, variantId]);
+            await rejected(checkout(1, { paymentMethod: "bkash" }), "PAYMENT_AMOUNT_INVALID");
+          }
+          await query("UPDATE variants SET price_paise=? WHERE id=?", [
+            inventory.price_paise,
+            variantId,
+          ]);
+          await query("UPDATE coupons SET value=100 WHERE id=?", [couponId]);
+          const manual = await request(
+            "PATCH",
+            "/api/admin/settings",
+            {
+              payments: {
+                bkash: { enabled: true, mode: "manual" },
+                sslcommerz: { enabled: false },
+              },
+            },
+            owner,
+          );
+          assert.equal(manual.status, 200);
+          await rejected(
+            checkout(1, { paymentMethod: "bkash", couponCode: coupon.code }),
+            "PAYMENT_NOT_REQUIRED",
+          );
+          freeOrder = await createOrder(
+            checkout(1, { paymentMethod: "cod", couponCode: coupon.code }),
+          );
+          remember({ data: freeOrder });
+          assert.equal(freeOrder.order.totalPaise, 0);
+          assert.equal(freeOrder.order.paymentStatus, "unpaid");
+          assert.equal(
+            (await query("SELECT reserved FROM variants WHERE id=?", [variantId]))[0].reserved,
+            inventory.reserved + 1,
+          );
+          const cancelled = await request(
+            "PATCH",
+            `/api/admin/orders/${freeOrder.order.id}/status`,
+            { status: "cancelled" },
+            owner,
+          );
+          assert.equal(cancelled.status, 200);
+        } finally {
+          if (freeOrder)
+            await request(
+              "PATCH",
+              `/api/admin/orders/${freeOrder.order.id}/status`,
+              { status: "cancelled" },
+              owner,
+            );
+          await query("UPDATE variants SET price_paise=? WHERE id=?", [
+            inventory.price_paise,
+            variantId,
+          ]);
+          await query("UPDATE coupons SET value=? WHERE id=?", [coupon.value, couponId]);
+          const restored = await request(
+            "PATCH",
+            "/api/admin/settings",
+            {
+              shipping: previous.shipping,
+              payments: {
+                bkash: {
+                  enabled: previous.payments.bkash.enabled,
+                  mode: previous.payments.bkash.mode,
+                },
+                sslcommerz: { enabled: previous.payments.sslcommerz.enabled },
+              },
+            },
+            owner,
+          );
+          assert.equal(restored.status, 200);
+        }
+      },
+    );
+    await t.test(
       "manual proof is review-only, references cannot be reused, unpaid orders cannot ship",
       async () => {
         const first = remember(
@@ -325,6 +565,12 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
         });
         assert.equal(proof.status, 200);
         assert.equal(proof.data.order.paymentStatus, "pending_review");
+        const extraProof = await request("POST", `/api/orders/${manualOrder}/payment-proof`, {
+          lookupToken: manualToken,
+          reference: `OTHER${suffix}`,
+          senderPhone: "01712345678",
+        });
+        assert.equal(extraProof.status, 409);
         const reused = await request("POST", `/api/orders/${second.data.order.id}/payment-proof`, {
           lookupToken: second.data.lookupToken,
           reference: `${reference.slice(0, 4)}-${reference.slice(4)}`,
@@ -423,6 +669,164 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
           [id],
         );
         assert.equal(logged.length, 1);
+        await markOrderPaid({
+          orderId: id,
+          provider: "sslcommerz",
+          transactionId: `QA${suffix}`,
+          amountPaise: created.data.order.totalPaise,
+          providerReference: `QA${suffix}`,
+          verifiedPayload: { transactionId: `QA${suffix}`, validationId: `QA${suffix}` },
+        });
+        assert.equal(
+          (
+            await query(
+              "SELECT id FROM audit_logs WHERE action='payment.review_required' AND entity_id=?",
+              [id],
+            )
+          ).length,
+          1,
+        );
+      },
+    );
+    await t.test(
+      "gateway settlement keeps attempts separate and review approval settles the chosen attempt",
+      async () => {
+        const created = remember(
+          await request("POST", "/api/orders", checkout(1, { paymentMethod: "bkash" })),
+        );
+        assert.equal(created.status, 201);
+        const id = created.data.order.id,
+          oldId = randomUUID(),
+          newId = randomUUID();
+        const oldGateway = `F${randomBytes(14).toString("hex")}`,
+          newGateway = `F${randomBytes(14).toString("hex")}`;
+        await query(
+          "INSERT INTO payments (id,order_id,provider,method,status,amount_paise,gateway_transaction_id,created_at) VALUES (?,?, 'sslcommerz','bkash','pending',?,?,DATE_SUB(UTC_TIMESTAMP(3),INTERVAL 1 MINUTE)),(?,?, 'sslcommerz','bkash','pending',?,?,UTC_TIMESTAMP(3))",
+          [
+            oldId,
+            id,
+            created.data.order.totalPaise,
+            oldGateway,
+            newId,
+            id,
+            created.data.order.totalPaise,
+            newGateway,
+          ],
+        );
+        const settlement = {
+          orderId: id,
+          provider: "sslcommerz",
+          paymentId: oldId,
+          transactionId: `BANK${suffix}`,
+          amountPaise: created.data.order.totalPaise,
+          providerReference: `VALID${suffix}`,
+          verifiedPayload: { transactionId: oldGateway, validationId: `VALID${suffix}` },
+          review: true,
+        };
+        await markOrderPaid(settlement);
+        await markOrderPaid(settlement);
+        let ledger = await query("SELECT id,status,transaction_id FROM payments WHERE order_id=?", [
+          id,
+        ]);
+        assert.equal(ledger.find((row) => row.id === oldId).status, "pending_review");
+        assert.equal(ledger.find((row) => row.id === newId).status, "pending");
+        assert.equal(ledger.find((row) => row.id === newId).transaction_id, null);
+        assert.equal(
+          (
+            await query(
+              "SELECT id FROM audit_logs WHERE action='payment.review_required' AND entity_id=?",
+              [id],
+            )
+          ).length,
+          1,
+        );
+        const approved = await request(
+          "POST",
+          `/api/admin/orders/${id}/review-payment`,
+          {
+            paymentId: oldId,
+            decision: "approve",
+            note: "Checked verified risk review fixture.",
+          },
+          owner,
+        );
+        assert.equal(approved.status, 200, JSON.stringify(approved.error));
+        ledger = await query("SELECT id,status FROM payments WHERE order_id=?", [id]);
+        assert.equal(ledger.find((row) => row.id === oldId).status, "paid");
+        assert.equal(ledger.find((row) => row.id === newId).status, "pending");
+        const dashboard = await request("GET", "/api/admin/dashboard", undefined, owner);
+        assert.equal(dashboard.status, 200);
+        assert.equal(dashboard.data.revenueByDay.length, 30);
+        assert.ok(
+          dashboard.data.revenueByDay.every(
+            (day) => /^\d{4}-\d{2}-\d{2}$/.test(day.date) && Number.isSafeInteger(day.revenuePaise),
+          ),
+        );
+        assert.ok(dashboard.data.orderStatusCounts.confirmed >= 1);
+        await request("PATCH", `/api/admin/orders/${id}/status`, { status: "cancelled" }, owner);
+      },
+    );
+    await t.test("expired unpaid reservations release their stock exactly once", async () => {
+      const created = remember(
+        await request("POST", "/api/orders", checkout(1, { paymentMethod: "bkash" })),
+      );
+      assert.equal(created.status, 201);
+      const id = created.data.order.id;
+      const before = (
+        await query("SELECT stock,reserved FROM variants WHERE id=?", [variantId])
+      )[0];
+      await query(
+        "UPDATE orders SET reservation_expires_at=DATE_SUB(UTC_TIMESTAMP(3),INTERVAL 1 MINUTE) WHERE id=?",
+        [id],
+      );
+      await releaseExpiredReservations();
+      await releaseExpiredReservations();
+      const after = (await query("SELECT stock,reserved FROM variants WHERE id=?", [variantId]))[0];
+      assert.equal(after.stock, before.stock);
+      assert.equal(after.reserved, before.reserved - 1);
+      assert.equal(
+        (await query("SELECT status,reservation_status FROM orders WHERE id=?", [id]))[0].status,
+        "cancelled",
+      );
+    });
+    await t.test(
+      "password changes verify the current password and revoke every existing session",
+      async () => {
+        const rejected = await request(
+          "POST",
+          "/api/admin/auth/change-password",
+          {
+            currentPassword: "incorrect current password",
+            newPassword: `${password}-new`,
+          },
+          owner,
+        );
+        assert.equal(rejected.status, 401);
+        const changed = await request(
+          "POST",
+          "/api/admin/auth/change-password",
+          {
+            currentPassword: password,
+            newPassword: `${password}-new`,
+          },
+          owner,
+        );
+        assert.equal(changed.status, 200);
+        assert.equal(changed.data.changed, true);
+        const stale = await request("GET", "/api/admin/auth/me", undefined, owner);
+        assert.equal(stale.status, 401);
+        const oldLogin = await request("POST", "/api/admin/auth/login", {
+          email: ownerEmail,
+          password,
+        });
+        assert.equal(oldLogin.status, 401);
+        const newLogin = await request("POST", "/api/admin/auth/login", {
+          email: ownerEmail,
+          password: `${password}-new`,
+        });
+        assert.equal(newLogin.status, 200);
+        owner.cookie = newLogin.cookie;
+        owner.csrfToken = newLogin.data.csrfToken;
       },
     );
     await t.test(
@@ -465,6 +869,23 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
         assert.equal(old.active, false);
       },
     );
+    await t.test(
+      "provider callback traffic has a separate budget from customer payment retries",
+      async () => {
+        const callback = () =>
+          request("POST", "/api/payments/sslcommerz/ipn", { tran_id: `unknown-${suffix}` });
+        for (let index = 0; index < 25; index++) assert.equal((await callback()).status, 404);
+        const statuses = [];
+        for (let index = 0; index < 21; index++) {
+          const response = await request("POST", `/api/orders/${randomUUID()}/pay`, {
+            lookupToken: randomBytes(32).toString("base64url"),
+          });
+          statuses.push(response.status);
+        }
+        assert.ok(statuses.includes(429), "Customer payment retries must still be rate limited.");
+        assert.equal((await callback()).status, 404);
+      },
+    );
   } finally {
     await new Promise((resolve) => server.close(resolve));
     try {
@@ -498,7 +919,7 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
           [productId, `${productId}-preview`],
           connection,
         );
-        await query("DELETE FROM coupons WHERE id=?", [couponId], connection);
+        if (couponId) await query("DELETE FROM coupons WHERE id=?", [couponId], connection);
         for (const id of adminIds) {
           await query("DELETE FROM sessions WHERE admin_id=?", [id], connection);
           await query("DELETE FROM audit_logs WHERE actor_id=?", [id], connection);
@@ -521,6 +942,7 @@ test("commerce against an isolated real MySQL database", { skip: !testDatabase }
         }
       });
     } finally {
+      for (const file of uploadFiles) await unlink(file).catch(() => {});
       await closePool();
     }
   }

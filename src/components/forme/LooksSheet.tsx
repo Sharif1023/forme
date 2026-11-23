@@ -74,7 +74,7 @@ export function LooksSheet({ open, onOpenChange, focusInput }: { open: boolean; 
                 return (
                   <li key={look.id} className="flex gap-3 rounded-2xl border border-border bg-card p-2.5">
                     <div className="h-32 w-20 shrink-0 overflow-hidden rounded-xl bg-studio-gradient">
-                      <HumanModel spec={BODIES[look.gender]} outfit={look.outfit} animate={false} className="h-full w-full" label={`Preview of ${look.name}`} />
+                      <HumanModel spec={BODIES[look.gender]} outfit={look.outfit} animate={false} allowGeneration={false} className="h-full w-full" label={`Preview of ${look.name}`} />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">
                       <p className="truncate font-serif text-xl leading-tight">{look.name}</p>

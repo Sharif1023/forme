@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import type { BodySpec } from "@/lib/forme/bodies";
-import { getOutfitImage } from "@/lib/forme/outfit-images";
+import { useOutfitPreview } from "@/lib/forme/use-outfit-preview";
 import type { Outfit } from "@/lib/forme/state";
 
 export type Focus = "full" | "tops" | "bottoms" | "shoes";
@@ -58,6 +58,7 @@ export interface HumanModelProps {
   animate?: boolean;
   className?: string;
   label?: string;
+  allowGeneration?: boolean;
 }
 
 /** Each frame is one complete outfit photograph; swaps begin only after decoding. */
@@ -68,9 +69,16 @@ export function HumanModel({
   animate = true,
   className,
   label,
+  allowGeneration = true,
 }: HumanModelProps) {
   const uid = `outfit-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
-  const requested = getOutfitImage(spec.gender, outfit);
+  const preview = useOutfitPreview(spec.gender, outfit, allowGeneration);
+  const requested = preview.status === "ready" && preview.imageUrl ? { key: preview.key, src: preview.imageUrl } : null;
+  const generating = preview.status === "pending" || preview.status === "processing";
+  const unavailable = preview.status === "unavailable";
+  const previewFailed = preview.status === "failed";
+  const requestedKey = requested?.key;
+  const requestedSrc = requested?.src;
   const requestedLabel = label ?? `${spec.name}, photographic outfit preview`;
   const [decoded, setDecoded] = useState<Frame | null>(null);
   const [display, setDisplay] = useState<Display>({ current: null, previous: null });
@@ -83,33 +91,46 @@ export function HumanModel({
   useEffect(() => {
     const id = ++requestId.current;
     let cancelled = false;
-    void decodeImage(requested.src).then(
+    if (!requestedKey || !requestedSrc) {
+      setDecoded(null);
+      if (unavailable || previewFailed) setDisplay({ current: null, previous: null });
+      setFailure(null);
+      return;
+    }
+    void decodeImage(requestedSrc).then(
       () => {
         if (!cancelled && id === requestId.current) {
-          setDecoded({ key: requested.key, src: requested.src, label: requestedLabel });
+          setDecoded({ key: requestedKey, src: requestedSrc, label: requestedLabel });
           setFailure(null);
         }
       },
       () => {
         if (!cancelled && id === requestId.current) {
-          setFailure({ key: requested.key, src: requested.src, attempt });
+          setFailure({ key: requestedKey, src: requestedSrc, attempt });
         }
       },
     );
     return () => {
       cancelled = true;
     };
-  }, [requested.key, requested.src, requestedLabel, attempt]);
+  }, [requestedKey, requestedSrc, requestedLabel, attempt, unavailable, previewFailed]);
 
   useEffect(() => {
-    if (!decoded || decoded.key !== requested.key || decoded.src !== requested.src) return;
+    if (
+      !requestedKey ||
+      !requestedSrc ||
+      !decoded ||
+      decoded.key !== requestedKey ||
+      decoded.src !== requestedSrc
+    )
+      return;
     if (display.current?.key === decoded.key && display.current.src === decoded.src) return;
     // Finish the current fade before starting the newest requested frame. This keeps
     // rapid clicks from revealing a half-faded intermediate image at full opacity.
     if (display.previous) return;
     const motion = animate && !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     setDisplay((current) => ({ current: decoded, previous: motion ? current.current : null }));
-  }, [decoded, requested.key, requested.src, display, animate]);
+  }, [decoded, requestedKey, requestedSrc, display, animate]);
 
   useEffect(() => {
     if (!display.previous) return;
@@ -123,14 +144,18 @@ export function HumanModel({
   }, [display]);
 
   const failed =
+    requested !== null &&
     failure !== null &&
     failure.key === requested.key &&
     failure.src === requested.src &&
     failure.attempt === attempt;
   const updating =
-    display.current?.key !== requested.key ||
-    display.current?.src !== requested.src ||
-    Boolean(display.previous);
+    requested !== null &&
+    (display.current?.key !== requested.key ||
+      display.current?.src !== requested.src ||
+      Boolean(display.previous));
+  const current = unavailable || previewFailed ? null : display.current;
+  const previous = unavailable || previewFailed ? null : display.previous;
   const f = FOCUS[focus];
 
   return (
@@ -139,9 +164,11 @@ export function HumanModel({
         viewBox="0 0 400 1000"
         className="h-full w-full"
         role="img"
-        aria-label={display.current?.label ?? `${spec.name}, preview loading`}
-        aria-busy={updating && !failed}
-        data-outfit-key={display.current?.key}
+        aria-label={
+          current?.label ?? `${spec.name}, preview ${unavailable ? "unavailable" : "loading"}`
+        }
+        aria-busy={(generating || updating) && !failed}
+        data-outfit-key={current?.key}
       >
         <defs>
           <radialGradient id={`${uid}-shadow`}>
@@ -155,13 +182,11 @@ export function HumanModel({
             transform: `translate(200px, 500px) scale(${f.s}) translate(${-f.cx}px, ${-f.cy}px)`,
           }}
         >
-          {display.current && (
-            <ellipse cx={200} cy={992} rx={150} ry={9} fill={`url(#${uid}-shadow)`} />
-          )}
-          {display.previous && (
+          {current && <ellipse cx={200} cy={992} rx={150} ry={9} fill={`url(#${uid}-shadow)`} />}
+          {previous && (
             <image
-              key={display.previous.key}
-              href={display.previous.src}
+              key={previous.key}
+              href={previous.src}
               x={-140}
               y={0}
               width={680}
@@ -170,28 +195,30 @@ export function HumanModel({
               className="outfit-frame-previous"
             />
           )}
-          {display.current && (
+          {current && (
             <image
-              key={display.current.key}
-              href={display.current.src}
+              key={current.key}
+              href={current.src}
               x={-140}
               y={0}
               width={680}
               height={1000}
               preserveAspectRatio="xMidYMid meet"
-              className={display.previous ? "outfit-frame-enter" : undefined}
+              className={previous ? "outfit-frame-enter" : undefined}
             />
           )}
         </g>
       </svg>
-      {(updating || failed) && (
+      {(generating || updating || failed || previewFailed || unavailable) && (
         <div className="outfit-model-feedback" role="status" aria-live="polite">
-          {failed ? (
+          {unavailable ? (
+            <span>{preview.message}</span>
+          ) : failed || previewFailed ? (
             <>
-              <span>Look unavailable</span>
+              <span>{previewFailed ? preview.message : "Look unavailable"}</span>
               <button
                 type="button"
-                onClick={() => setAttempt((value) => value + 1)}
+                onClick={() => previewFailed ? preview.retry() : setAttempt((value) => value + 1)}
                 aria-label="Retry loading outfit preview"
               >
                 Retry
@@ -200,7 +227,7 @@ export function HumanModel({
           ) : (
             <>
               <span className="outfit-model-spinner" aria-hidden />
-              <span>{display.current ? "Updating look" : "Loading look"}</span>
+              <span>{generating ? preview.message || "Creating your photo preview…" : display.current ? "Updating look" : "Loading look"}</span>
             </>
           )}
         </div>

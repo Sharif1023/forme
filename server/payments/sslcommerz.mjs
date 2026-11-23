@@ -125,6 +125,17 @@ function transactionId(order) {
   return id;
 }
 
+function checkoutAmount(totalMinor, currency) {
+  if (currency !== "BDT")
+    fail("PAYMENT_CURRENCY_INVALID", "This store accepts payments in BDT only.");
+  if (
+    !Number.isSafeInteger(totalMinor) ||
+    totalMinor < MIN_TOTAL_MINOR ||
+    totalMinor > MAX_TOTAL_MINOR
+  )
+    fail("PAYMENT_AMOUNT_INVALID", "Online payment must be between ৳10 and ৳500,000.");
+}
+
 function checkoutCustomer(customer) {
   const email = text(customer?.email, 254);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 50) {
@@ -144,6 +155,12 @@ function checkoutCustomer(customer) {
     );
   }
   return { name, email, phone, address, city, postalCode: text(customer.postalCode, 30) };
+}
+
+/** Validate before reserving stock; the adapter applies these same constraints. */
+export function validateCheckoutEligibility({ totalMinor, currency = "BDT", customer }) {
+  checkoutAmount(totalMinor, currency);
+  checkoutCustomer(customer);
 }
 
 function allowedRedirect(rawUrl, origin) {
@@ -262,15 +279,7 @@ export function createSslcommerzAdapter({
     callbackBase,
   }) {
     const gateway = settings(config);
-    if (currency !== "BDT")
-      fail("PAYMENT_CURRENCY_INVALID", "This store accepts payments in BDT only.");
-    if (
-      !Number.isSafeInteger(totalMinor) ||
-      totalMinor < MIN_TOTAL_MINOR ||
-      totalMinor > MAX_TOTAL_MINOR
-    ) {
-      fail("PAYMENT_AMOUNT_INVALID", "Online payment must be between ৳10 and ৳500,000.");
-    }
+    checkoutAmount(totalMinor, currency);
     if (!METHODS.has(method)) fail("PAYMENT_METHOD_INVALID", "Choose an online payment method.");
     const id = transactionId(order);
     const callbacks = callbackUrls(callbackBase, gateway.environment);

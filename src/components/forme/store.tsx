@@ -1,5 +1,21 @@
-import { createContext, useContext, useEffect, useReducer, useState, type Dispatch, type ReactNode } from "react";
-import { initialState, parseStored, reducer, STORAGE_KEY, type Action, type StudioState } from "@/lib/forme/state";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+  type Dispatch,
+  type ReactNode,
+} from "react";
+import {
+  initialState,
+  parseStored,
+  reducer,
+  STORAGE_KEY,
+  type Action,
+  type StudioState,
+} from "@/lib/forme/state";
+import { useCommerce } from "@/lib/commerce/store";
 
 interface StudioCtx {
   state: StudioState;
@@ -10,8 +26,13 @@ interface StudioCtx {
 const Ctx = createContext<StudioCtx | null>(null);
 
 export function StudioProvider({ children }: { children: ReactNode }) {
+  const { products } = useCommerce();
   const [state, dispatch] = useReducer(reducer, undefined, initialState);
   const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    dispatch({ type: "reconcileCatalog" });
+  }, [products]);
 
   useEffect(() => {
     try {

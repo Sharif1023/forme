@@ -23,6 +23,7 @@ export function CommerceProvider({ children }: { children: ReactNode }) {
     ]);
     applyCatalogSnapshot(catalog.products);
     setSnapshot({ products: catalog.products, variants: catalog.variants, settings });
+    window.dispatchEvent(new Event("forme-catalog-refreshed"));
     setError("");
   }, []);
   useEffect(() => {

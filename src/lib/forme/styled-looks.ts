@@ -1,5 +1,5 @@
 import type { Gender } from "./bodies";
-import { defaultSize, getProduct, sizesFor, type Slot } from "./catalog";
+import { categoryToSlot, defaultSize, getProduct, sizesFor, type Slot } from "./catalog";
 import type { Outfit, Selection } from "./state";
 
 interface StyledLook {
@@ -63,8 +63,25 @@ const STYLED_LOOKS: Record<Gender, StyledLook[]> = {
 };
 
 /** Cycle through coordinated outfits while retaining each supported selected size. */
-export function nextStyledLook(gender: Gender, current: Outfit): { name: string; outfit: Outfit } {
-  const looks = STYLED_LOOKS[gender];
+export function nextStyledLook(
+  gender: Gender,
+  current: Outfit,
+): { name: string; outfit: Outfit } | null {
+  const looks = STYLED_LOOKS[gender].filter((look) =>
+    (["top", "bottom", "shoes"] as const).every((slot) => {
+      const piece = look.pieces[slot];
+      const product = getProduct(piece.productId);
+      return (
+        product &&
+        product.active !== false &&
+        product.previewSupported !== false &&
+        product.gender === gender &&
+        categoryToSlot(product.category) === slot &&
+        product.colors.some((color) => color.id === piece.colorId)
+      );
+    }),
+  );
+  if (!looks.length) return null;
   const currentIndex = looks.findIndex(
     (look) => look.pieces.top.productId === current.top.productId,
   );
@@ -72,9 +89,13 @@ export function nextStyledLook(gender: Gender, current: Outfit): { name: string;
   const select = (slot: Slot): Selection => {
     const piece = next.pieces[slot];
     const product = getProduct(piece.productId)!;
-    const size = sizesFor(product).includes(current[slot].size)
+    const sizes = sizesFor(product);
+    const preferredSize = defaultSize(product);
+    const size = sizes.includes(current[slot].size)
       ? current[slot].size
-      : defaultSize(product);
+      : sizes.includes(preferredSize)
+        ? preferredSize
+        : sizes[0]!;
     return { ...piece, size };
   };
 

@@ -37,6 +37,8 @@ export async function api<T = unknown>(path: string, init: RequestInit = {}): Pr
     data?: T;
     error?: { message?: string; code?: string; details?: unknown };
   } | null;
+  if (response.status === 401 && path.startsWith("/admin/") && !path.startsWith("/admin/auth/"))
+    window.dispatchEvent(new Event("admin-session-expired"));
   if (!response.ok)
     throw new ApiError(
       result?.error?.message ?? "The request could not be completed.",

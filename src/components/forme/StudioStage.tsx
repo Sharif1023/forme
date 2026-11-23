@@ -121,6 +121,7 @@ export function StudioStage({ focus, onFocus, onSaveLook, onReplace, onOpenOutfi
             </span>
             <HumanModel
               spec={BODIES[pinned.gender]}
+              allowGeneration={false}
               outfit={pinned.outfit}
               focus={focus}
               animate={false}

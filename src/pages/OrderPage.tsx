@@ -32,7 +32,7 @@ const statusLabel = (value: string) => value.replaceAll("_", " ");
 const methodLabel: Record<string, string> = {
   bkash: "bKash",
   nagad: "Nagad",
-  bank: "Bank / card",
+  bank: "Bank transfer",
   cod: "Cash on delivery",
 };
 
@@ -42,9 +42,18 @@ export default function OrderPage() {
   const locationAccess = location.state as { order?: StoreOrder; lookupToken?: string } | null;
   const { settings } = useCommerce();
   const [order, setOrder] = useState<StoreOrder | null>(locationAccess?.order ?? null);
-  const [access, setAccess] = useState<OrderAccess | undefined>(() =>
-    id ? accessForOrder(id) : undefined,
-  );
+  const [access, setAccess] = useState<OrderAccess | undefined>(() => {
+    const saved = id ? accessForOrder(id) : undefined;
+    if (saved) return saved;
+    return locationAccess?.order && locationAccess.lookupToken
+      ? {
+          id: locationAccess.order.id,
+          orderNumber: locationAccess.order.orderNumber,
+          phone: locationAccess.order.customer.phone,
+          lookupToken: locationAccess.lookupToken,
+        }
+      : undefined;
+  });
   const [number, setNumber] = useState("");
   const [phone, setPhone] = useState("");
   const [reference, setReference] = useState("");
@@ -255,7 +264,21 @@ export default function OrderPage() {
                     type="button"
                     className="commerce-icon"
                     aria-label="Refresh order"
-                    onClick={() => setReload((value) => value + 1)}
+                    disabled={busy}
+                    onClick={() => {
+                      if (access) {
+                        setBusy(true);
+                        void fetchOrder(access)
+                          .catch((reason: unknown) =>
+                            setError(
+                              reason instanceof Error
+                                ? reason.message
+                                : "Could not refresh the order.",
+                            ),
+                          )
+                          .finally(() => setBusy(false));
+                      } else setReload((value) => value + 1);
+                    }}
                   >
                     <RefreshCw size={16} />
                   </button>
@@ -366,9 +389,12 @@ export default function OrderPage() {
                               />
                             </label>
                             <label className="commerce-field">
-                              Sender's phone <small>optional</small>
+                              Sender's phone{" "}
+                              {order.paymentMethod === "bank" && <small>optional</small>}
                               <input
                                 type="tel"
+                                required={order.paymentMethod !== "bank"}
+                                pattern="(?:\+?880|0)1[3-9][0-9]{8}"
                                 value={senderPhone}
                                 onChange={(event) => setSenderPhone(event.target.value)}
                                 placeholder="01XXXXXXXXX"

@@ -1,16 +1,10 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - TanStack devtools (dev-only, first), tanstackStart, viteReact, tailwindcss, tsConfigPaths,
-//     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
-//     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
-// Never set ssr.external or resolve.external: the Worker has no runtime module resolution, so
-// the build fails. Never add compression (compressPublicAssets, vite-plugin-compression):
-// hosting already compresses at the edge.
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+// React SPA in development; Express serves dist and /api together in production.
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { fileURLToPath, URL } from "node:url";
+
+const apiTarget = process.env["FORME_API_PROXY_URL"] || "http://127.0.0.1:4000";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -19,7 +13,10 @@ export default defineConfig({
     host: "127.0.0.1",
     port: 5174,
     strictPort: true,
-    proxy: { "/api": { target: "http://127.0.0.1:4000", changeOrigin: true } },
+    proxy: {
+      "/api": { target: apiTarget, changeOrigin: true },
+      "/uploads": { target: apiTarget, changeOrigin: true },
+    },
   },
   build: { outDir: "dist", sourcemap: false },
 });

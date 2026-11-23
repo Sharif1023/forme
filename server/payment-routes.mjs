@@ -23,6 +23,20 @@ export const paymentLimiter = rateLimit({
     },
   },
 });
+const gatewayCallbackLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  // A provider IP sends notifications for many customers. Keep its budget
+  // separate from customer retries and large enough for aggregate traffic.
+  limit: 300,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    error: {
+      code: "TOO_MANY_ATTEMPTS",
+      message: "Too many payment notifications. Please retry shortly.",
+    },
+  },
+});
 const tokenBody = z.object({ lookupToken: z.string().min(20).max(200) });
 
 export async function submitPaymentProof(id, raw) {
@@ -59,6 +73,8 @@ export async function submitPaymentProof(id, raw) {
       if (prior.order_id === id) return;
       throw conflict("That payment reference has already been submitted for another order.");
     }
+    if (locked.payment_status === "pending_review")
+      throw conflict("A payment reference is already awaiting review for this order.");
     await query(
       "INSERT INTO payments (id,order_id,provider,method,status,amount_paise,transaction_id,reference,sender_phone) VALUES (?,?,?,?, 'pending_review',?,?,?,?)",
       [
@@ -112,6 +128,7 @@ export async function approveManualPayment(id, raw, actor) {
       {
         orderId: id,
         provider: proof.provider,
+        paymentId: proof.id,
         transactionId: reference,
         amountPaise: Number(proof.amount_paise),
         providerReference: reference,
@@ -141,6 +158,8 @@ export async function beginGatewayPayment(id, raw) {
     if (locked.status === "cancelled" || locked.reservation_status !== "reserved")
       throw conflict("The order reservation is no longer available for payment.");
     if (locked.payment_status === "paid") throw conflict("This order has already been paid.");
+    if (locked.payment_status === "pending_review")
+      throw conflict("This payment is awaiting review. Do not send another payment.");
     const prior = (
       await query(
         "SELECT * FROM payments WHERE order_id=? AND provider='sslcommerz' AND status IN ('initiating','pending') ORDER BY created_at DESC LIMIT 1 FOR UPDATE",
@@ -207,7 +226,7 @@ export function gatewayCallbackRouter() {
   const router = Router();
   router.all(
     "/:outcome",
-    paymentLimiter,
+    gatewayCallbackLimiter,
     wrap(async (req, res) => {
       const outcome = req.params.outcome;
       if (!["success", "fail", "cancel", "ipn"].includes(outcome)) throw notFound();
@@ -234,6 +253,7 @@ export function gatewayCallbackRouter() {
         result = await markOrderPaid({
           orderId: payment.order_id,
           provider: "sslcommerz",
+          paymentId: payment.id,
           transactionId: assessment.bankTransactionId || assessment.transactionId,
           amountPaise: assessment.totalMinor,
           providerReference: assessment.validationId,

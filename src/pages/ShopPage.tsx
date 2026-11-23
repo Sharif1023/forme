@@ -8,7 +8,7 @@ import { useStudio } from "@/components/forme/store";
 import { useCommerce } from "@/lib/commerce/store";
 import { money } from "@/lib/commerce/api";
 import type { CommerceProduct } from "@/lib/commerce/types";
-import { CATEGORY_LABEL, defaultSize } from "@/lib/forme/catalog";
+import { CATEGORY_LABEL, canPreviewProduct, defaultSize } from "@/lib/forme/catalog";
 
 export default function ShopPage() {
   const { products } = useCommerce();
@@ -216,6 +216,11 @@ function ShopCard({ product }: { product: CommerceProduct }) {
           {added ? "Added to your bag" : available ? "Add to bag" : "Currently unavailable"}
           <ShoppingBag size={14} />
         </button>
+        {canPreviewProduct(product) && (
+          <Link className="shop-try-on" to={`/?try=${encodeURIComponent(product.id)}&color=${encodeURIComponent(colorId)}&size=${encodeURIComponent(size)}`}>
+            Try in fitting room <ArrowUpRight size={14} />
+          </Link>
+        )}
       </div>
     </article>
   );

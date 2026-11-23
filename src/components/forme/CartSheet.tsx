@@ -8,8 +8,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { formatPrice, getColor, getProduct } from "@/lib/forme/catalog";
-import { cartCount, cartTotal, outfitTotal } from "@/lib/forme/state";
+import { getColor, getProduct } from "@/lib/forme/catalog";
+import { cartCount, type Selection } from "@/lib/forme/state";
 import { GarmentThumb } from "./GarmentThumb";
 import { useStudio } from "./store";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ export function CartSheet({
   const { state, dispatch } = useStudio();
   const { variants } = useCommerce();
   const count = cartCount(state.cart);
-  const itemPrice = (item: (typeof state.cart)[number]) =>
+  const itemPrice = (item: Selection) =>
     variants.find(
       (variant) =>
         variant.productId === item.productId &&
@@ -35,6 +35,18 @@ export function CartSheet({
     )?.pricePaise ?? (getProduct(item.productId)?.price ?? 0) * 100;
   const total = state.cart.reduce((sum, item) => sum + itemPrice(item) * item.qty, 0);
   const outfit = state.outfits[state.gender];
+  const outfitItems = [outfit.top, outfit.bottom, outfit.shoes];
+  const currentOutfitTotal = outfitItems.reduce((sum, item) => sum + itemPrice(item), 0);
+  const outfitAvailable = outfitItems.every((item) =>
+    variants.some(
+      (variant) =>
+        variant.productId === item.productId &&
+        variant.colorId === item.colorId &&
+        variant.size === item.size &&
+        variant.active !== false &&
+        variant.stock > 0,
+    ),
+  );
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -136,12 +148,13 @@ export function CartSheet({
           <Button
             variant="outline"
             className="w-full rounded-full"
+            disabled={!outfitAvailable}
             onClick={() => {
               dispatch({ type: "addOutfitToCart" });
-              toast("Full outfit added to bag", { description: formatPrice(outfitTotal(outfit)) });
+              toast("Full outfit added to bag", { description: money(currentOutfitTotal) });
             }}
           >
-            <Plus aria-hidden /> Add current outfit ({formatPrice(outfitTotal(outfit))})
+            <Plus aria-hidden /> Add current outfit ({money(currentOutfitTotal)})
           </Button>
           <div className="flex items-baseline justify-between">
             <span className="text-sm text-muted-foreground">Subtotal</span>

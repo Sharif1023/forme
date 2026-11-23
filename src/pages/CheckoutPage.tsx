@@ -21,7 +21,12 @@ import { getColor, getProduct } from "@/lib/forme/catalog";
 const METHODS: { id: PaymentMethod; label: string; note: string; mark: string }[] = [
   { id: "bkash", label: "bKash", note: "Pay with your bKash account", mark: "b" },
   { id: "nagad", label: "Nagad", note: "Pay with your Nagad account", mark: "n" },
-  { id: "bank", label: "Bank / card", note: "Bank transfer or secure online payment", mark: "▥" },
+  {
+    id: "bank",
+    label: "Bank transfer",
+    note: "Transfer directly to the store's bank account",
+    mark: "▥",
+  },
   { id: "cod", label: "Cash on delivery", note: "Pay when your order arrives", mark: "৳" },
 ];
 

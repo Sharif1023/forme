@@ -4,32 +4,42 @@ import {
   CATEGORY_LABEL,
   categoryToSlot,
   defaultSize,
-  formatPrice,
   sizesFor,
   type Product,
 } from "@/lib/forme/catalog";
 import { cn } from "@/lib/utils";
 import { GarmentThumb } from "./GarmentThumb";
 import { useStudio } from "./store";
+import { useCommerce } from "@/lib/commerce/store";
+import { money } from "@/lib/commerce/api";
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
   const { state, dispatch } = useStudio();
+  const { variants } = useCommerce();
   const slot = categoryToSlot(product.category);
   const worn = state.outfits[state.gender][slot];
   const isWorn = worn.productId === product.id;
   const colorId = isWorn ? worn.colorId : product.colors[0]!.id;
   const color = product.colors.find((c) => c.id === colorId) ?? product.colors[0]!;
+  const selectedSize = sizesFor(product).includes(worn.size) ? worn.size : defaultSize(product);
+  const variant = variants.find(
+    (item) =>
+      item.productId === product.id && item.colorId === colorId && item.size === selectedSize,
+  );
+  const available = !!variant && variant.stock > 0 && variant.active !== false;
 
   const wear = (cid?: string) =>
     dispatch({ type: "wear", productId: product.id, colorId: cid ?? colorId });
   const addToBag = () => {
-    const size = isWorn
-      ? worn.size
-      : sizesFor(product).includes(worn.size)
-        ? worn.size
-        : defaultSize(product);
-    dispatch({ type: "addToCart", selection: { productId: product.id, colorId, size } });
-    toast(`${product.name} added to bag`, { description: `${color.name} · Size ${size}` });
+    if (!available) {
+      toast.error("This colour and size are currently unavailable.");
+      return;
+    }
+    dispatch({
+      type: "addToCart",
+      selection: { productId: product.id, colorId, size: selectedSize },
+    });
+    toast(`${product.name} added to bag`, { description: `${color.name} · Size ${selectedSize}` });
   };
 
   return (
@@ -69,7 +79,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
             {product.name}
           </h3>
           <p className="mt-1 text-[12px] font-semibold tabular-nums text-foreground">
-            {formatPrice(product.price)}
+            {money(variant?.pricePaise ?? product.price * 100)}
           </p>
         </div>
       </button>
@@ -105,9 +115,10 @@ export function ProductCard({ product, compact = false }: { product: Product; co
         <button
           type="button"
           onClick={addToBag}
+          disabled={!available}
           aria-label={`Add ${product.name} to bag`}
-          title="Add to bag"
-          className="grid size-7 place-items-center rounded-full border border-border/80 bg-background text-foreground transition hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          title={available ? "Add to bag" : "Selected colour and size unavailable"}
+          className="grid size-7 place-items-center rounded-full border border-border/80 bg-background text-foreground transition hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-40"
         >
           <Plus className="size-3.5" aria-hidden />
         </button>

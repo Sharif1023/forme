@@ -1,9 +1,8 @@
-import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { Router } from "express";
 import { rateLimit } from "express-rate-limit";
 import { config } from "./config.mjs";
-import { query } from "./db/pool.mjs";
+import { query, withTransaction } from "./db/pool.mjs";
 import { audit } from "./audit.mjs";
 import { ApiError, send, wrap } from "./errors.mjs";
 import {
@@ -112,18 +111,70 @@ export function authRouter() {
       if (!admin || !valid)
         throw new ApiError(401, "INVALID_CREDENTIALS", "The email or password is incorrect.");
       const token = randomToken();
-      await query("INSERT INTO sessions (token_hash,admin_id,expires_at) VALUES (?,?,?)", [
-        hashToken(token),
-        admin.id,
-        new Date(Date.now() + cookieOptions.maxAge),
-      ]);
-      await audit({ ...admin, ip: req.ip }, "auth.login", "admin", admin.id);
+      const sessionAdmin = await withTransaction(async (connection) => {
+        // Serialize session creation with password changes and staff access
+        // changes, so an in-flight old login cannot recreate a revoked session.
+        const current = (
+          await query(
+            "SELECT * FROM admin_users WHERE id=? AND active=1 FOR UPDATE",
+            [admin.id],
+            connection,
+          )
+        )[0];
+        if (!current || current.password_hash !== admin.password_hash)
+          throw new ApiError(401, "INVALID_CREDENTIALS", "The email or password is incorrect.");
+        await query(
+          "INSERT INTO sessions (token_hash,admin_id,expires_at) VALUES (?,?,?)",
+          [hashToken(token), current.id, new Date(Date.now() + cookieOptions.maxAge)],
+          connection,
+        );
+        await audit({ ...current, ip: req.ip }, "auth.login", "admin", current.id, {}, connection);
+        return current;
+      });
       res.cookie(config.cookieName, token, cookieOptions);
-      send(res, { admin: publicAdmin(admin), csrfToken: csrfForSession(token) });
+      send(res, { admin: publicAdmin(sessionAdmin), csrfToken: csrfForSession(token) });
     }),
   );
   router.get("/me", requireAdmin, (req, res) =>
     send(res, { admin: publicAdmin(req.admin), csrfToken: csrfForSession(req.sessionToken) }),
+  );
+  router.post(
+    "/change-password",
+    requireOrigin,
+    requireAdmin,
+    requireCsrf,
+    loginLimiter,
+    wrap(async (req, res) => {
+      const { currentPassword, newPassword } = z
+        .object({
+          currentPassword: z.string().min(1).max(200),
+          newPassword: z.string().min(12).max(200),
+        })
+        .strict()
+        .parse(req.body);
+      await withTransaction(async (connection) => {
+        const admin = (
+          await query(
+            "SELECT * FROM admin_users WHERE id=? AND active=1 FOR UPDATE",
+            [req.admin.id],
+            connection,
+          )
+        )[0];
+        if (!admin || !(await verifyPassword(currentPassword, admin.password_hash)))
+          throw new ApiError(401, "INVALID_CREDENTIALS", "Your current password is incorrect.");
+        if (currentPassword === newPassword)
+          throw new ApiError(400, "VALIDATION_ERROR", "Choose a different new password.");
+        await query(
+          "UPDATE admin_users SET password_hash=? WHERE id=?",
+          [await hashPassword(newPassword), admin.id],
+          connection,
+        );
+        await query("DELETE FROM sessions WHERE admin_id=?", [admin.id], connection);
+        await audit(req.admin, "auth.password_changed", "admin", admin.id, {}, connection);
+      });
+      res.clearCookie(config.cookieName, { ...cookieOptions, maxAge: undefined });
+      send(res, { changed: true });
+    }),
   );
   router.post(
     "/logout",

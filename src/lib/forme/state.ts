@@ -1,5 +1,5 @@
 import type { Gender } from "./bodies";
-import { categoryToSlot, defaultSize, getProduct, sizesFor, type Slot } from "./catalog";
+import { PRODUCTS, canPreviewProduct, categoryToSlot, defaultSize, getProduct, sizesFor, type Slot } from "./catalog";
 
 export interface Selection {
   productId: string;
@@ -44,15 +44,68 @@ export const DEFAULT_OUTFITS: Record<Gender, Outfit> = {
   },
 };
 
+const SLOTS: Slot[] = ["top", "bottom", "shoes"];
+
+/** Repair a current selection after catalog edits, using only prepared, active garments. */
+export function reconcileOutfit(outfit: Outfit, gender: Gender): Outfit {
+  let next = outfit;
+  for (const slot of SLOTS) {
+    const current = outfit[slot];
+    if (
+      validSelection(current, gender) &&
+      categoryToSlot(getProduct(current.productId)!.category) === slot
+    )
+      continue;
+    const eligible = (id: string) => {
+      const product = getProduct(id);
+      return product &&
+        product.gender === gender &&
+        canPreviewProduct(product) &&
+        categoryToSlot(product.category) === slot &&
+        product.colors.length > 0 &&
+        sizesFor(product).length > 0
+        ? product
+        : undefined;
+    };
+    const product =
+      eligible(current.productId) ??
+      eligible(DEFAULT_OUTFITS[gender][slot].productId) ??
+      PRODUCTS.find((candidate) => eligible(candidate.id));
+    // Keep the user's selection metadata when a whole slot has no prepared options.
+    // The model then shows an unavailable state instead of substituting another image.
+    if (!product) continue;
+    const sizes = sizesFor(product);
+    const preferredSize = defaultSize(product);
+    const selection: Selection = {
+      productId: product.id,
+      colorId: product.colors.some((color) => color.id === current.colorId)
+        ? current.colorId
+        : product.colors[0]!.id,
+      size: sizes.includes(current.size)
+        ? current.size
+        : sizes.includes(preferredSize)
+          ? preferredSize
+          : sizes[0]!,
+    };
+    if (next === outfit) next = { ...outfit };
+    next[slot] = selection;
+  }
+  return next;
+}
+
+const startingOutfit = (gender: Gender) =>
+  reconcileOutfit(structuredClone(DEFAULT_OUTFITS[gender]), gender);
+
 export const initialState = (): StudioState => ({
   gender: "men",
-  outfits: structuredClone(DEFAULT_OUTFITS),
+  outfits: { men: startingOutfit("men"), women: startingOutfit("women") },
   cart: [],
   looks: [],
 });
 
 export type Action =
   | { type: "hydrate"; state: StudioState }
+  | { type: "reconcileCatalog" }
   | { type: "setGender"; gender: Gender }
   | { type: "wear"; productId: string; colorId?: string }
   | { type: "applyOutfit"; outfit: Outfit }
@@ -80,6 +133,13 @@ export function reducer(state: StudioState, action: Action): StudioState {
   switch (action.type) {
     case "hydrate":
       return action.state;
+    case "reconcileCatalog": {
+      const men = reconcileOutfit(state.outfits.men, "men");
+      const women = reconcileOutfit(state.outfits.women, "women");
+      return men === state.outfits.men && women === state.outfits.women
+        ? state
+        : { ...state, outfits: { men, women } };
+    }
     case "setGender":
       return { ...state, gender: action.gender };
     case "applyOutfit": {
@@ -91,13 +151,24 @@ export function reducer(state: StudioState, action: Action): StudioState {
     }
     case "wear": {
       const product = getProduct(action.productId);
-      if (!product || product.gender !== state.gender) return state;
+      if (
+        !product ||
+        product.gender !== state.gender ||
+        !canPreviewProduct(product)
+      )
+        return state;
       const slot = categoryToSlot(product.category);
       const current = state.outfits[state.gender][slot];
       const colorId = product.colors.some((c) => c.id === action.colorId)
         ? action.colorId!
         : product.colors[0]!.id;
-      const size = sizesFor(product).includes(current.size) ? current.size : defaultSize(product);
+      const sizes = sizesFor(product);
+      const preferredSize = defaultSize(product);
+      const size = sizes.includes(current.size)
+        ? current.size
+        : sizes.includes(preferredSize)
+          ? preferredSize
+          : sizes[0]!;
       return {
         ...state,
         outfits: {
@@ -129,7 +200,7 @@ export function reducer(state: StudioState, action: Action): StudioState {
         ...state,
         outfits: {
           ...state.outfits,
-          [state.gender]: structuredClone(DEFAULT_OUTFITS[state.gender]),
+          [state.gender]: startingOutfit(state.gender),
         },
       };
     case "addToCart":
@@ -200,10 +271,26 @@ function validSelection(s: unknown, gender: Gender): s is Selection {
   const p = typeof sel.productId === "string" ? getProduct(sel.productId) : undefined;
   return (
     !!p &&
+    canPreviewProduct(p) &&
     p.gender === gender &&
     p.colors.some((color) => color.id === sel.colorId) &&
     sizesFor(p).includes(sel.size)
   );
+}
+
+/** Saved looks retain their original selections even if products later leave the catalog. */
+function storedOutfitShape(o: unknown): o is Outfit {
+  if (!o || typeof o !== "object") return false;
+  const outfit = o as Outfit;
+  return SLOTS.every((slot) => {
+    const selection = outfit[slot];
+    return (
+      selection &&
+      typeof selection.productId === "string" &&
+      typeof selection.colorId === "string" &&
+      typeof selection.size === "string"
+    );
+  });
 }
 function validOutfit(o: unknown, gender: Gender): o is Outfit {
   if (!o || typeof o !== "object") return false;
@@ -226,8 +313,12 @@ export function parseStored(raw: string | null): StudioState {
     const data = JSON.parse(raw) as Partial<StudioState>;
     const gender: Gender = data.gender === "women" ? "women" : "men";
     const outfits = {
-      men: validOutfit(data.outfits?.men, "men") ? data.outfits!.men : base.outfits.men,
-      women: validOutfit(data.outfits?.women, "women") ? data.outfits!.women : base.outfits.women,
+      men: storedOutfitShape(data.outfits?.men)
+        ? reconcileOutfit(data.outfits.men, "men")
+        : base.outfits.men,
+      women: storedOutfitShape(data.outfits?.women)
+        ? reconcileOutfit(data.outfits.women, "women")
+        : base.outfits.women,
     };
     const cart = Array.isArray(data.cart)
       ? data.cart.filter((i) => i && typeof i.qty === "number" && getProduct(i.productId))
@@ -238,7 +329,7 @@ export function parseStored(raw: string | null): StudioState {
             l &&
             typeof l.id === "string" &&
             (l.gender === "men" || l.gender === "women") &&
-            validOutfit(l.outfit, l.gender),
+            storedOutfitShape(l.outfit),
         )
       : [];
     return { gender, outfits, cart, looks };

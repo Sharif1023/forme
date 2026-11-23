@@ -35,6 +35,12 @@ export interface Product {
   style: GarmentStyle;
   active?: boolean;
   previewSupported?: boolean;
+  tryOn?: {
+    enabled: boolean;
+    ready: boolean;
+    colorImages?: Record<string, string>;
+    revision?: string;
+  };
   imageUrl?: string | null;
   pricePaise?: number;
   sizes?: string[];
@@ -62,7 +68,13 @@ export function sizesFor(product: Product): string[] {
   return product.category === "shoes" ? SHOE_SIZES[product.gender] : [...APPAREL_SIZES];
 }
 export function defaultSize(product: Product): string {
-  return product.category === "shoes" ? (product.gender === "men" ? "9" : "7") : "M";
+  const preferred = product.category === "shoes" ? (product.gender === "men" ? "9" : "7") : "M";
+  const sizes = sizesFor(product);
+  return sizes.includes(preferred) ? preferred : sizes[0]!;
+}
+
+export function canPreviewProduct(product: Product): boolean {
+  return product.active !== false && (product.tryOn?.enabled ? product.tryOn.ready : product.previewSupported !== false);
 }
 
 const c = (id: string, name: string, hex: string): ColorOption => ({ id, name, hex });
@@ -465,7 +477,7 @@ export type CategoryFilter = "all" | Category;
 export function filterProducts(gender: Gender, category: CategoryFilter, query: string): Product[] {
   const q = query.trim().toLowerCase();
   return PRODUCTS.filter((p) => {
-    if (p.active === false || p.previewSupported === false) return false;
+    if (!canPreviewProduct(p)) return false;
     if (p.gender !== gender) return false;
     if (category !== "all" && p.category !== category) return false;
     if (!q) return true;

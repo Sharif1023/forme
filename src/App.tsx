@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { FittingStudio } from "@/components/forme/FittingStudio";
 import { StudioProvider } from "@/components/forme/store";
@@ -7,7 +7,7 @@ import { CommerceProvider } from "@/lib/commerce/store";
 import ShopPage from "@/pages/ShopPage";
 import CheckoutPage from "@/pages/CheckoutPage";
 import OrderPage from "@/pages/OrderPage";
-import AdminPage from "@/pages/AdminPage";
+const AdminPage = lazy(() => import("@/pages/AdminPage"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,10 +47,18 @@ export function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes>
-        <Route path="/admin/*" element={<AdminPage />} />
-        <Route path="*" element={<Storefront />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <div className="commerce-loading" role="status">
+            Opening your workspace…
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/admin/*" element={<AdminPage />} />
+          <Route path="*" element={<Storefront />} />
+        </Routes>
+      </Suspense>
       <Toaster position="bottom-center" />
     </BrowserRouter>
   );

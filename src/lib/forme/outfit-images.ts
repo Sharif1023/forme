@@ -10,6 +10,9 @@ export function getOutfitImage(gender: Gender, outfit: Outfit): { key: string; s
     const product = getProduct(selection.productId);
     if (
       !product ||
+      product.tryOn?.enabled ||
+      product.active === false ||
+      product.previewSupported === false ||
       product.gender !== gender ||
       categoryToSlot(product.category) !== slot ||
       !product.colors.some((color) => color.id === selection.colorId)

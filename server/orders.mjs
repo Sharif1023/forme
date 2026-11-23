@@ -6,6 +6,7 @@ import { config } from "./config.mjs";
 import { ApiError, conflict, invalid, notFound } from "./errors.mjs";
 import { hashToken, equalSecret } from "./security.mjs";
 import { getSettings, publicSettings } from "./settings.mjs";
+import { validateCheckoutEligibility } from "./payments/sslcommerz.mjs";
 
 const phoneSchema = z
   .string()
@@ -334,6 +335,18 @@ export async function createOrder(raw) {
       )
         throw invalid("That receiving account has not been configured yet.");
       const quote = await quoteCart(data, { connection, lock: true });
+      if (data.paymentMethod !== "cod" && quote.totalPaise === 0)
+        throw new ApiError(
+          400,
+          "PAYMENT_NOT_REQUIRED",
+          "No payment is due. Choose cash on delivery to place this order without a charge.",
+        );
+      if (["bkash", "nagad"].includes(data.paymentMethod) && method.mode === "gateway")
+        validateCheckoutEligibility({
+          totalMinor: quote.totalPaise,
+          currency: quote.currency,
+          customer: { ...data.customer, ...data.shipping },
+        });
       const id = randomUUID(),
         token = lookupTokenFor(id, data.idempotencyKey),
         customerId = randomUUID();
@@ -526,6 +539,7 @@ export async function markOrderPaid(
     amountPaise,
     providerReference,
     verifiedPayload,
+    paymentId,
     review = false,
     actor,
   },
@@ -554,13 +568,31 @@ export async function markOrderPaid(
     const requiresReview =
       review || order.status === "cancelled" || order.reservation_status === "released";
     const status = requiresReview ? "pending_review" : "paid";
-    const payment = (
-      await query(
-        "SELECT * FROM payments WHERE order_id=? AND provider=? ORDER BY created_at DESC LIMIT 1 FOR UPDATE",
-        [orderId, provider],
-        conn,
-      )
-    )[0];
+    // Settle the independently verified attempt. A later attempt or another
+    // submitted reference must retain its own ledger entry.
+    const payment = paymentId
+      ? (
+          await query(
+            "SELECT * FROM payments WHERE id=? AND order_id=? AND provider=? FOR UPDATE",
+            [paymentId, orderId, provider],
+            conn,
+          )
+        )[0]
+      : recorded ||
+        (provider === "sslcommerz" && verifiedPayload?.transactionId
+          ? (
+              await query(
+                "SELECT * FROM payments WHERE order_id=? AND provider=? AND gateway_transaction_id=? FOR UPDATE",
+                [orderId, provider, verifiedPayload.transactionId],
+                conn,
+              )
+            )[0]
+          : null);
+    if (paymentId && !payment) throw conflict("That payment attempt does not match the order.");
+    if (recorded && payment && recorded.id !== payment.id)
+      throw conflict("That payment reference is already assigned to another attempt.");
+    if (recorded?.status === "pending_review" && requiresReview && !actor)
+      return { alreadyPaid: false, review: true };
     if (payment)
       await query(
         "UPDATE payments SET status=?,amount_paise=?,transaction_id=?,reference=?,verified_payload=?,paid_at=? WHERE id=?",

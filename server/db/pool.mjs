@@ -29,6 +29,14 @@ export function getPool() {
             bigNumberStrings: false,
           },
     );
+    // DATETIME defaults and interval comparisons must use the same UTC clock as
+    // serialized JavaScript dates. The mysql2 timezone option only converts
+    // values on the client; it does not set the server session timezone.
+    pool.on("connection", (connection) => {
+      connection.query("SET SESSION time_zone='+00:00'", (error) => {
+        if (error) connection.destroy();
+      });
+    });
   }
   return pool;
 }

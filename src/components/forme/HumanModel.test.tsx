@@ -6,10 +6,10 @@ import { DEFAULT_OUTFITS, type Outfit } from "@/lib/forme/state";
 import { HumanModel } from "./HumanModel";
 
 vi.mock("@/lib/forme/outfit-images", () => ({
-  getOutfitImage: (_gender: string, outfit: Outfit) => ({
-    key: outfit.top.productId,
-    src: `/test-outfits/${outfit.top.productId}.webp`,
-  }),
+  getOutfitImage: (_gender: string, outfit: Outfit) => {
+    if (outfit.top.productId.startsWith("unsupported-")) throw new Error("Preview unavailable");
+    return { key: outfit.top.productId, src: `/test-outfits/${outfit.top.productId}.webp` };
+  },
 }));
 
 interface DeferredImage {
@@ -65,6 +65,22 @@ afterEach(() => {
 });
 
 describe("Whole-outfit previews", () => {
+  it("clears stale photographs and cancels pending loads when a catalog edit removes support", async () => {
+    renderFrame("catalog-a");
+    await resolveImage("catalog-a");
+    renderFrame("catalog-pending");
+    expect(() => renderFrame("unsupported-catalog")).not.toThrow();
+    expect(container.querySelectorAll("svg image")).toHaveLength(0);
+    expect(currentImage()).not.toHaveAttribute("data-outfit-key");
+    expect(currentImage()).toHaveAttribute("aria-busy", "false");
+    expect(status()).toHaveTextContent("no longer available");
+    await resolveImage("catalog-pending");
+    expect(container.querySelectorAll("svg image")).toHaveLength(0);
+    renderFrame("catalog-restored");
+    await resolveImage("catalog-restored");
+    expect(currentImage()).toHaveAttribute("data-outfit-key", "catalog-restored");
+  });
+
   it("keeps the decoded look visible and ignores an obsolete load finishing last", async () => {
     renderFrame("race-a");
     expect(container.querySelectorAll("svg image")).toHaveLength(0);

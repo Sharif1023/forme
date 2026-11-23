@@ -84,10 +84,11 @@ function ensureEnvironment(settings) {
     APP_URL: "http://127.0.0.1:5174",
     API_BASE_URL: "http://127.0.0.1:4000",
     PUBLIC_BASE_URL: "http://127.0.0.1:4000",
-    ALLOWED_ORIGINS: "http://127.0.0.1:5174,http://127.0.0.1:4000",
+    ALLOWED_ORIGINS: "http://127.0.0.1:5174,http://localhost:5174,http://127.0.0.1:4000",
     MYSQL_HOST: HOST,
     MYSQL_PORT: String(PORT),
     MYSQL_DATABASE: "forme",
+    MYSQL_DATABASE_TEST: "forme_test",
     MYSQL_USER: "forme_app",
     MYSQL_PASSWORD: settings.appPassword,
     ENCRYPTION_KEY: settings.encryptionKey,
@@ -250,8 +251,10 @@ function initializeData(settings) {
   const sql = [
     `ALTER USER 'root'@'localhost' IDENTIFIED BY ${sqlLiteral(settings.rootPassword)};`,
     "CREATE DATABASE IF NOT EXISTS forme CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;",
+    "CREATE DATABASE IF NOT EXISTS forme_test CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;",
     `CREATE USER IF NOT EXISTS 'forme_app'@'127.0.0.1' IDENTIFIED BY ${sqlLiteral(settings.appPassword)};`,
     "GRANT ALL PRIVILEGES ON forme.* TO 'forme_app'@'127.0.0.1';",
+    "GRANT ALL PRIVILEGES ON forme_test.* TO 'forme_app'@'127.0.0.1';",
     "",
   ].join("\n");
   writePrivate(INIT_FILE, sql, "wx");

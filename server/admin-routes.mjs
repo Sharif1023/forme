@@ -121,6 +121,19 @@ export function adminRouter() {
       )[0];
       const customers = (await query("SELECT COUNT(*) AS customers FROM customers"))[0];
       const recent = await query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 8");
+      const revenueRows = await query(
+        "SELECT DATE_FORMAT(created_at,'%Y-%m-%d') AS day,COUNT(*) AS orders,COALESCE(SUM(CASE WHEN payment_status='paid' AND status<>'cancelled' THEN total_paise ELSE 0 END),0) AS revenue FROM orders WHERE created_at>=DATE_SUB(UTC_DATE(),INTERVAL 29 DAY) GROUP BY day ORDER BY day",
+      );
+      const revenueByDay = Array.from({ length: 30 }, (_, index) => {
+        const day = new Date(Date.now() - (29 - index) * 86400000).toISOString().slice(0, 10);
+        const row = revenueRows.find((item) => item.day === day);
+        return {
+          date: day,
+          orders: Number(row?.orders || 0),
+          revenuePaise: Number(row?.revenue || 0),
+        };
+      });
+      const statuses = await query("SELECT status,COUNT(*) AS count FROM orders GROUP BY status");
       send(res, {
         orders: Number(summary.orders),
         totalRevenuePaise: Number(summary.total_revenue),
@@ -128,6 +141,10 @@ export function adminRouter() {
         lowStockCount: Number(inventory.low_stock),
         customers: Number(customers.customers),
         recentOrders: recent.map(orderDto),
+        revenueByDay,
+        orderStatusCounts: Object.fromEntries(
+          statuses.map((row) => [row.status, Number(row.count)]),
+        ),
       });
     }),
   );
@@ -244,6 +261,7 @@ export function adminRouter() {
             {
               orderId: order.id,
               provider: payment.provider,
+              paymentId: payment.id,
               transactionId,
               amountPaise: Number(payment.amount_paise),
               providerReference: payment.reference,

@@ -1,0 +1,54 @@
+services:
+  database:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-forme}
+      MYSQL_USER: ${MYSQL_USER:-forme_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set a private MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set a separate private MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--host=127.0.0.1", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      API_HOST: 0.0.0.0
+      API_PORT: 4000
+      APP_URL: ${APP_URL:?Set the public HTTPS storefront origin}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:?Set the public HTTPS API origin}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:?Set the public storefront origin}
+      TRUST_PROXY: ${TRUST_PROXY:-1}
+      MYSQL_HOST: database
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-forme}
+      MYSQL_USER: ${MYSQL_USER:-forme_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set a private MYSQL_PASSWORD}
+      SESSION_SECRET: ${SESSION_SECRET:?Set a stable random SESSION_SECRET}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:?Set a stable 32-byte ENCRYPTION_KEY}
+      SESSION_HOURS: ${SESSION_HOURS:-12}
+      RESERVATION_MINUTES: ${RESERVATION_MINUTES:-60}
+      UPLOAD_DIR: /app/uploads
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      ADMIN_NAME: ${ADMIN_NAME:-Store owner}
+    command: ["sh", "-c", "node server/db/bootstrap.mjs && exec node server/index.mjs"]
+    ports:
+      - "127.0.0.1:4000:4000"
+    volumes:
+      - product-uploads:/app/uploads
+
+volumes:
+  mysql-data:
+  product-uploads:

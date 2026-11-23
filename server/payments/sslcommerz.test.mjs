@@ -6,6 +6,7 @@ import {
   decimalToMinor,
   minorToDecimal,
   PaymentError,
+  validateCheckoutEligibility,
 } from "./sslcommerz.mjs";
 
 const config = {
@@ -52,6 +53,24 @@ const expected = {
 const jsonResponse = (data, ok = true) => ({ ok, text: async () => JSON.stringify(data) });
 const code = (expectedCode) => (error) =>
   error instanceof PaymentError && error.code === expectedCode;
+
+test("checkout eligibility applies gateway email and amount limits without contacting a provider", () => {
+  for (const totalMinor of [1000, 50_000_000])
+    assert.doesNotThrow(() => validateCheckoutEligibility({ ...sessionInput, totalMinor }));
+  for (const totalMinor of [0, 999, 50_000_001])
+    assert.throws(
+      () => validateCheckoutEligibility({ ...sessionInput, totalMinor }),
+      code("PAYMENT_AMOUNT_INVALID"),
+    );
+  assert.throws(
+    () =>
+      validateCheckoutEligibility({
+        ...sessionInput,
+        customer: { ...sessionInput.customer, email: `${"x".repeat(45)}@example.com` },
+      }),
+    code("PAYMENT_CUSTOMER_EMAIL_REQUIRED"),
+  );
+});
 
 test("money conversion uses integer paisa without floating point rounding", () => {
   assert.equal(minorToDecimal(12_345), "123.45");

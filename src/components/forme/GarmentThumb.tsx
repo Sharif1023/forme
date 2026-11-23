@@ -12,10 +12,11 @@ export function GarmentThumb({
   hex: string;
   className?: string;
 }) {
+  const color = product.colors.find((option) => option.hex.toLowerCase() === hex.toLowerCase());
   return (
     <span aria-hidden="true" className={cn("relative block overflow-hidden", className)}>
       <img
-        src={product.imageUrl || getProductImage(product, hex)}
+        src={(color && product.tryOn?.colorImages?.[color.id]) || product.imageUrl || getProductImage(product, hex)}
         alt=""
         loading="lazy"
         decoding="async"

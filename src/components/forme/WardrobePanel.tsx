@@ -42,6 +42,12 @@ export const WardrobePanel = forwardRef<HTMLInputElement, Props>(function Wardro
       type="button"
       onClick={() => {
         const look = nextStyledLook(state.gender, state.outfits[state.gender]);
+        if (!look) {
+          toast("Coordinated looks are currently unavailable", {
+            description: "Choose your pieces from the wardrobe.",
+          });
+          return;
+        }
         dispatch({ type: "applyOutfit", outfit: look.outfit });
         toast(look.name, { description: "Three pieces, thoughtfully paired." });
       }}
