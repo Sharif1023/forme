@@ -11,6 +11,10 @@
 - [x] Verify checkout, payments, inventory and admin behavior against an isolated real MySQL database.
 - [x] Document local setup, production deployment and optional Docker configuration.
 - [x] Complete desktop/mobile browser QA of checkout, tracking and admin flows.
+- [x] Add admin-configurable AI fitting for new products with colour-specific source photographs.
+- [x] Add persistent whole-outfit generation, source-aware caching, daily attempt limits and safe retry.
+- [x] Verify AI provider contracts and real MySQL queue/image processing with simulated generation.
+- [ ] Connect actual Lovable AI project credentials and credits, then review live clothing and footwear preview fidelity.
 - [ ] Replace starter prices, stock, delivery fees and contact details with live store values.
 - [ ] Configure actual receiving accounts and merchant credentials; verify sandbox callbacks and payment reconciliation.
 - [ ] Deploy with HTTPS, persistent storage and tested database/upload/key backups.

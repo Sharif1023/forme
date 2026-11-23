@@ -63,6 +63,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
           <GarmentThumb
             product={product}
             hex={color.hex}
+            colorId={colorId}
             className="h-full w-full transition-transform duration-700 group-hover:scale-[1.045]"
           />
           {isWorn && (

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { query, withTransaction } from "./db/pool.mjs";
 import { audit, jsonValue } from "./audit.mjs";
 import { conflict, invalid, notFound } from "./errors.mjs";
+import { tryOnProductDto } from "./tryon.mjs";
 
 const identifier = z
   .string()
@@ -68,7 +69,12 @@ export const productDto = (row) => ({
   sizes: jsonValue(row.sizes_json, []),
   style: jsonValue(row.style_json, {}),
   studioSupported: !!row.studio_supported,
-  previewSupported: !!row.studio_supported,
+  previewSupported: !!row.studio_supported && !row.tryon_enabled,
+  tryOn: tryOnProductDto(row, {
+    enabled: row.tryon_enabled,
+    color_images_json: row.tryon_color_images,
+    updated_at: row.tryon_updated_at,
+  }),
   createdAt: row.created_at,
   updatedAt: row.updated_at,
 });
@@ -90,7 +96,7 @@ export const variantDto = (row) => ({
 
 export async function getCatalog({ admin = false, connection } = {}) {
   const products = await query(
-    `SELECT * FROM products ${admin ? "" : "WHERE active=1"} ORDER BY created_at,id`,
+    `SELECT p.*,t.enabled AS tryon_enabled,t.color_images_json AS tryon_color_images,t.updated_at AS tryon_updated_at FROM products p LEFT JOIN product_tryon t ON t.product_id=p.id ${admin ? "" : "WHERE p.active=1"} ORDER BY p.created_at,p.id`,
     [],
     connection,
   );

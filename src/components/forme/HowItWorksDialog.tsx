@@ -16,7 +16,7 @@ const STEPS = [
   {
     n: "02",
     title: "Build your outfit",
-    text: "Choose your pieces and colours to see the matching complete outfit photograph. Every combination is prepared ahead of time for an instant preview.",
+    text: "Choose your pieces and colours. Prepared looks appear instantly; new photo-based looks are generated the first time and saved for your next visit.",
   },
   {
     n: "03",
@@ -59,10 +59,10 @@ export function HowItWorksDialog({
           ))}
         </ol>
         <p className="rounded-2xl bg-secondary/70 p-4 text-xs leading-relaxed text-muted-foreground">
-          Models and garments are AI-generated. Each preview is a complete outfit photograph with
-          colours prepared in advance. Details and colours are approximate; saved sizes do not
-          change the model or predict fit. Add favourites to your bag and continue to checkout for
-          current prices, delivery and available payment methods.
+          Models and outfit previews are AI-generated from prepared looks or product photographs.
+          Details and colours can vary; saved sizes do not change the model or predict fit. Add
+          favourites to your bag and continue to checkout for current prices, delivery and available
+          payment methods.
         </p>
         <Button
           variant="default"

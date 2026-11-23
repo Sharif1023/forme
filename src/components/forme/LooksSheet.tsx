@@ -1,14 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import { Bookmark, RotateCcw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { BODIES } from "@/lib/forme/bodies";
 import { getProduct } from "@/lib/forme/catalog";
 import { HumanModel } from "./HumanModel";
 import { useStudio } from "./store";
 
-export function LooksSheet({ open, onOpenChange, focusInput }: { open: boolean; onOpenChange: (o: boolean) => void; focusInput: boolean }) {
+export function LooksSheet({
+  open,
+  onOpenChange,
+  focusInput,
+}: {
+  open: boolean;
+  onOpenChange: (o: boolean) => void;
+  focusInput: boolean;
+}) {
   const { state, dispatch } = useStudio();
   const [name, setName] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -65,23 +79,43 @@ export function LooksSheet({ open, onOpenChange, focusInput }: { open: boolean; 
           {state.looks.length === 0 ? (
             <div className="py-12 text-center">
               <p className="font-serif text-2xl">No saved looks yet</p>
-              <p className="mx-auto mt-1 max-w-[260px] text-sm text-muted-foreground">Name the outfit you're wearing and save it to come back to it later.</p>
+              <p className="mx-auto mt-1 max-w-[260px] text-sm text-muted-foreground">
+                Name the outfit you're wearing and save it to come back to it later.
+              </p>
             </div>
           ) : (
             <ul className="space-y-3">
               {state.looks.map((look) => {
-                const names = (["top", "bottom", "shoes"] as const).map((s) => getProduct(look.outfit[s].productId)?.name).filter(Boolean);
+                const names = (["top", "bottom", "shoes"] as const)
+                  .map((s) => getProduct(look.outfit[s].productId)?.name)
+                  .filter(Boolean);
                 return (
-                  <li key={look.id} className="flex gap-3 rounded-2xl border border-border bg-card p-2.5">
+                  <li
+                    key={look.id}
+                    className="flex gap-3 rounded-2xl border border-border bg-card p-2.5"
+                  >
                     <div className="h-32 w-20 shrink-0 overflow-hidden rounded-xl bg-studio-gradient">
-                      <HumanModel spec={BODIES[look.gender]} outfit={look.outfit} animate={false} allowGeneration={false} className="h-full w-full" label={`Preview of ${look.name}`} />
+                      <HumanModel
+                        spec={BODIES[look.gender]}
+                        outfit={look.outfit}
+                        animate={false}
+                        allowGeneration={false}
+                        className="h-full w-full"
+                        label={`Preview of ${look.name}`}
+                      />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col">
                       <p className="truncate font-serif text-xl leading-tight">{look.name}</p>
                       <p className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-                        {look.gender === "men" ? "Men" : "Women"} · {new Date(look.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                        {look.gender === "men" ? "Men" : "Women"} ·{" "}
+                        {new Date(look.createdAt).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                        })}
                       </p>
-                      <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{names.join(" · ")}</p>
+                      <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                        {names.join(" · ")}
+                      </p>
                       <div className="mt-auto flex gap-1.5 pt-2">
                         <Button
                           size="sm"
@@ -94,7 +128,13 @@ export function LooksSheet({ open, onOpenChange, focusInput }: { open: boolean; 
                         >
                           <RotateCcw aria-hidden /> Restore
                         </Button>
-                        <Button size="sm" variant="ghost" className="rounded-full" onClick={() => dispatch({ type: "deleteLook", id: look.id })} aria-label={`Delete ${look.name}`}>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="rounded-full"
+                          onClick={() => dispatch({ type: "deleteLook", id: look.id })}
+                          aria-label={`Delete ${look.name}`}
+                        >
                           <Trash2 aria-hidden /> Delete
                         </Button>
                       </div>

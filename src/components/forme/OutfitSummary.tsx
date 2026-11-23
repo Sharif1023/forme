@@ -74,7 +74,12 @@ export function OutfitSummary({
                   list ? "size-16" : "hidden size-12 xl:block",
                 )}
               >
-                <GarmentThumb product={product} hex={color.hex} className="h-full w-full p-1" />
+                <GarmentThumb
+                  product={product}
+                  hex={color.hex}
+                  colorId={sel.colorId}
+                  className="h-full w-full p-1"
+                />
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">

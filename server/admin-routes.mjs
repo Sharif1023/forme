@@ -19,6 +19,13 @@ import { approveManualPayment } from "./payment-routes.mjs";
 import { maskedSettings, updateSettings } from "./settings.mjs";
 import { hashPassword } from "./security.mjs";
 import { config } from "./config.mjs";
+import {
+  getTryOnSettings,
+  updateTryOnSettings,
+  getProductTryOn,
+  updateProductTryOn,
+  listTryOnJobs,
+} from "./tryon.mjs";
 
 const manage = requireRoles("owner", "admin", "manager"),
   finance = requireRoles("owner", "admin"),
@@ -74,6 +81,32 @@ const couponSchema = z
 export function adminRouter() {
   const router = Router();
   router.use(requireOrigin, requireAdmin, requireCsrf);
+  router.get(
+    "/try-on/settings",
+    finance,
+    wrap(async (_req, res) => send(res, await getTryOnSettings())),
+  );
+  router.patch(
+    "/try-on/settings",
+    finance,
+    wrap(async (req, res) => send(res, await updateTryOnSettings(req.body, req.admin))),
+  );
+  router.get(
+    "/try-on/jobs",
+    finance,
+    wrap(async (_req, res) => send(res, await listTryOnJobs())),
+  );
+  router.get(
+    "/products/:id/try-on",
+    wrap(async (req, res) => send(res, await getProductTryOn(req.params.id))),
+  );
+  router.patch(
+    "/products/:id/try-on",
+    manage,
+    wrap(async (req, res) =>
+      send(res, await updateProductTryOn(req.params.id, req.body, req.admin)),
+    ),
+  );
   router.post(
     "/uploads",
     manage,

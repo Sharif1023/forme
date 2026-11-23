@@ -345,7 +345,12 @@ export default function CheckoutPage() {
                   return (
                     <li key={item.key}>
                       <div className="checkout-thumb">
-                        <GarmentThumb product={product} hex={color.hex} className="h-full w-full" />
+                        <GarmentThumb
+                          product={product}
+                          hex={color.hex}
+                          colorId={item.colorId}
+                          className="h-full w-full"
+                        />
                       </div>
                       <div>
                         <strong>{product.name}</strong>

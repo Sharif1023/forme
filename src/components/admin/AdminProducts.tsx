@@ -248,14 +248,29 @@ export function AdminProducts({ admin }: { admin: AdminUser }) {
                         <td>
                           <Status value={product.active ? "active" : "inactive"} />
                         </td>
-                        <td><span className={`admin-pill${product.studioSupported || product.tryOn?.ready ? " admin-pill-good" : ""}`}>{product.studioSupported ? "Prepared" : product.tryOn?.ready ? "AI ready" : product.tryOn?.enabled ? "Photos needed" : "Not set up"}</span></td>
+                        <td>
+                          <span
+                            className={`admin-pill${(product.tryOn?.enabled ? product.tryOn.ready : product.studioSupported) ? " admin-pill-good" : ""}`}
+                          >
+                            {product.tryOn?.enabled
+                              ? product.tryOn.ready
+                                ? "AI ready"
+                                : "Photos needed"
+                              : product.studioSupported
+                                ? "Prepared"
+                                : "Not set up"}
+                          </span>
+                        </td>
                         {editable && (
                           <td>
                             <div className="admin-row-actions">
                               <button className="admin-small-button" onClick={() => open(product)}>
                                 Edit
                               </button>
-                              <button className="admin-small-button" onClick={() => setPreviewProduct(product)}>
+                              <button
+                                className="admin-small-button"
+                                onClick={() => setPreviewProduct(product)}
+                              >
                                 Fitting preview
                               </button>
                               {product.active && (
@@ -398,6 +413,10 @@ export function AdminProducts({ admin }: { admin: AdminUser }) {
                   maxLength={1024}
                   onChange={(e) => setDraft({ ...draft, imageUrl: e.target.value })}
                 />
+                <small>
+                  For model previews, save the product and open Fitting preview to add its photo for
+                  every colour.
+                </small>
                 {draft.imageUrl && (
                   <button
                     type="button"
@@ -522,7 +541,13 @@ export function AdminProducts({ admin }: { admin: AdminUser }) {
           </form>
         </Modal>
       )}
-      {previewProduct && <ProductTryOnModal product={previewProduct} onClose={() => setPreviewProduct(null)} onSaved={reload} />}
+      {previewProduct && (
+        <ProductTryOnModal
+          product={previewProduct}
+          onClose={() => setPreviewProduct(null)}
+          onSaved={reload}
+        />
+      )}
       {archiving && (
         <Modal
           title="Archive this product?"

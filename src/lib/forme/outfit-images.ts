@@ -25,7 +25,12 @@ export function getOutfitImage(gender: Gender, outfit: Outfit): { key: string; s
 }
 
 /** Each product has its own photographed cut, model and pre-rendered colour. */
-export function getProductImage(product: Product, hex: string): string {
+export function getProductImage(product: Product, hex: string, colorId?: string): string {
+  if (colorId !== undefined) {
+    return product.colors.some((color) => color.id === colorId)
+      ? `/images/products/${product.id}--${colorId}.webp`
+      : "/images/product-placeholder.svg";
+  }
   const color =
     product.colors.find((candidate) => candidate.hex.toLowerCase() === hex.toLowerCase()) ??
     getColor(product, "");

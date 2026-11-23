@@ -1,7 +1,15 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Bookmark, Info, LayoutGrid, ShoppingBag, Sparkles } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { type CategoryFilter, type Slot } from "@/lib/forme/catalog";
+import {
+  canPreviewProduct,
+  categoryToSlot,
+  getProduct,
+  sizesFor,
+  type CategoryFilter,
+  type Slot,
+} from "@/lib/forme/catalog";
+import { toast } from "sonner";
 import { cartCount } from "@/lib/forme/state";
 import { CartSheet } from "./CartSheet";
 import { HowItWorksDialog } from "./HowItWorksDialog";
@@ -9,7 +17,7 @@ import type { Focus } from "./HumanModel";
 import { LooksSheet } from "./LooksSheet";
 import { OutfitSummary } from "./OutfitSummary";
 import { useStudio } from "./store";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { StudioStage } from "./StudioStage";
 import { WardrobePanel } from "./WardrobePanel";
 
@@ -18,7 +26,35 @@ const iconBtn =
   "relative grid size-10 place-items-center rounded-full text-foreground transition hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 function Studio() {
-  const { state } = useStudio();
+  const { state, dispatch, hydrated } = useStudio();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedProduct = searchParams.get("try");
+  const requestedColor = searchParams.get("color");
+  const requestedSize = searchParams.get("size");
+  useEffect(() => {
+    if (!hydrated || !requestedProduct) return;
+    const product = getProduct(requestedProduct);
+    if (product && canPreviewProduct(product)) {
+      dispatch({ type: "setGender", gender: product.gender });
+      dispatch({
+        type: "wear",
+        productId: product.id,
+        ...(requestedColor ? { colorId: requestedColor } : {}),
+      });
+      if (requestedSize && sizesFor(product).includes(requestedSize))
+        dispatch({ type: "setSize", slot: categoryToSlot(product.category), size: requestedSize });
+    } else {
+      toast("This product's fitting preview is not ready yet.");
+    }
+    setSearchParams(
+      (params) => {
+        const next = new URLSearchParams(params);
+        for (const key of ["try", "color", "size"]) next.delete(key);
+        return next;
+      },
+      { replace: true },
+    );
+  }, [hydrated, requestedProduct, requestedColor, requestedSize, dispatch, setSearchParams]);
   const [focus, setFocus] = useState<Focus>("full");
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [query, setQuery] = useState("");

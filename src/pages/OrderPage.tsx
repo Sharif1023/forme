@@ -447,6 +447,7 @@ export default function OrderPage() {
                           <GarmentThumb
                             product={product}
                             hex={getColor(product, item.colorId).hex}
+                            colorId={item.colorId}
                             className="h-full w-full"
                           />
                         ) : (

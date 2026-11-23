@@ -2,8 +2,10 @@ import { config, validateRuntimeConfig } from "./config.mjs";
 import { createApp } from "./app.mjs";
 import { closePool } from "./db/pool.mjs";
 import { releaseExpiredReservations } from "./orders.mjs";
+import { startTryOnWorker, stopTryOnWorker } from "./tryon.mjs";
 
 validateRuntimeConfig();
+startTryOnWorker();
 const app = createApp();
 const server = app.listen(
   config.port,
@@ -25,6 +27,7 @@ const shutdown = () => {
   if (stopping) return;
   stopping = true;
   clearInterval(cleanup);
+  stopTryOnWorker();
   server.close(() => closePool().finally(() => process.exit(0)));
   setTimeout(() => process.exit(1), 10000).unref();
 };

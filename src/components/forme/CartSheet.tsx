@@ -84,6 +84,7 @@ export function CartSheet({
                       <GarmentThumb
                         product={product}
                         hex={color.hex}
+                        colorId={item.colorId}
                         className="h-full w-full p-1.5"
                       />
                     </div>

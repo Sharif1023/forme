@@ -74,7 +74,10 @@ export function defaultSize(product: Product): string {
 }
 
 export function canPreviewProduct(product: Product): boolean {
-  return product.active !== false && (product.tryOn?.enabled ? product.tryOn.ready : product.previewSupported !== false);
+  return (
+    product.active !== false &&
+    (product.tryOn?.enabled ? product.tryOn.ready : product.previewSupported !== false)
+  );
 }
 
 const c = (id: string, name: string, hex: string): ColorOption => ({ id, name, hex });

@@ -161,7 +161,12 @@ function ShopCard({ product }: { product: CommerceProduct }) {
   return (
     <article className="shop-product">
       <div className="shop-product-image">
-        <GarmentThumb product={product} hex={color.hex} className="h-full w-full" />
+        <GarmentThumb
+          product={product}
+          hex={color.hex}
+          colorId={colorId}
+          className="h-full w-full"
+        />
         <span className="shop-product-label">
           {product.gender === "men" ? "Menswear" : "Womenswear"}
         </span>
@@ -217,7 +222,10 @@ function ShopCard({ product }: { product: CommerceProduct }) {
           <ShoppingBag size={14} />
         </button>
         {canPreviewProduct(product) && (
-          <Link className="shop-try-on" to={`/?try=${encodeURIComponent(product.id)}&color=${encodeURIComponent(colorId)}&size=${encodeURIComponent(size)}`}>
+          <Link
+            className="shop-try-on"
+            to={`/?try=${encodeURIComponent(product.id)}&color=${encodeURIComponent(colorId)}&size=${encodeURIComponent(size)}`}
+          >
             Try in fitting room <ArrowUpRight size={14} />
           </Link>
         )}

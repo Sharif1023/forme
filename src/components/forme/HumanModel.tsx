@@ -73,7 +73,10 @@ export function HumanModel({
 }: HumanModelProps) {
   const uid = `outfit-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const preview = useOutfitPreview(spec.gender, outfit, allowGeneration);
-  const requested = preview.status === "ready" && preview.imageUrl ? { key: preview.key, src: preview.imageUrl } : null;
+  const requested =
+    preview.status === "ready" && preview.imageUrl
+      ? { key: preview.key, src: preview.imageUrl }
+      : null;
   const generating = preview.status === "pending" || preview.status === "processing";
   const unavailable = preview.status === "unavailable";
   const previewFailed = preview.status === "failed";
@@ -218,7 +221,7 @@ export function HumanModel({
               <span>{previewFailed ? preview.message : "Look unavailable"}</span>
               <button
                 type="button"
-                onClick={() => previewFailed ? preview.retry() : setAttempt((value) => value + 1)}
+                onClick={() => (previewFailed ? preview.retry() : setAttempt((value) => value + 1))}
                 aria-label="Retry loading outfit preview"
               >
                 Retry
@@ -227,7 +230,13 @@ export function HumanModel({
           ) : (
             <>
               <span className="outfit-model-spinner" aria-hidden />
-              <span>{generating ? preview.message || "Creating your photo preview…" : display.current ? "Updating look" : "Loading look"}</span>
+              <span>
+                {generating
+                  ? preview.message || "Creating your photo preview…"
+                  : display.current
+                    ? "Updating look"
+                    : "Loading look"}
+              </span>
             </>
           )}
         </div>

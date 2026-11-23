@@ -1,5 +1,13 @@
 import type { Gender } from "./bodies";
-import { PRODUCTS, canPreviewProduct, categoryToSlot, defaultSize, getProduct, sizesFor, type Slot } from "./catalog";
+import {
+  PRODUCTS,
+  canPreviewProduct,
+  categoryToSlot,
+  defaultSize,
+  getProduct,
+  sizesFor,
+  type Slot,
+} from "./catalog";
 
 export interface Selection {
   productId: string;
@@ -151,12 +159,7 @@ export function reducer(state: StudioState, action: Action): StudioState {
     }
     case "wear": {
       const product = getProduct(action.productId);
-      if (
-        !product ||
-        product.gender !== state.gender ||
-        !canPreviewProduct(product)
-      )
-        return state;
+      if (!product || product.gender !== state.gender || !canPreviewProduct(product)) return state;
       const slot = categoryToSlot(product.category);
       const current = state.outfits[state.gender][slot];
       const colorId = product.colors.some((c) => c.id === action.colorId)

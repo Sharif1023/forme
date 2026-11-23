@@ -14,6 +14,7 @@ import { authRouter, requireOrigin } from "./auth.mjs";
 import { adminRouter } from "./admin-routes.mjs";
 import { getCatalog } from "./catalog.mjs";
 import { publicSettings } from "./settings.mjs";
+import { requestTryOnPreview, getTryOnJob } from "./tryon.mjs";
 import { createOrder, getOrder, authoriseOrder, lookupOrder, quoteCart } from "./orders.mjs";
 import {
   beginGatewayPayment,
@@ -88,6 +89,38 @@ export function createApp() {
   // browser Origin/CSRF checks. No callback body can mark an order paid itself.
   app.use("/api/payments/sslcommerz", gatewayCallbackRouter());
   app.use("/api", requireOrigin);
+  app.post(
+    "/api/try-on/preview",
+    rateLimit({
+      windowMs: 60_000,
+      limit: 60,
+      standardHeaders: "draft-8",
+      legacyHeaders: false,
+      message: {
+        error: {
+          code: "PREVIEW_RATE_LIMIT",
+          message: "Please wait a moment before requesting another preview.",
+        },
+      },
+    }),
+    wrap(async (req, res) => send(res, await requestTryOnPreview(req.body))),
+  );
+  app.get(
+    "/api/try-on/jobs/:id",
+    rateLimit({
+      windowMs: 60_000,
+      limit: 240,
+      standardHeaders: "draft-8",
+      legacyHeaders: false,
+      message: {
+        error: {
+          code: "PREVIEW_RATE_LIMIT",
+          message: "Please wait a moment before checking this preview again.",
+        },
+      },
+    }),
+    wrap(async (req, res) => send(res, await getTryOnJob(req.params.id))),
+  );
   app.get(
     "/api/catalog",
     wrap(async (_req, res) => send(res, await getCatalog())),
