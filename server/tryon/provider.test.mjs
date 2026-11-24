@@ -24,18 +24,18 @@ const response = (value, init = {}) =>
 const imageResponse = () => response({ data: [{ b64_json: png.toString("base64") }] });
 const hasCode = (code) => (error) => error instanceof ApiError && error.code === code;
 
-test("try-on sends4 ordered local image files to the fixed Lovable edit endpoint", async () => {
+test("try-on sends4 ordered local image files directly to the OpenAI edit endpoint", async () => {
   let calls = 0;
   const input = request();
   input.referenceImages.reverse();
   const result = await generateTryOnImage(input, {
     fetchImpl: async (url, options) => {
       calls++;
-      assert.equal(url, "https://ai.gateway.lovable.dev/v1/images/edits");
+      assert.equal(url, "https://api.openai.com/v1/images/edits");
       assert.equal(options.method, "POST");
       assert.equal(options.redirect, "error");
       assert.equal(options.headers.Authorization, "Bearer private-project-key");
-      assert.equal(options.headers["Lovable-API-Key"], "private-project-key");
+      assert.deepEqual(Object.keys(options.headers).sort(), ["Accept", "Authorization"]);
       assert.equal(options.headers["Content-Type"], undefined);
       assert(options.signal instanceof AbortSignal);
       assert(options.body instanceof FormData);
@@ -69,7 +69,7 @@ test("try-on sends4 ordered local image files to the fixed Lovable edit endpoint
   });
   assert.equal(calls, 1);
   assert.deepEqual(result, { buffer: png, mimeType: "image/png" });
-  assert.deepEqual(SUPPORTED_TRYON_MODELS, ["openai/gpt-image-2"]);
+  assert.deepEqual(SUPPORTED_TRYON_MODELS, ["gpt-image-2"]);
 });
 
 test("invalid credentials, unsupported models and invalid reference roles never contact a provider", async () => {

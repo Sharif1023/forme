@@ -1,8 +1,8 @@
 node_modules
 dist
-.output
-.vinxi
-pnpm-lock.yaml
+.local
+.qa
+.npm-cache
+uploads
 package-lock.json
 bun.lock
-routeTree.gen.ts

@@ -129,7 +129,7 @@ export function AdminTryOn() {
       return;
     }
     if (form.enabled && (removeKey || !(key.trim() || form.configured))) {
-      setError("Add a valid Lovable AI project key before enabling new image generation.");
+      setError("Add an OpenAI API key before enabling new image generation.");
       return;
     }
     setBusy(true);
@@ -192,14 +192,13 @@ export function AdminTryOn() {
                 <Status value={form.enabled && form.configured ? "active" : "inactive"} />
               </div>
               <p className="admin-section-note">
-                The server uses Lovable AI to create a complete outfit from the selected product
-                photos. Use the AI key for this Lovable project, not an OpenAI key or a Lovable
-                workspace-management key. Configure it here or through your hosting environment.
-                Keys stay on the server and are encrypted when saved here.
+                Create complete outfit previews from your product photos through the OpenAI API.
+                Save your API key here or set OPENAI_API_KEY on the server. Saved keys are
+                encrypted.
               </p>
               <div className="admin-form-grid">
                 <label className="admin-field">
-                  Lovable AI project key
+                  OpenAI API key
                   <input
                     type="password"
                     autoComplete="new-password"
@@ -209,14 +208,14 @@ export function AdminTryOn() {
                     placeholder={
                       form.configured
                         ? "Saved securely — leave blank to keep"
-                        : "Enter your project key"
+                        : "Enter your API key"
                     }
                     disabled={busy || removeKey}
                   />
                   <small>
                     {form.configured
                       ? "A saved key is configured. Its value is never shown."
-                      : "A project key is needed before new previews can be generated."}
+                      : "An API key and API billing are needed for new previews."}
                   </small>
                 </label>
                 <label className="admin-field">
@@ -228,7 +227,7 @@ export function AdminTryOn() {
                   >
                     {(settings.data?.supportedModels?.length
                       ? settings.data.supportedModels
-                      : ["openai/gpt-image-2"]
+                      : ["gpt-image-2"]
                     ).map((model) => (
                       <option value={model} key={model}>
                         {model}

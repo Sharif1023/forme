@@ -24,7 +24,7 @@ test(
       { query, closePool },
       { config },
       { saveProduct },
-      { hashPassword },
+      { hashPassword, encryptSecret },
       { createApp },
       tryon,
     ] = await Promise.all([
@@ -131,6 +131,39 @@ test(
       };
       const owner = await login(`${suffix}-tryon-owner@example.test`),
         manager = await login(`${suffix}-tryon-manager@example.test`);
+      await t.test(
+        "credentials from a previous provider are not forwarded to the direct image service",
+        async () => {
+          const defaults = await tryon.getTryOnSettings();
+          const sourcePhotos = { ...defaults.modelImages };
+          await query(
+            "INSERT INTO settings(setting_key,value_json) VALUES ('try-on',?) ON DUPLICATE KEY UPDATE value_json=VALUES(value_json)",
+            [
+              JSON.stringify({
+                ...defaults,
+                provider: "previous-service",
+                enabled: true,
+                apiKey: encryptSecret("legacy-service-secret"),
+                model: "previous/model",
+                modelImages: sourcePhotos,
+              }),
+            ],
+          );
+          const read = await tryon.getTryOnSettings({ includeSecret: true });
+          assert.equal(read.provider, "openai");
+          assert.equal(read.enabled, false);
+          assert.notEqual(read.apiKey, "legacy-service-secret");
+          assert.equal(read.model, "gpt-image-2");
+          assert.deepEqual(read.modelImages, sourcePhotos);
+          // A masked save cannot retain a credential belonging to the previous service.
+          const { configured, supportedModels, provider, ...draft } = read;
+          await tryon.updateTryOnSettings({ ...draft, enabled: false, apiKey: "********" }, actor);
+          const stored = (
+            await query("SELECT value_json FROM settings WHERE setting_key='try-on'")
+          )[0].value_json;
+          assert.equal((typeof stored === "string" ? JSON.parse(stored) : stored).apiKey, "");
+        },
+      );
       const settingsDraft = {
         ...(await tryon.getTryOnSettings()),
         enabled: false,
@@ -139,6 +172,7 @@ test(
       };
       delete settingsDraft.configured;
       delete settingsDraft.supportedModels;
+      delete settingsDraft.provider;
       await t.test(
         "AI settings enforce roles, CSRF, encryption and masked-key preservation",
         async () => {

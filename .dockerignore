@@ -9,12 +9,7 @@
 !.env.example
 node_modules
 dist
-.output
-.vinxi
-.tanstack
-.nitro
 uploads
 coverage
 *.log
 README.md
-roadmap.md
