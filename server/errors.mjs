@@ -18,14 +18,12 @@ export const send = (res, data, status = 200) => res.status(status).json({ data 
 
 export function errorHandler(error, req, res, _next) {
   if (error?.type === "entity.too.large")
-    return res
-      .status(413)
-      .json({
-        error: {
-          code: "UPLOAD_TOO_LARGE",
-          message: "The uploaded file is too large. Choose an image under5MB.",
-        },
-      });
+    return res.status(413).json({
+      error: {
+        code: "UPLOAD_TOO_LARGE",
+        message: "The uploaded file is too large. Choose an image under5MB.",
+      },
+    });
   if (error?.name === "ZodError") {
     return res.status(400).json({
       error: {

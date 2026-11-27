@@ -20,6 +20,7 @@ const SLOTS = ["top", "bottom", "shoes"];
 const MAX_SOURCE_BYTES = 5 * 1024 * 1024;
 const MAX_OUTPUT_BYTES = 20 * 1024 * 1024;
 const DEFAULTS = {
+  provider: "openai",
   enabled: false,
   apiKey: "",
   model: DEFAULT_TRYON_MODEL,
@@ -91,15 +92,21 @@ async function rawSettings(connection) {
     connection,
   );
   const saved = jsonValue(rows[0]?.value_json, {});
+  const currentProvider = saved.provider === DEFAULTS.provider;
   return {
     ...structuredClone(DEFAULTS),
     ...saved,
+    provider: DEFAULTS.provider,
+    enabled: currentProvider && !!saved.enabled,
+    // A credential saved for another service must never be sent to this provider.
+    apiKey: currentProvider ? saved.apiKey || "" : "",
+    model: SUPPORTED_TRYON_MODELS.includes(saved.model) ? saved.model : DEFAULT_TRYON_MODEL,
     modelImages: { ...DEFAULTS.modelImages, ...saved.modelImages },
   };
 }
 export async function getTryOnSettings({ includeSecret = false, connection } = {}) {
   const settings = await rawSettings(connection);
-  const environmentKey = process.env.LOVABLE_API_KEY || "";
+  const environmentKey = process.env.OPENAI_API_KEY || "";
   const configured = !!settings.apiKey || !!environmentKey;
   return {
     ...settings,
@@ -142,11 +149,11 @@ export async function updateTryOnSettings(raw, actor) {
     const enteredKey = data.apiKey.trim();
     const apiKey =
       enteredKey === "********" ? prior.apiKey : enteredKey ? encryptSecret(enteredKey) : "";
-    if (data.enabled && !apiKey && !process.env.LOVABLE_API_KEY)
-      throw invalid("Add the AI gateway key before enabling image generation.");
+    if (data.enabled && !apiKey && !process.env.OPENAI_API_KEY)
+      throw invalid("Add an OpenAI API key before enabling image generation.");
     await query(
       "UPDATE settings SET value_json=? WHERE setting_key='try-on'",
-      [JSON.stringify({ ...data, apiKey })],
+      [JSON.stringify({ ...data, apiKey, provider: DEFAULTS.provider })],
       connection,
     );
     await audit(
@@ -317,6 +324,7 @@ async function describeOutfit(input) {
   const key = hash(
     JSON.stringify({
       version: 1,
+      provider: settings.provider,
       gender: data.gender,
       products,
       selections: SLOTS.map((slot) => ({

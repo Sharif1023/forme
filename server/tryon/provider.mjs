@@ -1,11 +1,9 @@
 import { ApiError } from "../errors.mjs";
 
-// Verified against the Lovable image adapter and gateway documentation:
-// https://tanstack.com/ai/latest/docs/adapters/lovable
-// https://github.com/TanStack/ai/blob/main/packages/ai-lovable/src/adapters/image.ts
-// The gateway edits uploaded multipart files; it is not the chat completion API.
-const EDIT_ENDPOINT = "https://ai.gateway.lovable.dev/v1/images/edits";
-export const DEFAULT_TRYON_MODEL = "openai/gpt-image-2";
+// https://developers.openai.com/api/reference/resources/images/methods/edit
+// Native multipart uploads keep all image inputs and credentials server-side.
+const EDIT_ENDPOINT = "https://api.openai.com/v1/images/edits";
+export const DEFAULT_TRYON_MODEL = "gpt-image-2";
 export const SUPPORTED_TRYON_MODELS = Object.freeze([DEFAULT_TRYON_MODEL]);
 const ROLES = ["model", "top", "bottom", "shoes"];
 const INPUT_IMAGE_LIMIT = 5 * 1024 * 1024;
@@ -220,7 +218,6 @@ export async function generateTryOnImage(
         signal: controller.signal,
         headers: {
           Authorization: `Bearer ${apiKey}`,
-          "Lovable-API-Key": apiKey,
           Accept: "application/json",
         },
         body,

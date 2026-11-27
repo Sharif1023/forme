@@ -1,17 +1,41 @@
-import { QueryClient } from "@tanstack/react-query";
-import { createRouter, rootRouteId } from "@tanstack/react-router";
-import { describe, expect, it } from "vitest";
+import type { ReactNode } from "react";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { App } from "@/App";
 
-import { routeTree } from "@/routeTree.gen";
+vi.mock("@/lib/commerce/store", () => ({
+  CommerceProvider: ({ children }: { children: ReactNode }) => children,
+}));
+vi.mock("@/components/forme/store", () => ({
+  StudioProvider: ({ children }: { children: ReactNode }) => children,
+}));
+vi.mock("@/components/forme/FittingStudio", () => ({
+  FittingStudio: () => <h1>Fitting studio</h1>,
+}));
+vi.mock("@/pages/ShopPage", () => ({ default: () => <h1>Collection</h1> }));
+vi.mock("@/pages/CheckoutPage", () => ({ default: () => <h1>Checkout</h1> }));
+vi.mock("@/pages/OrderPage", () => ({ default: () => <h1>Order tracking</h1> }));
+vi.mock("@/pages/AdminPage", () => ({ default: () => <h1>Admin workspace</h1> }));
+vi.mock("@/components/ui/sonner", () => ({ Toaster: () => null }));
 
-// Match routes without running loaders or rendering: loaders may need a server or
-// network the test run lacks, and jsdom never loads the stylesheets React waits on.
-describe("App routing", () => {
-  it("matches a page for / instead of falling back to not found", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+afterEach(() => {
+  cleanup();
+  window.history.replaceState(null, "", "/");
+});
 
-    const matches = router.matchRoutes("/");
-
-    expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
+describe("Local application routing", () => {
+  it.each([
+    ["/", "Fitting studio"],
+    ["/shop", "Collection"],
+    ["/checkout", "Checkout"],
+    ["/track", "Order tracking"],
+    ["/orders/00000000-0000-4000-8000-000000000000", "Order tracking"],
+    ["/admin", "Admin workspace"],
+    ["/admin/settings", "Admin workspace"],
+    ["/missing-page", "A wrong turn."],
+  ])("opens %s through the React application", async (path, heading) => {
+    window.history.replaceState(null, "", path);
+    render(<App />);
+    expect(await screen.findByRole("heading", { name: heading })).toBeVisible();
   });
 });
