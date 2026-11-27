@@ -43,7 +43,21 @@ function makePaint(hex: string, uid: string): Paint {
   };
 }
 
-function Fabric({ d, p, sw = 1.1, cyl = true, drop = false, fill }: { d: string; p: Paint; sw?: number; cyl?: boolean; drop?: boolean; fill?: string }) {
+function Fabric({
+  d,
+  p,
+  sw = 1.1,
+  cyl = true,
+  drop = false,
+  fill,
+}: {
+  d: string;
+  p: Paint;
+  sw?: number;
+  cyl?: boolean;
+  drop?: boolean;
+  fill?: string;
+}) {
   return (
     <g>
       <path d={d} fill={fill ?? p.base} />
@@ -56,13 +70,39 @@ function Fabric({ d, p, sw = 1.1, cyl = true, drop = false, fill }: { d: string;
 }
 
 const Fold = ({ d, p, w = 1, o = 0.75 }: { d: string; p: Paint; w?: number; o?: number }) => (
-  <path d={d} fill="none" stroke={p.fold} strokeWidth={w} strokeOpacity={o} strokeLinecap="round" strokeLinejoin="round" />
+  <path
+    d={d}
+    fill="none"
+    stroke={p.fold}
+    strokeWidth={w}
+    strokeOpacity={o}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
 );
 const Hi = ({ d, p, w = 1.1, o = 0.45 }: { d: string; p: Paint; w?: number; o?: number }) => (
   <path d={d} fill="none" stroke={p.hi} strokeWidth={w} strokeOpacity={o} strokeLinecap="round" />
 );
-const Stitch = ({ d, color, w = 0.7, o = 0.8 }: { d: string; color: string; w?: number; o?: number }) => (
-  <path d={d} fill="none" stroke={color} strokeWidth={w} strokeOpacity={o} strokeDasharray="2.2 1.8" strokeLinecap="round" />
+const Stitch = ({
+  d,
+  color,
+  w = 0.7,
+  o = 0.8,
+}: {
+  d: string;
+  color: string;
+  w?: number;
+  o?: number;
+}) => (
+  <path
+    d={d}
+    fill="none"
+    stroke={color}
+    strokeWidth={w}
+    strokeOpacity={o}
+    strokeDasharray="2.2 1.8"
+    strokeLinecap="round"
+  />
 );
 
 /** Draw an open left-side stroke and its mirror. */
@@ -95,11 +135,20 @@ function sleeveGeometry(spec: BodySpec, o: SleeveOpts) {
   const outer = sample(y0, o.endY, n, (y, t) => xAt(spec.armOuter, y) - o.easeAt(y, t));
   const innerEndY = o.short ? Math.max(py + 18, o.endY - 8) : o.endY - 1;
   const n2 = Math.max(2, Math.round((innerEndY - py) / 40));
-  const inner = sample(innerEndY, py + 4, n2, (y, t) => xAt(spec.armInner, y) + o.easeAt(y, 1 - t) * 0.72);
+  const inner = sample(
+    innerEndY,
+    py + 4,
+    n2,
+    (y, t) => xAt(spec.armInner, y) + o.easeAt(y, 1 - t) * 0.72,
+  );
   const oEnd = outer[outer.length - 1]!;
   const iStart = inner[0]!;
   const iEnd = inner[inner.length - 1]!;
-  const hem: P[] = [oEnd, [lerp(oEnd[0], iStart[0], 0.5), lerp(oEnd[1], iStart[1], 0.5) + 2.5], iStart];
+  const hem: P[] = [
+    oEnd,
+    [lerp(oEnd[0], iStart[0], 0.5), lerp(oEnd[1], iStart[1], 0.5) + 2.5],
+    iStart,
+  ];
   const scye: P[] = [iEnd, [ax + 22, ay + 42], [ax + 7 - o.drop * 0.3, ay + 12], top];
   return { d: path([[top, ...outer], hem, inner, scye]), outer, inner, hem, top };
 }
@@ -116,18 +165,34 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
   const ease = isTee ? { fitted: 2.5, regular: 6, boxy: 12 }[fit] : W ? 4.5 : 6;
   const drape = isTee ? { fitted: 0.2, regular: 0.6, boxy: 1 }[fit] : W ? 0.45 : 0.7;
   const drop = fit === "boxy" ? 10 : 0;
-  const hemY = isTee ? (W ? (fit === "boxy" ? 494 : 540) : fit === "boxy" ? 546 : 552) : W ? 548 : 566;
+  const hemY = isTee
+    ? W
+      ? fit === "boxy"
+        ? 494
+        : 540
+      : fit === "boxy"
+        ? 546
+        : 552
+    : W
+      ? 548
+      : 566;
 
   // ---- neckline ----
   const sideNeck: P = isTee ? [200 - nh - 5, nb - 7] : [200 - nh - 3, nb - 12];
   let neck: P[];
-  if (isTee && style.neckline === "crew") neck = [[200, nb + (W ? 14 : 11)], [200 - nh * 0.75, nb + 6], sideNeck];
+  if (isTee && style.neckline === "crew")
+    neck = [[200, nb + (W ? 14 : 11)], [200 - nh * 0.75, nb + 6], sideNeck];
   else if (isTee) neck = [[200, nb + (W ? 52 : 46)], [200 - nh * 0.55, nb + 18], sideNeck];
-  else if (style.kind === "shirt" && style.collar === "camp") neck = [[200, nb + 60], [200 - nh * 0.75, nb + 20], sideNeck];
+  else if (style.kind === "shirt" && style.collar === "camp")
+    neck = [[200, nb + 60], [200 - nh * 0.75, nb + 20], sideNeck];
   else neck = [[200, nb + 8], [200 - nh * 0.7, nb + 1], sideNeck];
 
   const shoulderPt: P = [ax - 3 - drop, ay - 2 + drop * 0.5];
-  const shoulder: P[] = [sideNeck, ...spec.trapezius.slice(1, -1).map(([x, y]) => [x, y - 3] as P), shoulderPt];
+  const shoulder: P[] = [
+    sideNeck,
+    ...spec.trapezius.slice(1, -1).map(([x, y]) => [x, y - 3] as P),
+    shoulderPt,
+  ];
   const chest = Math.min(...spec.torsoSide.filter((q) => q[1] < spec.waistY).map((q) => q[0]));
   const sideX = (y: number) => {
     const b = bodyOuterX(spec, y);
@@ -138,8 +203,17 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
   const side = sample(py + 8, hemY, 8, sideX);
   const hx = sideX(hemY);
   const hem: P[] = isTee
-    ? [[hx, hemY], [(hx + 200) / 2, hemY + 3], [200, hemY + 4]]
-    : [[hx, hemY], [hx + 11, hemY + 8], [(hx + 200) / 2 + 6, hemY + 14], [200, hemY + 15]];
+    ? [
+        [hx, hemY],
+        [(hx + 200) / 2, hemY + 3],
+        [200, hemY + 4],
+      ]
+    : [
+        [hx, hemY],
+        [hx + 11, hemY + 8],
+        [(hx + 200) / 2 + 6, hemY + 14],
+        [200, hemY + 15],
+      ];
   const bodyD = symPath([neck, shoulder, armhole, side, hem]);
   const centerHemY = isTee ? hemY + 4 : hemY + 15;
 
@@ -152,7 +226,8 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
       endY: wy - 8,
       drop: 0,
       short: false,
-      easeAt: (y) => 4.5 + 3.5 * Math.exp(-(((y - (wy - 50)) / 24) ** 2)) - 1.2 * clamp01((y - (wy - 30)) / 20),
+      easeAt: (y) =>
+        4.5 + 3.5 * Math.exp(-(((y - (wy - 50)) / 24) ** 2)) - 1.2 * clamp01((y - (wy - 30)) / 20),
     };
   } else {
     const endY = ay + (isTee ? (W ? (fit === "fitted" ? 66 : 74) : 90) : W ? 74 : 88) + drop * 2;
@@ -161,7 +236,12 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
     sleeveOpts = { endY, drop, short: true, easeAt: (_y, t) => base + flare * t };
   }
   const sl = sleeveGeometry(spec, sleeveOpts);
-  const sleeveRuns = mirrorRuns([[sl.top, ...sl.outer], sl.hem, sl.inner, [sl.inner[sl.inner.length - 1]!, [ax + 22, ay + 42], [ax + 7 - drop * 0.3, ay + 12], sl.top]]);
+  const sleeveRuns = mirrorRuns([
+    [sl.top, ...sl.outer],
+    sl.hem,
+    sl.inner,
+    [sl.inner[sl.inner.length - 1]!, [ax + 22, ay + 42], [ax + 7 - drop * 0.3, ay + 12], sl.top],
+  ]);
   const sleeveRightD = path(sleeveRuns);
 
   // folds
@@ -217,7 +297,12 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
     const ci = sample(c1, c0, 2, (y) => xAt(spec.armInner, y) + 3);
     const coE = co[co.length - 1]!;
     const ciE = ci[ci.length - 1]!;
-    cuffD = path([co, [coE, [lerp(coE[0], ci[0]![0], 0.5), c1 + 2], ci[0]!], ci, [ciE, [lerp(ciE[0], co[0]![0], 0.5), c0 + 1.5], co[0]!]]);
+    cuffD = path([
+      co,
+      [coE, [lerp(coE[0], ci[0]![0], 0.5), c1 + 2], ci[0]!],
+      ci,
+      [ciE, [lerp(ciE[0], co[0]![0], 0.5), c0 + 1.5], co[0]!],
+    ]);
   }
   const elbow = spec.elbowY;
   const eo = xAt(spec.armOuter, elbow);
@@ -236,7 +321,10 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
         ],
         [
           [xAt(spec.armOuter, spec.wristY - 44) - 3, spec.wristY - 46],
-          [lerp(xAt(spec.armOuter, spec.wristY - 40), xAt(spec.armInner, spec.wristY - 40), 0.5), spec.wristY - 38],
+          [
+            lerp(xAt(spec.armOuter, spec.wristY - 40), xAt(spec.armInner, spec.wristY - 40), 0.5),
+            spec.wristY - 38,
+          ],
           [xAt(spec.armInner, spec.wristY - 46) + 2, spec.wristY - 48],
         ],
       ]
@@ -260,8 +348,22 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
           <g transform={MIRROR}>
             <Fabric d={cuffD} p={p} />
           </g>
-          <circle cx={xAt(spec.armInner, spec.wristY - 12) - 2} cy={spec.wristY - 12} r={1.8} fill={p.hi} stroke={p.line} strokeWidth={0.6} />
-          <circle cx={400 - xAt(spec.armInner, spec.wristY - 12) + 2} cy={spec.wristY - 12} r={1.8} fill={p.hi} stroke={p.line} strokeWidth={0.6} />
+          <circle
+            cx={xAt(spec.armInner, spec.wristY - 12) - 2}
+            cy={spec.wristY - 12}
+            r={1.8}
+            fill={p.hi}
+            stroke={p.line}
+            strokeWidth={0.6}
+          />
+          <circle
+            cx={400 - xAt(spec.armInner, spec.wristY - 12) + 2}
+            cy={spec.wristY - 12}
+            r={1.8}
+            fill={p.hi}
+            stroke={p.line}
+            strokeWidth={0.6}
+          />
         </>
       )}
     </g>
@@ -320,18 +422,50 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
         <g>
           <Fabric d={bodyD} p={p} drop />
           <path d={rib} fill="none" stroke={p.line} strokeWidth={1} strokeOpacity={0.8} />
-          <Stitch d={symStroke([[hx + 1, hemY - 6], [(hx + 200) / 2, hemY - 3], [200, hemY - 2]])} color={p.line} />
+          <Stitch
+            d={symStroke([
+              [hx + 1, hemY - 6],
+              [(hx + 200) / 2, hemY - 3],
+              [200, hemY - 2],
+            ])}
+            color={p.line}
+          />
           <Both runs={armpitDrag}>{(d) => <Fold d={d} p={p} />}</Both>
           <Both runs={waistFold}>{(d) => <Fold d={d} p={p} o={0.55} />}</Both>
           <Both runs={hemFold}>{(d) => <Fold d={d} p={p} o={0.4} />}</Both>
           <Both runs={bustFold}>{(d) => <Fold d={d} p={p} o={0.45} />}</Both>
           {fit === "boxy" && (
-            <Hi d={path([[[200 - 26, nb + 40], [200 - 30, py + 60], [200 - 28, hemY - 10]]], false)} p={p} o={0.3} w={2} />
+            <Hi
+              d={path(
+                [
+                  [
+                    [200 - 26, nb + 40],
+                    [200 - 30, py + 60],
+                    [200 - 28, hemY - 10],
+                  ],
+                ],
+                false,
+              )}
+              p={p}
+              o={0.3}
+              w={2}
+            />
           )}
           {style.pocket && (
             <g>
               <Fabric d={pocketD} p={p} cyl={false} sw={0.9} />
-              <Stitch d={path([[[211.5, pocketY + 3], [237.5, pocketY + 3]]], false)} color={p.line} />
+              <Stitch
+                d={path(
+                  [
+                    [
+                      [211.5, pocketY + 3],
+                      [237.5, pocketY + 3],
+                    ],
+                  ],
+                  false,
+                )}
+                color={p.line}
+              />
             </g>
           )}
         </g>
@@ -381,11 +515,35 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
         <g transform={MIRROR}>
           <Fabric d={leaf} p={p} cyl={false} sw={1} />
         </g>
-        <Both runs={[[[A[0] + 2, A[1] + 6], [B[0] + 6, B[1] + 2], [C[0] - 1, C[1] - 6]]]}>{(d) => <Stitch d={d} color={p.line} w={0.6} />}</Both>
+        <Both
+          runs={[
+            [
+              [A[0] + 2, A[1] + 6],
+              [B[0] + 6, B[1] + 2],
+              [C[0] - 1, C[1] - 6],
+            ],
+          ]}
+        >
+          {(d) => <Stitch d={d} color={p.line} w={0.6} />}
+        </Both>
         {collar === "buttondown" && (
           <>
-            <circle cx={C[0] + 5} cy={C[1] - 7} r={1.6} fill={p.hi} stroke={p.line} strokeWidth={0.5} />
-            <circle cx={400 - C[0] - 5} cy={C[1] - 7} r={1.6} fill={p.hi} stroke={p.line} strokeWidth={0.5} />
+            <circle
+              cx={C[0] + 5}
+              cy={C[1] - 7}
+              r={1.6}
+              fill={p.hi}
+              stroke={p.line}
+              strokeWidth={0.5}
+            />
+            <circle
+              cx={400 - C[0] - 5}
+              cy={C[1] - 7}
+              r={1.6}
+              fill={p.hi}
+              stroke={p.line}
+              strokeWidth={0.5}
+            />
           </>
         )}
       </g>
@@ -409,7 +567,18 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
         <g transform={MIRROR}>
           <Fabric d={leaf} p={p} cyl={false} sw={1} />
         </g>
-        <Both runs={[[[B[0] + 5, B[1] + 3], [C[0] - 1, C[1] - 4]], [[C[0] + 4, C[1] + 2], [D[0] - 8, D[1] - 6]]]}>
+        <Both
+          runs={[
+            [
+              [B[0] + 5, B[1] + 3],
+              [C[0] - 1, C[1] - 4],
+            ],
+            [
+              [C[0] + 4, C[1] + 2],
+              [D[0] - 8, D[1] - 6],
+            ],
+          ]}
+        >
           {(d) => <Hi d={d} p={p} o={0.4} />}
         </Both>
       </g>
@@ -468,7 +637,8 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
   ]);
   const buttonFill = luminance(p.base) > 0.45 ? shade(p.base, 0.1) : tint(p.base, 0.55);
   const buttons: number[] = [];
-  for (let y = placketTop + (collar === "camp" ? 16 : 14); y < centerHemY - 14; y += W ? 42 : 46) buttons.push(y);
+  for (let y = placketTop + (collar === "camp" ? 16 : 14); y < centerHemY - 14; y += W ? 42 : 46)
+    buttons.push(y);
   const pocketY = nb + 64;
   const showPocket = !W && collar === "buttondown";
   const pocketD = path([
@@ -507,7 +677,15 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
             <circle cx={200.8} cy={y} r={0.4} fill={p.line} />
           </g>
         ))}
-        <Stitch d={symStroke([[hx + 1, hemY - 5], [hx + 12, hemY + 3], [(hx + 200) / 2 + 6, hemY + 9], [200, hemY + 10]])} color={p.line} />
+        <Stitch
+          d={symStroke([
+            [hx + 1, hemY - 5],
+            [hx + 12, hemY + 3],
+            [(hx + 200) / 2 + 6, hemY + 9],
+            [200, hemY + 10],
+          ])}
+          color={p.line}
+        />
         <Both runs={armpitDrag}>{(d) => <Fold d={d} p={p} />}</Both>
         <Both runs={waistFold}>{(d) => <Fold d={d} p={p} o={0.55} />}</Both>
         <Both runs={bustFold}>{(d) => <Fold d={d} p={p} o={0.45} />}</Both>
@@ -525,7 +703,18 @@ function renderTop(spec: BodySpec, style: TopStyle, p: Paint, productId: string)
         {showPocket && (
           <g>
             <Fabric d={pocketD} p={p} cyl={false} sw={0.9} />
-            <Stitch d={path([[[212.5, pocketY + 3], [237.5, pocketY + 3]]], false)} color={p.line} />
+            <Stitch
+              d={path(
+                [
+                  [
+                    [212.5, pocketY + 3],
+                    [237.5, pocketY + 3],
+                  ],
+                ],
+                false,
+              )}
+              color={p.line}
+            />
           </g>
         )}
       </g>
@@ -543,9 +732,19 @@ export function pantsGeometry(spec: BodySpec, style: PantStyle) {
   const W = spec.gender === "women";
   const rise = W ? spec.waistY + 2 : spec.waistY + 26;
   const cut = style.cut;
-  const hemY = { slim: spec.ankleY - 8, straight: spec.floorY - 24, wide: spec.floorY - 6, cigarette: spec.ankleY - 34 }[cut];
+  const hemY = {
+    slim: spec.ankleY - 8,
+    straight: spec.floorY - 24,
+    wide: spec.floorY - 6,
+    cigarette: spec.ankleY - 34,
+  }[cut];
   const thighEase = { slim: 5, straight: 8, wide: 13, cigarette: 3.5 }[cut];
-  const hemHalf = { slim: W ? 19 : 21, straight: W ? 31 : 33, wide: W ? 44 : 46, cigarette: W ? 17.5 : 19 }[cut];
+  const hemHalf = {
+    slim: W ? 19 : 21,
+    straight: W ? 31 : 33,
+    wide: W ? 44 : 46,
+    cigarette: W ? 17.5 : 19,
+  }[cut];
   const hipEase = style.pleats ? 7 : W ? 3.5 : 5;
   const c0 = spec.crotchY;
   const lc = (y: number) => (xAt(spec.legOuter, y) + xAt(spec.legInner, y)) / 2;
@@ -584,7 +783,16 @@ function renderPants(spec: BodySpec, style: PantStyle, p: Paint): GarmentArt {
   ];
   const innerRun: P[] = [...sample(hemY, c0 + 10, 10, innerAt), [200, c0 + 3]];
   const d = symPath([top, outerRun, hemRun, innerRun]);
-  const legD = path([top, outerRun, hemRun, innerRun, [[200, c0 + 3], [200, rise + 3]]]);
+  const legD = path([
+    top,
+    outerRun,
+    hemRun,
+    innerRun,
+    [
+      [200, c0 + 3],
+      [200, rise + 3],
+    ],
+  ]);
   const mid = (y: number) => (outerAt(y) + innerAt(y)) / 2;
   const denim = !!style.denim;
   const thread = "#C9944F";
@@ -650,29 +858,123 @@ function renderPants(spec: BodySpec, style: PantStyle, p: Paint): GarmentArt {
       <g>
         <Fabric d={d} p={p} cyl={false} drop />
         <path d={legD} fill={`url(#${p.uid}-cyl)`} />
-        <path d={path(mirrorRuns([top, outerRun, hemRun, innerRun, [[200, c0 + 3], [200, rise + 3]]]))} fill={`url(#${p.uid}-cyl)`} />
+        <path
+          d={path(
+            mirrorRuns([
+              top,
+              outerRun,
+              hemRun,
+              innerRun,
+              [
+                [200, c0 + 3],
+                [200, rise + 3],
+              ],
+            ]),
+          )}
+          fill={`url(#${p.uid}-cyl)`}
+        />
         <path d={d} fill="none" stroke={p.line} strokeWidth={1.1} strokeLinejoin="round" />
         <path d={waistband} fill="none" stroke={p.line} strokeWidth={0.9} />
         {denim && <Stitch d={waistband} color={thread} w={0.7} />}
         {loops.map((x) => (
           <g key={x}>
-            <rect x={x - 2} y={rise - 1} width={4} height={15} rx={1} fill={p.base} stroke={p.line} strokeWidth={0.7} />
-            <rect x={400 - x - 2} y={rise - 1} width={4} height={15} rx={1} fill={p.base} stroke={p.line} strokeWidth={0.7} />
+            <rect
+              x={x - 2}
+              y={rise - 1}
+              width={4}
+              height={15}
+              rx={1}
+              fill={p.base}
+              stroke={p.line}
+              strokeWidth={0.7}
+            />
+            <rect
+              x={400 - x - 2}
+              y={rise - 1}
+              width={4}
+              height={15}
+              rx={1}
+              fill={p.base}
+              stroke={p.line}
+              strokeWidth={0.7}
+            />
           </g>
         ))}
-        <circle cx={200} cy={rise + 7} r={2.4} fill={denim ? "#B9884D" : shade(p.base, 0.25)} stroke={p.line} strokeWidth={0.5} />
-        <path d={path([[[200, wbY + 2], [200, c0 + 2]]], false)} fill="none" stroke={p.line} strokeWidth={0.8} strokeOpacity={0.8} />
+        <circle
+          cx={200}
+          cy={rise + 7}
+          r={2.4}
+          fill={denim ? "#B9884D" : shade(p.base, 0.25)}
+          stroke={p.line}
+          strokeWidth={0.5}
+        />
+        <path
+          d={path(
+            [
+              [
+                [200, wbY + 2],
+                [200, c0 + 2],
+              ],
+            ],
+            false,
+          )}
+          fill="none"
+          stroke={p.line}
+          strokeWidth={0.8}
+          strokeOpacity={0.8}
+        />
         {denim ? (
-          <Stitch d={path([[[206, wbY + 2], [206, c0 - 34], [203, c0 - 16], [199.5, c0 - 9]]], false)} color={thread} w={0.8} />
+          <Stitch
+            d={path(
+              [
+                [
+                  [206, wbY + 2],
+                  [206, c0 - 34],
+                  [203, c0 - 16],
+                  [199.5, c0 - 9],
+                ],
+              ],
+              false,
+            )}
+            color={thread}
+            w={0.8}
+          />
         ) : (
-          <Fold d={path([[[205.5, wbY + 2], [205.5, c0 - 34], [202, c0 - 16], [199.5, c0 - 9]]], false)} p={p} w={0.8} />
+          <Fold
+            d={path(
+              [
+                [
+                  [205.5, wbY + 2],
+                  [205.5, c0 - 34],
+                  [202, c0 - 16],
+                  [199.5, c0 - 9],
+                ],
+              ],
+              false,
+            )}
+            p={p}
+            w={0.8}
+          />
         )}
-        <Both runs={pocket}>{(dd) => (denim ? <Stitch d={dd} color={thread} w={0.8} /> : <Fold d={dd} p={p} />)}</Both>
+        <Both runs={pocket}>
+          {(dd) => (denim ? <Stitch d={dd} color={thread} w={0.8} /> : <Fold d={dd} p={p} />)}
+        </Both>
         {denim && (
           <>
             <circle cx={pocket[0]![0]![0]} cy={rise + 16} r={1.3} fill="#B9884D" />
             <circle cx={400 - pocket[0]![0]![0]} cy={rise + 16} r={1.3} fill="#B9884D" />
-            <Both runs={[[[mid(c0 - 10) + 8, c0 - 6], [mid(c0) + 18, c0 + 6]], [[mid(c0 + 6) + 6, c0 + 10], [mid(c0 + 14) + 18, c0 + 20]]]}>
+            <Both
+              runs={[
+                [
+                  [mid(c0 - 10) + 8, c0 - 6],
+                  [mid(c0) + 18, c0 + 6],
+                ],
+                [
+                  [mid(c0 + 6) + 6, c0 + 10],
+                  [mid(c0 + 14) + 18, c0 + 20],
+                ],
+              ]}
+            >
               {(dd) => <Hi d={dd} p={p} o={0.35} w={1.6} />}
             </Both>
           </>
@@ -680,10 +982,24 @@ function renderPants(spec: BodySpec, style: PantStyle, p: Paint): GarmentArt {
         {!denim && (
           <>
             <path d={crease} fill="none" stroke={p.hi} strokeOpacity={0.5} strokeWidth={1.2} />
-            <path d={crease} transform="translate(1.4 0)" fill="none" stroke={p.fold} strokeOpacity={0.5} strokeWidth={0.8} />
+            <path
+              d={crease}
+              transform="translate(1.4 0)"
+              fill="none"
+              stroke={p.fold}
+              strokeOpacity={0.5}
+              strokeWidth={0.8}
+            />
             <g transform={MIRROR}>
               <path d={crease} fill="none" stroke={p.hi} strokeOpacity={0.5} strokeWidth={1.2} />
-              <path d={crease} transform="translate(1.4 0)" fill="none" stroke={p.fold} strokeOpacity={0.5} strokeWidth={0.8} />
+              <path
+                d={crease}
+                transform="translate(1.4 0)"
+                fill="none"
+                stroke={p.fold}
+                strokeOpacity={0.5}
+                strokeWidth={0.8}
+              />
             </g>
           </>
         )}
@@ -705,8 +1021,18 @@ function renderPants(spec: BodySpec, style: PantStyle, p: Paint): GarmentArt {
         )}
         <Both runs={kneeFolds}>{(dd) => <Fold d={dd} p={p} o={0.45} />}</Both>
         <Both runs={hemFolds}>{(dd) => <Fold d={dd} p={p} o={0.6} />}</Both>
-        <Both runs={[[[ho + 2, hemY - 6], [(ho + hi) / 2, hemY - 3], [hi - 2, hemY - 6]]]}>
-          {(dd) => (denim ? <Stitch d={dd} color={thread} /> : <Fold d={dd} p={p} o={0.5} w={0.7} />)}
+        <Both
+          runs={[
+            [
+              [ho + 2, hemY - 6],
+              [(ho + hi) / 2, hemY - 3],
+              [hi - 2, hemY - 6],
+            ],
+          ]}
+        >
+          {(dd) =>
+            denim ? <Stitch d={dd} color={thread} /> : <Fold d={dd} p={p} o={0.5} w={0.7} />
+          }
         </Both>
       </g>
     ),
@@ -722,7 +1048,8 @@ function renderShoes(spec: BodySpec, style: ShoeStyle, p: Paint): GarmentArt {
   const ai = xAt(spec.legInner, ay);
   const fc = (ao + ai) / 2 - 3;
   const lum = luminance(p.base);
-  const soleColor = style.shoe === "sneaker" ? (lum > 0.5 ? "#F6F3EC" : "#EFEBE3") : shade(p.base, 0.6);
+  const soleColor =
+    style.shoe === "sneaker" ? (lum > 0.5 ? "#F6F3EC" : "#EFEBE3") : shade(p.base, 0.6);
   const sole: Paint = makePaint(soleColor, p.uid);
   let left: ReactNode;
 
@@ -795,18 +1122,81 @@ function renderShoes(spec: BodySpec, style: ShoeStyle, p: Paint): GarmentArt {
     const laceColor = lum > 0.5 ? shade(p.base, 0.12) : "#F1EEE8";
     const laces: ReactNode[] = [];
     for (let y = ay + 9; y < fy - 26; y += 6) {
-      laces.push(<path key={y} d={`M${fc - 8},${y} L${fc + 8},${y + 3}`} stroke={laceColor} strokeWidth={1.6} strokeLinecap="round" />);
+      laces.push(
+        <path
+          key={y}
+          d={`M${fc - 8},${y} L${fc + 8},${y + 3}`}
+          stroke={laceColor}
+          strokeWidth={1.6}
+          strokeLinecap="round"
+        />,
+      );
     }
     left = (
       <g>
         <Fabric d={upper} p={p} />
         <Fabric d={tongue} p={p} cyl={false} sw={0.7} fill={shade(p.base, 0.05)} />
         {laces}
-        <Fold d={path([[[fc - 9, ay + 6], [fc - 9, fy - 25]], [[fc + 9, fy - 25], [fc + 9, ay + 6]]], false)} p={p} w={0.8} />
-        <Fold d={path([[[ao - 12, fy - 18], [fc - 2, fy - 22], [ai + 6, fy - 18]]], false)} p={p} o={0.6} />
-        <Hi d={path([[[ao - 8, ay + 22], [ao - 11, fy - 22]]], false)} p={p} o={0.5} w={1.4} />
+        <Fold
+          d={path(
+            [
+              [
+                [fc - 9, ay + 6],
+                [fc - 9, fy - 25],
+              ],
+              [
+                [fc + 9, fy - 25],
+                [fc + 9, ay + 6],
+              ],
+            ],
+            false,
+          )}
+          p={p}
+          w={0.8}
+        />
+        <Fold
+          d={path(
+            [
+              [
+                [ao - 12, fy - 18],
+                [fc - 2, fy - 22],
+                [ai + 6, fy - 18],
+              ],
+            ],
+            false,
+          )}
+          p={p}
+          o={0.6}
+        />
+        <Hi
+          d={path(
+            [
+              [
+                [ao - 8, ay + 22],
+                [ao - 11, fy - 22],
+              ],
+            ],
+            false,
+          )}
+          p={p}
+          o={0.5}
+          w={1.4}
+        />
         <Fabric d={soleD} p={sole} cyl={false} sw={0.9} />
-        <Stitch d={path([[[ao - 14, fy - 9], [fc, fy - 2], [ai + 6, fy - 9]]], false)} color={sole.line} w={0.6} />
+        <Stitch
+          d={path(
+            [
+              [
+                [ao - 14, fy - 9],
+                [fc, fy - 2],
+                [ai + 6, fy - 9],
+              ],
+            ],
+            false,
+          )}
+          color={sole.line}
+          w={0.6}
+        />
       </g>
     );
   } else if (style.shoe === "loafer") {
@@ -872,7 +1262,20 @@ function renderShoes(spec: BodySpec, style: ShoeStyle, p: Paint): GarmentArt {
         <Fabric d={upper} p={p} />
         <Fabric d={strap} p={p} cyl={false} sw={0.8} fill={shade(p.base, 0.12)} />
         <ellipse cx={fc} cy={fy - 19.5} rx={4} ry={1.4} fill={shade(p.base, 0.6)} />
-        <Stitch d={path([[[ao - 9, fy - 17], [fc - 2, fy - 9], [ai + 3, fy - 16]]], false)} color={p.line} w={0.6} />
+        <Stitch
+          d={path(
+            [
+              [
+                [ao - 9, fy - 17],
+                [fc - 2, fy - 9],
+                [ai + 3, fy - 16],
+              ],
+            ],
+            false,
+          )}
+          color={p.line}
+          w={0.6}
+        />
         <ellipse cx={fc - 5} cy={fy - 12} rx={5} ry={2} fill="#FFFFFF" opacity={0.28} />
         <Fabric d={soleD} p={sole} cyl={false} sw={0.7} />
       </g>
@@ -906,12 +1309,46 @@ function renderShoes(spec: BodySpec, style: ShoeStyle, p: Paint): GarmentArt {
     ]);
     left = (
       <g>
-        <path d={`M${ao - 2},${fy - 29} L${ao},${ay + 9}`} stroke={p.line} strokeWidth={3} strokeLinecap="round" />
-        <path d={`M${ao - 2},${fy - 29} L${ao},${ay + 9}`} stroke={p.base} strokeWidth={1.8} strokeLinecap="round" />
-        <path d={`M${ai},${fy - 29} L${ai - 1},${ay + 9}`} stroke={p.line} strokeWidth={3} strokeLinecap="round" />
-        <path d={`M${ai},${fy - 29} L${ai - 1},${ay + 9}`} stroke={p.base} strokeWidth={1.8} strokeLinecap="round" />
+        <path
+          d={`M${ao - 2},${fy - 29} L${ao},${ay + 9}`}
+          stroke={p.line}
+          strokeWidth={3}
+          strokeLinecap="round"
+        />
+        <path
+          d={`M${ao - 2},${fy - 29} L${ao},${ay + 9}`}
+          stroke={p.base}
+          strokeWidth={1.8}
+          strokeLinecap="round"
+        />
+        <path
+          d={`M${ai},${fy - 29} L${ai - 1},${ay + 9}`}
+          stroke={p.line}
+          strokeWidth={3}
+          strokeLinecap="round"
+        />
+        <path
+          d={`M${ai},${fy - 29} L${ai - 1},${ay + 9}`}
+          stroke={p.base}
+          strokeWidth={1.8}
+          strokeLinecap="round"
+        />
         <Fabric d={upper} p={p} />
-        <path d={path([[[ao - 9, fy - 9], [fc - 8, fy + 3], [ai + 3, fy - 10]]], false)} fill="none" stroke={shade(p.base, 0.6)} strokeWidth={1.6} />
+        <path
+          d={path(
+            [
+              [
+                [ao - 9, fy - 9],
+                [fc - 8, fy + 3],
+                [ai + 3, fy - 10],
+              ],
+            ],
+            false,
+          )}
+          fill="none"
+          stroke={shade(p.base, 0.6)}
+          strokeWidth={1.6}
+        />
         <ellipse cx={fc - 4} cy={fy - 10} rx={4.5} ry={1.8} fill="#FFFFFF" opacity={0.3} />
       </g>
     );
@@ -965,19 +1402,93 @@ function renderShoes(spec: BodySpec, style: ShoeStyle, p: Paint): GarmentArt {
         <Fabric d={upper} p={p} sw={boot ? 1 : 1.1} />
         {boot ? (
           <>
-            <path d={path([[[so + 1, sy + 1], [ao + 1, ay + 2]], [[ao + 1, ay + 2], [so + 13, sy + 1]]])} fill={shade(p.base, 0.35)} stroke={p.line} strokeWidth={0.6} />
-            <path d={path([[[si - 1, sy + 1], [ai - 1, ay + 2]], [[ai - 1, ay + 2], [si - 13, sy + 1]]])} fill={shade(p.base, 0.35)} stroke={p.line} strokeWidth={0.6} />
-            <rect x={(so + si) / 2 - 4} y={sy - 9} width={8} height={11} rx={2} fill={shade(p.base, 0.1)} stroke={p.line} strokeWidth={0.6} />
+            <path
+              d={path([
+                [
+                  [so + 1, sy + 1],
+                  [ao + 1, ay + 2],
+                ],
+                [
+                  [ao + 1, ay + 2],
+                  [so + 13, sy + 1],
+                ],
+              ])}
+              fill={shade(p.base, 0.35)}
+              stroke={p.line}
+              strokeWidth={0.6}
+            />
+            <path
+              d={path([
+                [
+                  [si - 1, sy + 1],
+                  [ai - 1, ay + 2],
+                ],
+                [
+                  [ai - 1, ay + 2],
+                  [si - 13, sy + 1],
+                ],
+              ])}
+              fill={shade(p.base, 0.35)}
+              stroke={p.line}
+              strokeWidth={0.6}
+            />
+            <rect
+              x={(so + si) / 2 - 4}
+              y={sy - 9}
+              width={8}
+              height={11}
+              rx={2}
+              fill={shade(p.base, 0.1)}
+              stroke={p.line}
+              strokeWidth={0.6}
+            />
           </>
         ) : (
           <>
-            <path d={`M${si - 4},${sy + 2} L${ai - 1},${ay + 12}`} stroke={shade(p.base, 0.45)} strokeWidth={1.2} />
+            <path
+              d={`M${si - 4},${sy + 2} L${ai - 1},${ay + 12}`}
+              stroke={shade(p.base, 0.45)}
+              strokeWidth={1.2}
+            />
             <rect x={si - 6.5} y={sy + 4} width={3.5} height={7} rx={1} fill="#C7B79F" />
-            <Fold d={path([[[ao - 2, ay - 4], [fc - 2, ay + 2], [ai - 2, ay - 6]]], false)} p={p} o={0.55} />
+            <Fold
+              d={path(
+                [
+                  [
+                    [ao - 2, ay - 4],
+                    [fc - 2, ay + 2],
+                    [ai - 2, ay - 6],
+                  ],
+                ],
+                false,
+              )}
+              p={p}
+              o={0.55}
+            />
           </>
         )}
-        <Hi d={path([[[ao - 6, ay - 20], [ao - 10, fy - 22]]], false)} p={p} o={0.4} w={1.6} />
-        <ellipse cx={fc - 5} cy={fy - 12} rx={5} ry={2} fill="#FFFFFF" opacity={boot ? 0.12 : 0.28} />
+        <Hi
+          d={path(
+            [
+              [
+                [ao - 6, ay - 20],
+                [ao - 10, fy - 22],
+              ],
+            ],
+            false,
+          )}
+          p={p}
+          o={0.4}
+          w={1.6}
+        />
+        <ellipse
+          cx={fc - 5}
+          cy={fy - 12}
+          rx={5}
+          ry={2}
+          fill="#FFFFFF"
+          opacity={boot ? 0.12 : 0.28}
+        />
         <Fabric d={soleD} p={sole} cyl={false} sw={0.7} />
       </g>
     );
@@ -995,7 +1506,12 @@ function renderShoes(spec: BodySpec, style: ShoeStyle, p: Paint): GarmentArt {
 
 /* ============================== ENTRY ============================== */
 
-export function renderGarment(spec: BodySpec, product: Product, hex: string, uid: string): GarmentArt {
+export function renderGarment(
+  spec: BodySpec,
+  product: Product,
+  hex: string,
+  uid: string,
+): GarmentArt {
   const p = makePaint(hex, uid);
   const s = product.style;
   if (s.kind === "tee" || s.kind === "shirt") return renderTop(spec, s, p, product.id);

@@ -36,6 +36,8 @@ Keep `.local/mysql-data`, `uploads`, `.env` and its `ENCRYPTION_KEY` to retain d
 
 For an existing MySQL server, copy `.env.example` to `.env`, enter its connection details and create the `forme` database before running `npm run db:seed`. The bundled database helper is Windows-only.
 
+For manual setup, also set independent, stable `SESSION_SECRET` and `ENCRYPTION_KEY` values plus `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD` for the first owner. Create a separate `forme_test` database if you will run the integration tests.
+
 ## Admin setup
 
 - **Products / Inventory:** add products and images, colours, sizes, prices and stock.

@@ -13,8 +13,14 @@ function spline(pts: readonly P[], tension = 1): string {
     const p2 = pts[i + 1]!;
     const p0 = pts[i - 1] ?? p1;
     const p3 = pts[i + 2] ?? p2;
-    const c1: P = [p1[0] + ((p2[0] - p0[0]) / 6) * tension, p1[1] + ((p2[1] - p0[1]) / 6) * tension];
-    const c2: P = [p2[0] - ((p3[0] - p1[0]) / 6) * tension, p2[1] - ((p3[1] - p1[1]) / 6) * tension];
+    const c1: P = [
+      p1[0] + ((p2[0] - p0[0]) / 6) * tension,
+      p1[1] + ((p2[1] - p0[1]) / 6) * tension,
+    ];
+    const c2: P = [
+      p2[0] - ((p3[0] - p1[0]) / 6) * tension,
+      p2[1] - ((p3[1] - p1[1]) / 6) * tension,
+    ];
     d += `C${pt(c1)} ${pt(c2)} ${pt(p2)}`;
   }
   return d;
@@ -30,7 +36,8 @@ export function path(runs: readonly (readonly P[])[], close = true): string {
 }
 
 export const mx = (p: P): P => [2 * CX - p[0], p[1]];
-export const mirrorRuns = (runs: readonly (readonly P[])[]): P[][] => runs.map((run) => run.map(mx));
+export const mirrorRuns = (runs: readonly (readonly P[])[]): P[][] =>
+  runs.map((run) => run.map(mx));
 
 /** Left-half runs from the centre line (top) to the centre line (bottom), mirrored into a closed shape. */
 export function symPath(runs: readonly (readonly P[])[]): string {
@@ -65,7 +72,12 @@ export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 
 /** n+1 points from y0 to y1, x supplied by fn(y, t). */
-export function sample(y0: number, y1: number, n: number, fn: (y: number, t: number) => number): P[] {
+export function sample(
+  y0: number,
+  y1: number,
+  n: number,
+  fn: (y: number, t: number) => number,
+): P[] {
   const out: P[] = [];
   for (let i = 0; i <= n; i++) {
     const t = i / n;
@@ -93,16 +105,32 @@ export function mirrorD(d: string): string {
 /* ---------- colour helpers for garment shading ---------- */
 function hexToRgb(hex: string): [number, number, number] {
   const h = hex.replace("#", "");
-  const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
+  const full =
+    h.length === 3
+      ? h
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : h;
   const n = parseInt(full, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 function rgbToHex([r1, g, b]: [number, number, number]): string {
-  return `#${[r1, g, b].map((v) => Math.round(Math.min(255, Math.max(0, v))).toString(16).padStart(2, "0")).join("")}`;
+  return `#${[r1, g, b]
+    .map((v) =>
+      Math.round(Math.min(255, Math.max(0, v)))
+        .toString(16)
+        .padStart(2, "0"),
+    )
+    .join("")}`;
 }
 export function mix(hex: string, target: [number, number, number], amt: number): string {
   const c = hexToRgb(hex);
-  return rgbToHex([lerp(c[0], target[0], amt), lerp(c[1], target[1], amt), lerp(c[2], target[2], amt)]);
+  return rgbToHex([
+    lerp(c[0], target[0], amt),
+    lerp(c[1], target[1], amt),
+    lerp(c[2], target[2], amt),
+  ]);
 }
 export const shade = (hex: string, amt: number) => mix(hex, [24, 18, 12], amt);
 export const tint = (hex: string, amt: number) => mix(hex, [255, 250, 242], amt);
